@@ -2,6 +2,7 @@
     <string name="app_name">Dikke Ploaten</string>
 
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 
     <string name="title_collection">Collection</string>
     <string name="title_wantlist">Wantlist</string>
