@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:id="@+id/image_album"
+            android:layout_alignParentTop="true"
+            android:contentDescription="Image of the specific album"/>
+
+    <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/image_album"
+            android:textColor="#000"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toEndOf="@+id/image_album"
+            android:layout_marginStart="30dp">
+
+        <TextView
+                android:id="@+id/title_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Highway To Hell"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        <TextView
+                android:id="@+id/artist_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AC/DC"
+                android:textSize="16sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
