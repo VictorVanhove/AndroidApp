@@ -2,6 +2,7 @@ package com.example.dikkeploaten.Services
 
 import android.util.Log
 import com.example.dikkeploaten.Models.Album
+import com.example.dikkeploaten.Models.UserAlbum
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -15,15 +16,32 @@ class API {
         fun shared() = API()
     }
 
-    fun getUserCollection(callback: (Array<Album>) -> Unit) {
+    fun getUserCollection(callback: (ArrayList<Album>) -> Unit) {
+        var albums = arrayListOf<Album>()
+
         val userPlates = db.collection("users").document(auth.currentUser!!.uid).collection("platen")
         userPlates.get().addOnSuccessListener { result ->
             for (document in result) {
-                Log.d("ALBUMSUCCESS", "${document.id} => ${document.data}")
+                var userAlbum = document.toObject(UserAlbum::class.java)
+                db.collection("platen").document(userAlbum.albumID).get()
+                    .addOnSuccessListener { document ->
+                        if (document != null) {
+                            var album = document.toObject(Album::class.java)
+                            album!!.id = document.id
+                            albums.add(album)
+
+                            callback(albums)
+                        } else {
+                            Log.d(TAG, "No such document")
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        Log.d(TAG, "get failed with ", exception)
+                    }
             }
         }
             .addOnFailureListener { exception ->
-                Log.d("ALBUMFAIL", "Error getting documents: ", exception)
+                Log.d(TAG, "Error getting documents: ", exception)
             }
 
     }
