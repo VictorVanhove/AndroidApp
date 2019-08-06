@@ -25,7 +25,7 @@ class CollectionFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        API.shared().getAlbumList { albums ->
+            API.shared().getUserCollection { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
         }
