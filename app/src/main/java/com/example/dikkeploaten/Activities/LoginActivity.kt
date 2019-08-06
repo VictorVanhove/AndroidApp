@@ -22,13 +22,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var regBtn: Button
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.dikkeploaten.R.layout.activity_login)
 
-        auth = FirebaseAuth.getInstance()
         initializeUI()
 
         loginBtn.setOnClickListener {
@@ -58,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        auth.signInWithEmailAndPassword(email, password)
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(object: OnCompleteListener<AuthResult> {
                 override fun onComplete(task: Task<AuthResult>) {
                     if (task.isSuccessful)

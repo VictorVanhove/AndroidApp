@@ -9,7 +9,7 @@ import com.example.dikkeploaten.Models.Album
 import com.example.dikkeploaten.R
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
-class AlbumAdapter(var context: Context, var albums: List<Album>) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(var context: Context, var albums: ArrayList<Album>) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
