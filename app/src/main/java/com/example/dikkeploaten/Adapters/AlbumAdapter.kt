@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.example.dikkeploaten.Models.Album
 import com.example.dikkeploaten.R
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
@@ -21,6 +24,9 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>) : Recycle
         val album = albums[position]
         holder.txt_title.text = album.title
         holder.txt_artist.text = album.artist
+
+        val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+        Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.image)
     }
 
     override fun getItemCount(): Int {
