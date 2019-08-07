@@ -2,15 +2,14 @@ package com.example.dikkeploaten.Activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.dikkeploaten.Fragments.*
+import com.example.dikkeploaten.Models.Album
 import com.example.dikkeploaten.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-
 
     private fun loadFragment(fragment: Fragment): Boolean {
         if(fragment != null) {
@@ -19,7 +18,6 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         return false
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment = Fragment()
@@ -52,4 +50,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         loadFragment(CollectionFragment())
     }
+
+    fun goToAlbumDetail(album: Album) {
+        val frag = AlbumDetailFragment()
+        frag.initiateAttributes(album)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, frag).addToBackStack(null).commit()
+    }
+
 }
