@@ -107,5 +107,16 @@ class API {
             }
         }
 
+    fun addWantlistAlbum(albumId: String) {
+        var userAlbum = UserAlbum(albumID = albumId)
+        db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
+            .add(userAlbum)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+    }
 
 }

@@ -58,7 +58,8 @@ class SearchFragment : Fragment() {
                     API.shared().addCollectionAlbum(album.id)
                     adapter.notifyDataSetChanged()
                 } else {
-
+                    API.shared().addWantlistAlbum(album.id)
+                    adapter.notifyDataSetChanged()
                 }
             }
 
