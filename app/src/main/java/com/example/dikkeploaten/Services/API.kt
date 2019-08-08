@@ -119,4 +119,23 @@ class API {
             }
     }
 
+    fun deleteCollectionAlbum(albumId: String) {
+        db.collection("users").document(auth.currentUser!!.uid).collection("platen")
+            .whereEqualTo("albumID", albumId)
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+
+                    db.collection("users").document(auth.currentUser!!.uid).collection("platen")
+                        .document(document.id).delete()
+                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+    }
+
 }
