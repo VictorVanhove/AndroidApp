@@ -95,6 +95,17 @@ class API {
 
     }
 
+    fun addCollectionAlbum(albumId: String) {
+        var userAlbum = UserAlbum(albumID = albumId)
+        db.collection("users").document(auth.currentUser!!.uid).collection("platen")
+            .add(userAlbum)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+        }
 
 
 }
