@@ -1,9 +1,13 @@
 package com.example.dikkeploaten.Fragments
 
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_collection.*
 class CollectionFragment : Fragment() {
 
     private lateinit var adapter: AlbumAdapter
+    private var sections = arrayListOf<String>()
     private var albums = arrayListOf<Album>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -60,6 +65,35 @@ class CollectionFragment : Fragment() {
                         API.shared().deleteCollectionAlbum(album.id)
                         adapter.notifyDataSetChanged()
                     }
+                }
+
+                override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
+                ) {
+                    var deleteIcon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_delete_white_24dp)!!
+                    var deleteIconBackground = ColorDrawable(Color.parseColor("#ff0000"))
+
+                    val itemView = viewHolder.itemView
+                    val iconMarginVertical = (viewHolder.itemView.height - deleteIcon.intrinsicHeight) / 2
+
+                    if (dX < 0) {
+                        deleteIconBackground.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+                        deleteIcon.setBounds(itemView.right - iconMarginVertical - deleteIcon.intrinsicWidth, itemView.top + iconMarginVertical,
+                            itemView.right - iconMarginVertical, itemView.bottom - iconMarginVertical)
+                        deleteIcon.level = 0
+                    }
+
+                    deleteIconBackground.draw(c)
+
+                    c.save()
+
+                    if (dX < 0)
+                        c.clipRect(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+
+                    deleteIcon.draw(c)
+
+                    c.restore()
+
+                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                 }
             }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
