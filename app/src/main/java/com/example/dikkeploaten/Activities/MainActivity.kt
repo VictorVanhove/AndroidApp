@@ -1,6 +1,7 @@
 package com.example.dikkeploaten.Activities
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -57,4 +58,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, frag).addToBackStack(null).commit()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return true
+    }
 }

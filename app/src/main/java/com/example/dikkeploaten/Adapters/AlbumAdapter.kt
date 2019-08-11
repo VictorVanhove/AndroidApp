@@ -52,6 +52,10 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>) : Recycle
 
     }
 
+    fun setFilter(newsArrayList: ArrayList<Album>) {
+        this.albums = newsArrayList
+        notifyDataSetChanged()
+    }
 }
 
 
