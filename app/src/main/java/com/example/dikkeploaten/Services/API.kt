@@ -2,14 +2,18 @@ package com.example.dikkeploaten.Services
 
 import android.util.Log
 import com.example.dikkeploaten.Models.Album
+import com.example.dikkeploaten.Models.User
 import com.example.dikkeploaten.Models.UserAlbum
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 class API {
 
     val db = FirebaseFirestore.getInstance()
     val auth = FirebaseAuth.getInstance()
+    val storageRef =  FirebaseStorage.getInstance("gs://dikke-ploaten.appspot.com").reference
+
     val cache = Cache()
 
     companion object {
@@ -114,7 +118,7 @@ class API {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
-        }
+    }
 
     fun addWantlistAlbum(albumId: String) {
         var userAlbum = UserAlbum(albumID = albumId)
@@ -170,6 +174,48 @@ class API {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
+    }
+
+    fun getUser(callback: (user: User) -> Unit) {
+        db.collection("users").document(auth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+
+                    val user = document.toObject(User::class.java)
+                    cache.user.username = user!!.username
+                    cache.user.email = user!!.email
+                    callback(user)
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "get failed with ", exception)
+            }
+    }
+
+    fun getProfileImage(callback: (String) -> Unit) {
+        val profileRef = storageRef.child("images/profile/${auth.currentUser!!.uid}.jpg")
+
+        profileRef.downloadUrl.addOnSuccessListener { uri ->
+            var imageURL = uri.toString();
+            callback(imageURL)
+        }.addOnFailureListener {
+            // Handle any errors
+        }
+    }
+
+    fun getProfileCover(callback: (String) -> Unit) {
+        val coverRef = storageRef.child("images/cover/${auth.currentUser!!.uid}.jpg")
+
+        coverRef.downloadUrl.addOnSuccessListener { uri ->
+            var imageURL = uri.toString();
+            callback(imageURL)
+        }.addOnFailureListener {
+            // Handle any errors
+        }
     }
 
 }
