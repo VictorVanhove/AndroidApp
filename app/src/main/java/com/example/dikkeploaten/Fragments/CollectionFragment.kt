@@ -42,7 +42,7 @@ class CollectionFragment : Fragment() {
     }
 
     private fun fillRecyclerView(albums: ArrayList<Album>) {
-        adapter = AlbumAdapter(context!!, albums)
+        adapter = AlbumAdapter(context!!, albums, false)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)

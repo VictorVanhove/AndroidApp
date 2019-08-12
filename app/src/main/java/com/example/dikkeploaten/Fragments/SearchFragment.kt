@@ -89,7 +89,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
     }
 
     private fun fillRecyclerView(albums: ArrayList<Album>) {
-        adapter = AlbumAdapter(context!!, albums)
+        adapter = AlbumAdapter(context!!, albums, true)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(context)
@@ -168,6 +168,25 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                 c.restore()
 
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+            }
+
+            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+                val position = viewHolder.adapterPosition
+                var album: Album
+
+                if (searchView.isIconified) {
+                    album = albums[position]
+                } else {
+                    album = filteredAlbums[position]
+                }
+
+                // Set movement flags based on the layout manager
+                if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } || API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }) {
+                    return makeMovementFlags(0, 0)
+                } else {
+                    val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+                    return makeMovementFlags(0, swipeFlags)
+                }
             }
         }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)

@@ -11,9 +11,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.dikkeploaten.Activities.MainActivity
 import com.example.dikkeploaten.Models.Album
 import com.example.dikkeploaten.R
+import com.example.dikkeploaten.Services.API
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
-class AlbumAdapter(var context: Context, var albums: ArrayList<Album>) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showStatus: Boolean) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
@@ -27,7 +28,18 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>) : Recycle
         holder.txt_artist.text = album.artist
 
         val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-        Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.image)
+        Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.image_album)
+
+        if(showStatus) {
+            if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id }) {
+                Glide.with(context).load(R.mipmap.ic_in_collection).apply(requestOptions).into(holder.image_status)
+            } else if (API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }){
+                Glide.with(context).load(R.mipmap.ic_in_wantlist).apply(requestOptions).into(holder.image_status)
+            }
+            else {
+                Glide.with(context).load(R.mipmap.ic_not_in_collection).apply(requestOptions).into(holder.image_status)
+            }
+        }
 
         holder.itemView.setOnClickListener {
             run {
@@ -48,7 +60,11 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>) : Recycle
 
         val txt_title = itemView.title_album
         val txt_artist = itemView.artist_album
-        val image = itemView.image_album
+        val image_album = itemView.image_album
+        val image_status = itemView.image_status
+
+    }
+
 
     }
 
