@@ -32,7 +32,7 @@ class WantlistFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        API.shared().getUserWantlist { albums ->
+        API.shared.getUserWantlist { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
         }
@@ -62,7 +62,7 @@ class WantlistFragment : Fragment() {
                     albums.removeAt(position)
 
                     if (direction == ItemTouchHelper.LEFT) {
-                        API.shared().deleteWantlistAlbum(album.id)
+                        API.shared.deleteWantlistAlbum(album.id)
                         adapter.notifyDataSetChanged()
                     }
 

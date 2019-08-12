@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.fragment_collection.*
 class CollectionFragment : Fragment() {
 
     private lateinit var adapter: AlbumAdapter
-    private var sections = arrayListOf<String>()
     private var albums = arrayListOf<Album>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -33,7 +32,7 @@ class CollectionFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        API.shared().getUserCollection { albums ->
+        API.shared.getUserCollection { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
         }
@@ -63,7 +62,7 @@ class CollectionFragment : Fragment() {
                     albums.removeAt(position)
 
                     if (direction == ItemTouchHelper.LEFT) {
-                        API.shared().deleteCollectionAlbum(album.id)
+                        API.shared.deleteCollectionAlbum(album.id)
                         adapter.notifyDataSetChanged()
                     }
 

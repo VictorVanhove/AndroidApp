@@ -14,7 +14,7 @@ class API {
 
     companion object {
         private val TAG = "show"
-        fun shared() = API()
+        val shared = API()
     }
 
     init {}

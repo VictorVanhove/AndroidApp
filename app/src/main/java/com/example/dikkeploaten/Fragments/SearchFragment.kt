@@ -36,7 +36,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        API.shared().getAlbumList { albums ->
+        API.shared.getAlbumList { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
         }
@@ -115,15 +115,14 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                 var text: String
 
                 if (direction == ItemTouchHelper.LEFT) {
-                    API.shared().addCollectionAlbum(album.id)
+                    API.shared.addCollectionAlbum(album.id)
                     text = "Album successfully added to collection!"
-                    adapter.notifyDataSetChanged()
                 } else {
-                    API.shared().addWantlistAlbum(album.id)
+                    API.shared.addWantlistAlbum(album.id)
                     text = "Album successfully added to wantlist!"
-                    adapter.notifyDataSetChanged()
                 }
 
+                adapter.notifyDataSetChanged()
                 Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
             }
 
