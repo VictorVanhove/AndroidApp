@@ -218,4 +218,13 @@ class API {
         }
     }
 
+    fun updateUsername(username: String) {
+        db.collection("users").document(auth.currentUser!!.uid)
+            .update("username", username)
+            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
+            .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
+
+            cache.user.username = username
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.dikkeploaten.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,14 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dikkeploaten.Fragments.*
 import com.example.dikkeploaten.Models.Album
-import com.example.dikkeploaten.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private fun loadFragment(fragment: Fragment): Boolean {
         if(fragment != null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+            supportFragmentManager.beginTransaction().replace(com.example.dikkeploaten.R.id.fragment_container, fragment).commit()
             return true
         }
         return false
@@ -23,19 +23,19 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment = Fragment()
         when (item.itemId) {
-            R.id.navigation_collection -> {
+            com.example.dikkeploaten.R.id.navigation_collection -> {
                 fragment = CollectionFragment()
             }
-            R.id.navigation_wantlist -> {
+            com.example.dikkeploaten.R.id.navigation_wantlist -> {
                 fragment = WantlistFragment()
             }
-            R.id.navigation_search -> {
+            com.example.dikkeploaten.R.id.navigation_search -> {
                 fragment = SearchFragment()
             }
-            R.id.navigation_notifications -> {
+            com.example.dikkeploaten.R.id.navigation_notifications -> {
                 fragment = NotificationsFragment()
             }
-            R.id.navigation_profile -> {
+            com.example.dikkeploaten.R.id.navigation_profile -> {
                 fragment = ProfileFragment()
             }
         }
@@ -44,8 +44,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        setContentView(com.example.dikkeploaten.R.layout.activity_main)
+        val navView: BottomNavigationView = findViewById(com.example.dikkeploaten.R.id.nav_view)
 
         navView.setOnNavigationItemSelectedListener(this)
 
@@ -55,10 +55,23 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     fun goToAlbumDetail(album: Album) {
         val frag = AlbumDetailFragment()
         frag.initiateAttributes(album)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, frag).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(com.example.dikkeploaten.R.id.fragment_container, frag).addToBackStack(null).commit()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(com.example.dikkeploaten.R.menu.settings_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            com.example.dikkeploaten.R.id.action_settings -> {
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }
