@@ -12,10 +12,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferencesFromResource(R.xml.preferences, rootKey)
 
         val usernamePreference: EditTextPreference? = findPreference("username")
-        API.shared.updateUsername(usernamePreference!!.text)
-
         val passwordPreference: EditTextPreference? = findPreference("password")
-        API.shared.updatePassword(passwordPreference!!.text)
+
+        if(usernamePreference?.text != null && passwordPreference?.text != null) {
+            API.shared.updateUsername(usernamePreference.text)
+            API.shared.updatePassword(passwordPreference.text)
+        }
     }
 
 }

@@ -16,4 +16,14 @@
 
     </PreferenceCategory>
 
+    <PreferenceCategory>
+
+        <Preference
+        app:key="about_fragment"
+        app:title="About this app"
+        app:fragment="com.example.dikkeploaten.Fragments.AboutFragment"
+        />
+
+    </PreferenceCategory>
+
 </androidx.preference.PreferenceScreen>
