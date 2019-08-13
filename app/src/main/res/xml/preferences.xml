@@ -9,6 +9,11 @@
                 app:title="Username"
                 app:summary="Change your profile's username"/>
 
+        <EditTextPreference
+                app:key="password"
+                app:title="Password"
+                app:summary="Change your profile's password"/>
+
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

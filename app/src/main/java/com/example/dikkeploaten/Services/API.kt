@@ -227,4 +227,13 @@ class API {
             cache.user.username = username
     }
 
+    fun updatePassword(newPassword: String) {
+        auth.currentUser?.updatePassword(newPassword)
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "User password updated.")
+                }
+            }
+    }
+
 }

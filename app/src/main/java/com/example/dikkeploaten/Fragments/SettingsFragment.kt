@@ -13,6 +13,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
         val usernamePreference: EditTextPreference? = findPreference("username")
         API.shared.updateUsername(usernamePreference!!.text)
+
+        val passwordPreference: EditTextPreference? = findPreference("password")
+        API.shared.updatePassword(passwordPreference!!.text)
     }
 
 }
