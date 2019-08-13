@@ -24,6 +24,11 @@
         app:fragment="com.example.dikkeploaten.Fragments.AboutFragment"
         />
 
+        <Preference
+                app:key="logout"
+                app:title="Log out"
+        />
+
     </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

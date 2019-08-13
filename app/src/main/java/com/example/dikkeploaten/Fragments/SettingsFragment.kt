@@ -6,7 +6,9 @@ import android.text.TextUtils
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.example.dikkeploaten.Activities.LoginActivity
 import com.example.dikkeploaten.Services.API
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SettingsFragment : PreferenceFragmentCompat() {
@@ -38,7 +40,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
+        when (preference!!.key) {
+            "logout" -> {
+                FirebaseAuth.getInstance().signOut()
+
+                val i = Intent(context, LoginActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(i)
+            }
+
+
         }
+
+        return super.onPreferenceTreeClick(preference)
     }
 
 }
