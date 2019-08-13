@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.dikkeploaten.Fragments.*
 import com.example.dikkeploaten.Models.Album
+import com.example.dikkeploaten.Services.API
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -45,11 +46,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.dikkeploaten.R.layout.activity_main)
+
+        if (API.shared.isUserLoggedIn()) {
+            loadFragment(CollectionFragment())
+        } else {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
         val navView: BottomNavigationView = findViewById(com.example.dikkeploaten.R.id.nav_view)
 
         navView.setOnNavigationItemSelectedListener(this)
-
-        loadFragment(CollectionFragment())
     }
 
     fun goToAlbumDetail(album: Album) {

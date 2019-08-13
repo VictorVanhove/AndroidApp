@@ -196,6 +196,10 @@ class API {
             }
     }
 
+    fun isUserLoggedIn(): Boolean {
+        return auth.currentUser != null
+    }
+
     fun getProfileImage(callback: (String) -> Unit) {
         val profileRef = storageRef.child("images/profile/${auth.currentUser!!.uid}.jpg")
 
