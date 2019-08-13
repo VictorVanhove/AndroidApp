@@ -35,7 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 "Not set"
             } else {
                 API.shared.updatePassword(text)
-                text
+                encryptPassword(text)
             }
         }
     }
@@ -54,6 +54,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         return super.onPreferenceTreeClick(preference)
+    }
+
+    private fun encryptPassword(password: String): String {
+        var encryptedPassword = ""
+        for(x in 0 until password.length) {
+            encryptedPassword += "*"
+        }
+        return encryptedPassword
     }
 
 }
