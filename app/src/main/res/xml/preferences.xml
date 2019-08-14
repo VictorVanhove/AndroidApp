@@ -1,18 +1,22 @@
 <androidx.preference.PreferenceScreen
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory>
+    <PreferenceCategory
+            app:title="Layout">
 
         <Preference
                 app:key="profile"
                 app:title="Photo"
                 app:summary="Change your profile picture"
+                app:icon="@drawable/ic_person_black_24dp"
         />
 
         <Preference
                 app:key="cover"
                 app:title="Cover"
                 app:summary="Change your profile cover"
+                app:icon="@drawable/ic_photo_black_24dp"
         />
 
     </PreferenceCategory>
@@ -23,26 +27,35 @@
         <EditTextPreference
                 app:key="username"
                 app:title="Username"
-                app:summary="Change your profile's username"/>
+                app:summary="Change your profile's username"
+                app:icon="@drawable/ic_edit_black_24dp"/>
 
         <EditTextPreference
                 app:key="password"
                 app:title="Password"
-                app:summary="Change your profile's password"/>
+                app:summary="Change your profile's password"
+                app:icon="@drawable/ic_edit_black_24dp"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            app:title="About">
+
+        <Preference
+        app:key="about_fragment"
+        app:title="About this app"
+        app:icon="@drawable/ic_info_black_24dp"
+        app:fragment="com.example.dikkeploaten.Fragments.AboutFragment"
+        />
 
     </PreferenceCategory>
 
     <PreferenceCategory>
 
         <Preference
-        app:key="about_fragment"
-        app:title="About this app"
-        app:fragment="com.example.dikkeploaten.Fragments.AboutFragment"
-        />
-
-        <Preference
                 app:key="logout"
                 app:title="Log out"
+                app:icon="@drawable/ic_exit_to_app_black_24dp"
         />
 
     </PreferenceCategory>
