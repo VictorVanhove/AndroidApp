@@ -1,5 +1,6 @@
 package com.example.dikkeploaten.Services
 
+import android.graphics.Bitmap
 import android.util.Log
 import com.example.dikkeploaten.Models.Album
 import com.example.dikkeploaten.Models.User
@@ -7,6 +8,7 @@ import com.example.dikkeploaten.Models.UserAlbum
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import java.io.ByteArrayOutputStream
 
 class API {
 
@@ -240,4 +242,23 @@ class API {
             }
     }
 
+    fun uploadProfileImage(bitmap: Bitmap) {
+        val itemId = auth.currentUser!!.uid
+        var imagePath = "images/profile/${itemId}.jpg"
+        val imageRef = storageRef.child(imagePath)
+
+        // Get the data from an ImageView as bytes
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        var uploadTask = imageRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener {
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }
+
+    }
 }

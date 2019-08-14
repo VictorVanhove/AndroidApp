@@ -1,6 +1,15 @@
 <androidx.preference.PreferenceScreen
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <PreferenceCategory>
+
+        <Preference
+                app:key="profile"
+                app:title="Photo"
+                app:summary="Change your profile picture"
+        />
+    </PreferenceCategory>
+
     <PreferenceCategory
             app:title="Your personal information">
 
