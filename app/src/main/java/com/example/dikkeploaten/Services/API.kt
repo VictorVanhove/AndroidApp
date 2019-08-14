@@ -5,6 +5,9 @@ import android.util.Log
 import com.example.dikkeploaten.Models.Album
 import com.example.dikkeploaten.Models.User
 import com.example.dikkeploaten.Models.UserAlbum
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -112,7 +115,7 @@ class API {
 
     fun addCollectionAlbum(albumId: String) {
         var userAlbum = UserAlbum(albumID = albumId)
-        cache.user.plates.add(userAlbum)
+        cache.user.plates!!.add(userAlbum)
         db.collection("users").document(auth.currentUser!!.uid).collection("platen")
             .add(userAlbum)
             .addOnSuccessListener { documentReference ->
@@ -128,7 +131,7 @@ class API {
             .add(userAlbum)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
-                cache.user.wantList.add(userAlbum)
+                cache.user.wantList!!.add(userAlbum)
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
@@ -142,7 +145,7 @@ class API {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
-                    cache.user.plates.remove(document.toObject(UserAlbum::class.java))
+                    cache.user.plates!!.remove(document.toObject(UserAlbum::class.java))
 
                     db.collection("users").document(auth.currentUser!!.uid).collection("platen")
                         .document(document.id).delete()
@@ -164,7 +167,7 @@ class API {
             .addOnSuccessListener { documents ->
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
-                    cache.user.wantList.remove(document.toObject(UserAlbum::class.java))
+                    cache.user.wantList!!.remove(document.toObject(UserAlbum::class.java))
 
 
                     db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
@@ -176,6 +179,27 @@ class API {
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
+    }
+
+    fun createUser(username: String, email: String, password: String, callback: () -> Unit) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(object: OnCompleteListener<AuthResult> {
+                override fun onComplete(task: Task<AuthResult>) {
+                    if (task.isSuccessful)
+                    {
+                        db.collection("users").document(auth.currentUser!!.uid)
+                            .set(hashMapOf(
+                                "username" to username,
+                                "email" to email
+                            ))
+                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+                        cache.user = User(null, username,email, null,  null)
+                        callback()
+                    }
+                }
+            })
     }
 
     fun getUser(callback: (user: User) -> Unit) {
