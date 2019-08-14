@@ -8,6 +8,13 @@
                 app:title="Photo"
                 app:summary="Change your profile picture"
         />
+
+        <Preference
+                app:key="cover"
+                app:title="Cover"
+                app:summary="Change your profile cover"
+        />
+
     </PreferenceCategory>
 
     <PreferenceCategory

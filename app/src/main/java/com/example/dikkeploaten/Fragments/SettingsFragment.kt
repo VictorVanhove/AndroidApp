@@ -18,9 +18,10 @@ import java.io.IOException
 class SettingsFragment : PreferenceFragmentCompat() {
 
     private var SELECT_PROFILEIMAGE = 0
+    private var SELECT_COVERIMAGE = 1
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(com.example.dikkeploaten.R.xml.preferences, rootKey)
-
 
         val usernamePreference: EditTextPreference? = findPreference("username")
         val passwordPreference: EditTextPreference? = findPreference("password")
@@ -64,8 +65,25 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 Toast.makeText(activity, "Canceled", Toast.LENGTH_SHORT).show()
             }
         }
+        if (requestCode === SELECT_COVERIMAGE) {
+            if (resultCode === Activity.RESULT_OK) {
+                if (data != null) {
+                    try {
+                        val source = ImageDecoder.createSource(activity!!.contentResolver, data.data!!)
+                        val bitmap = ImageDecoder.decodeBitmap(source)
+                        API.shared.uploadCoverImage(bitmap)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                }
+            } else if (resultCode === Activity.RESULT_CANCELED) {
+                Toast.makeText(activity, "Canceled", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
+
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
         when (preference!!.key) {
             "profile" -> {
@@ -73,6 +91,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PROFILEIMAGE)
+            }
+            "cover" -> {
+                val intent = Intent()
+                intent.type = "image/*"
+                intent.action = Intent.ACTION_GET_CONTENT
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_COVERIMAGE)
             }
             "logout" -> {
                 FirebaseAuth.getInstance().signOut()

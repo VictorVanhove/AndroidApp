@@ -261,4 +261,26 @@ class API {
         }
 
     }
+
+    fun uploadCoverImage(bitmap: Bitmap) {
+        val itemId = auth.currentUser!!.uid
+        var imagePath = "images/cover/${itemId}.jpg"
+        val imageRef = storageRef.child(imagePath)
+
+        // Get the data from an ImageView as bytes
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        var uploadTask = imageRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener {
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }
+
+    }
+
+
 }
