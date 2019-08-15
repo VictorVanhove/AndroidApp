@@ -13,6 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
+    /**
+     * Loads the fragment equal to the parameter and updates the container.
+     */
     private fun loadFragment(fragment: Fragment): Boolean {
         if(fragment != null) {
             supportFragmentManager.beginTransaction().replace(com.example.dikkeploaten.R.id.fragment_container, fragment).commit()
@@ -21,6 +24,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return false
     }
 
+    /**
+     * Handles actions when an item in the bottom navigation menu was clicked.
+     */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment = Fragment()
         when (item.itemId) {
@@ -59,17 +65,26 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         navView.setOnNavigationItemSelectedListener(this)
     }
 
+    /**
+     * Initializes clicked album and loads the AlbumDetailFragment.
+     */
     fun goToAlbumDetail(album: Album) {
         val frag = AlbumDetailFragment()
-        frag.initiateAttributes(album)
+        frag.initiateAlbum(album)
         supportFragmentManager.beginTransaction().replace(com.example.dikkeploaten.R.id.fragment_container, frag).addToBackStack(null).commit()
     }
 
+    /**
+     * Inflates the settings menu item into the actionbar.
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(com.example.dikkeploaten.R.menu.settings_menu, menu)
         return true
     }
 
+    /**
+     * Handles actions for settings menu.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             com.example.dikkeploaten.R.id.action_settings -> {

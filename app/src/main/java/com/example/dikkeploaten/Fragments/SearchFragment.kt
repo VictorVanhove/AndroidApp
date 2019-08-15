@@ -46,6 +46,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         initSwipe()
     }
 
+    /**
+     * Inflates the settings menu item into the actionbar.
+     */
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.searchbar_menu, menu)
 
@@ -56,6 +59,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    /**
+     * Checks if query is changed, if so, filter gets initialized.
+     */
     override fun onQueryTextChange(query: String): Boolean {
         filteredAlbums = filter(albums, query)
         adapter.setFilter(filteredAlbums)
@@ -63,6 +69,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         return true
     }
 
+    /**
+     * Filters album list to filtered albums matching the query.
+     */
     private fun filter(mList: ArrayList<Album>, query: String): ArrayList<Album> {
         val filteredList = ArrayList<Album>()
         for (item in mList) {
@@ -89,6 +98,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         return true
     }
 
+    /**
+     * Fills the recyclerView with albums.
+     */
     private fun fillRecyclerView(albums: ArrayList<Album>) {
         if (recyclerView != null) {
             adapter = AlbumAdapter(context!!, albums, true)
@@ -98,6 +110,9 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         }
     }
 
+    /**
+     * Initializes swipe functionality to items in list.
+     */
     private fun initSwipe() {
         val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
@@ -196,10 +211,12 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
+    /**
+     * Disables progressBar.
+     */
     private fun disableLoadingScreen() {
         if(progressBar != null) {
             progressBar.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
         }
     }
 

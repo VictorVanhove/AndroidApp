@@ -28,6 +28,9 @@ class API {
 
     init {}
 
+    /**
+     * Gets the user's collection with all the albums.
+     */
     fun getUserCollection(callback: (ArrayList<Album>) -> Unit) {
         var albums = arrayListOf<Album>()
         var userAlbums = arrayListOf<UserAlbum>()
@@ -60,6 +63,9 @@ class API {
             }
     }
 
+    /**
+     * Gets the user's wantlist with all the albums.
+     */
     fun getUserWantlist(callback: (ArrayList<Album>) -> Unit) {
         var albums = arrayListOf<Album>()
         var userAlbums = arrayListOf<UserAlbum>()
@@ -93,6 +99,9 @@ class API {
 
     }
 
+    /**
+     * Gets the whole list of albums out of the database.
+     */
     fun getAlbumList(callback: (ArrayList<Album>) -> Unit) {
         var albums = arrayListOf<Album>()
         db.collection("platen")
@@ -113,6 +122,9 @@ class API {
 
     }
 
+    /**
+     * Adds album equal to parameter albumId to user's collection.
+     */
     fun addCollectionAlbum(albumId: String) {
         var userAlbum = UserAlbum(albumID = albumId)
         cache.user.plates!!.add(userAlbum)
@@ -125,6 +137,9 @@ class API {
             }
     }
 
+    /**
+     * Adds album equal to parameter albumId to user's wantlist.
+     */
     fun addWantlistAlbum(albumId: String) {
         var userAlbum = UserAlbum(albumID = albumId)
         db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
@@ -138,6 +153,9 @@ class API {
             }
     }
 
+    /**
+     * Deletes album equal to parameter albumId from user's collection.
+     */
     fun deleteCollectionAlbum(albumId: String, callback: () -> Unit) {
         db.collection("users").document(auth.currentUser!!.uid).collection("platen")
             .whereEqualTo("albumID", albumId)
@@ -161,6 +179,9 @@ class API {
             }
     }
 
+    /**
+     * Deletes album equal to parameter albumId from user's wantlist.
+     */
     fun deleteWantlistAlbum(albumId: String, callback: () -> Unit) {
         db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
             .whereEqualTo("albumID", albumId)
@@ -185,6 +206,9 @@ class API {
             }
     }
 
+    /**
+     * Creates user with given credentials.
+     */
     fun createUser(username: String, email: String, password: String, callback: () -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(object: OnCompleteListener<AuthResult> {
@@ -206,6 +230,9 @@ class API {
             })
     }
 
+    /**
+     * Gets the current user from the database.
+     */
     fun getUser(callback: (user: User) -> Unit) {
         db.collection("users").document(auth.currentUser!!.uid)
             .get()
@@ -226,10 +253,16 @@ class API {
             }
     }
 
+    /**
+     * Checks if user is logged in.
+     */
     fun isUserLoggedIn(): Boolean {
         return auth.currentUser != null
     }
 
+    /**
+     * Gets the profile image of the current user.
+     */
     fun getProfileImage(callback: (String) -> Unit) {
         val profileRef = storageRef.child("images/profile/${auth.currentUser!!.uid}.jpg")
 
@@ -241,6 +274,9 @@ class API {
         }
     }
 
+    /**
+     * Gets the profile cover of the current user.
+     */
     fun getProfileCover(callback: (String) -> Unit) {
         val coverRef = storageRef.child("images/cover/${auth.currentUser!!.uid}.jpg")
 
@@ -252,6 +288,9 @@ class API {
         }
     }
 
+    /**
+     * Updates the user's username.
+     */
     fun updateUsername(username: String) {
         db.collection("users").document(auth.currentUser!!.uid)
             .update("username", username)
@@ -261,6 +300,9 @@ class API {
             cache.user.username = username
     }
 
+    /**
+     * Updates the user's password.
+     */
     fun updatePassword(newPassword: String) {
         auth.currentUser?.updatePassword(newPassword)
             ?.addOnCompleteListener { task ->
@@ -270,6 +312,9 @@ class API {
             }
     }
 
+    /**
+     * Updates the user's profile image.
+     */
     fun uploadProfileImage(bitmap: Bitmap) {
         val itemId = auth.currentUser!!.uid
         var imagePath = "images/profile/${itemId}.jpg"
@@ -290,6 +335,9 @@ class API {
 
     }
 
+    /**
+     * Updates the user's profile cover.
+     */
     fun uploadCoverImage(bitmap: Bitmap) {
         val itemId = auth.currentUser!!.uid
         var imagePath = "images/cover/${itemId}.jpg"

@@ -16,12 +16,18 @@ import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
 class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showStatus: Boolean) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
+    /**
+     * Inflates the AlbumViewHolder.
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.layout_albumitem, parent, false)
         return AlbumViewHolder(itemView)
     }
 
+    /**
+     * Binds each album in the ArrayList to a view.
+     */
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = albums[position]
         holder.txt_title.text = album.title
@@ -30,6 +36,7 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
         val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
         Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.image_album)
 
+        //Adds status image if album belongs to collection/wantlist
         if(showStatus) {
             if (API.shared.cache.user.plates!!.any { userAlbum -> userAlbum.albumID == album.id }) {
                 Glide.with(context).load(R.mipmap.ic_in_collection).apply(requestOptions).into(holder.image_status)
@@ -52,6 +59,9 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
         }
     }
 
+    /**
+     * Gets the number of albums in the list.
+     */
     override fun getItemCount(): Int {
         return albums.size
     }
@@ -65,8 +75,11 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
 
     }
 
-    fun setFilter(newsArrayList: ArrayList<Album>) {
-        this.albums = newsArrayList
+    /**
+     * Filters the albums in the recyclerView
+     */
+    fun setFilter(filteredList: ArrayList<Album>) {
+        this.albums = filteredList
         notifyDataSetChanged()
     }
 }

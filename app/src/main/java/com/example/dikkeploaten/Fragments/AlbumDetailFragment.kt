@@ -39,7 +39,10 @@ class AlbumDetailFragment: Fragment() {
 
     }
 
-    fun initiateAttributes(album: Album) {
+    /**
+     * Initiates the album equal to parameter for AlbumDetailFragment.
+     */
+    fun initiateAlbum(album: Album) {
         this.album = album
     }
 

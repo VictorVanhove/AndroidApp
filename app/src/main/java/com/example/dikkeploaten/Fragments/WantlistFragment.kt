@@ -43,6 +43,9 @@ class WantlistFragment : Fragment() {
         initSwipe()
     }
 
+    /**
+     * Fills the recyclerView with albums.
+     */
     private fun fillRecyclerView(albums: ArrayList<Album>) {
         if (recyclerView != null) {
             adapter = AlbumAdapter(context!!, albums, false)
@@ -52,6 +55,9 @@ class WantlistFragment : Fragment() {
         }
     }
 
+    /**
+     * Initializes swipe functionality to items in list.
+     */
     private fun initSwipe() {
         val simpleItemTouchCallback =
             object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -108,6 +114,9 @@ class WantlistFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
+    /**
+     * Checks if user's wantlist is empty.
+     */
     private fun checkWantlistStatus() {
         if (API.shared.cache.user.wantList!!.isEmpty()){
             progressBar.visibility = View.GONE
@@ -115,6 +124,9 @@ class WantlistFragment : Fragment() {
         }
     }
 
+    /**
+     * Disables progressBar and emptyMessage.
+     */
     private fun disableExtraScreens() {
         if(progressBar != null) {
             progressBar.visibility = View.GONE

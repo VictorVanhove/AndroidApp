@@ -25,6 +25,9 @@ class RegistrationActivity: AppCompatActivity() {
         }
     }
 
+    /**
+     * Signs up user with given username, email and password.
+     */
     private fun registerNewUser() {
         val username = username.text.toString()
         val email = email.text.toString()

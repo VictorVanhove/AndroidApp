@@ -46,6 +46,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    /**
+     * Handles image gallery smartphone for profile image/cover.
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -84,6 +87,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     }
 
+    /**
+     * Handles click event for selected preference.
+     */
     override fun onPreferenceTreeClick(preference: Preference?): Boolean {
         when (preference!!.key) {
             "profile" -> {
@@ -112,6 +118,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         return super.onPreferenceTreeClick(preference)
     }
 
+    /**
+     * Replaces password into dots.
+     */
     private fun encryptPassword(password: String): String {
         var encryptedPassword = ""
         for(x in 0 until password.length) {

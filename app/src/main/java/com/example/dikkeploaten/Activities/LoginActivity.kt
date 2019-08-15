@@ -27,6 +27,9 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Logs in user to app.
+     */
     private fun loginUser() {
         val email = email.text.toString()
         val password = password.text.toString()
