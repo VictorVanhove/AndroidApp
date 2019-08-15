@@ -40,12 +40,14 @@ class CollectionFragment : Fragment() {
         fillRecyclerView(this.albums)
         initSwipe()
     }
-
+    
     private fun fillRecyclerView(albums: ArrayList<Album>) {
-        adapter = AlbumAdapter(context!!, albums, false)
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        if (recyclerView != null) {
+            adapter = AlbumAdapter(context!!, albums, false)
+            recyclerView.adapter = adapter
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun initSwipe() {

@@ -89,10 +89,12 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
     }
 
     private fun fillRecyclerView(albums: ArrayList<Album>) {
-        adapter = AlbumAdapter(context!!, albums, true)
-        recyclerView.adapter = adapter
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        if (recyclerView != null) {
+            adapter = AlbumAdapter(context!!, albums, true)
+            recyclerView.adapter = adapter
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = LinearLayoutManager(context)
+        }
     }
 
     private fun initSwipe() {
