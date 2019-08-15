@@ -31,8 +31,8 @@ class AlbumDetailFragment: Fragment() {
         description_album.text = album.description
         genre_album.text = album.genre
         release_album.text = album.released_in
-        tracklist_album.text = album.tracklist
-        musicians_album.text = album.musicians
+        tracklist_album.text = album.tracklist.replace("\\n", "\n")
+        musicians_album.text = album.musicians.replace("\\n", "\n")
 
         val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
         Glide.with(context!!).load(album.thumb).apply(requestOptions).into(image_album)
