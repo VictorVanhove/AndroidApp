@@ -32,18 +32,18 @@ class RegistrationActivity: AppCompatActivity() {
 
         if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please enter email...", Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password))
         {
-            Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please enter password!", Toast.LENGTH_LONG).show()
             return
         }
 
         API.shared.createUser(username, email, password) {
-            Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
-            val intent = Intent(applicationContext, MainActivity::class.java)
+            Toast.makeText(this, "Registration successful!", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
     }

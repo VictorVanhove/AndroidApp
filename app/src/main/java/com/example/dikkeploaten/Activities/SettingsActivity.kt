@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dikkeploaten.Fragments.SettingsFragment
 import com.example.dikkeploaten.R
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,5 +19,4 @@ class SettingsActivity : AppCompatActivity() {
             .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
 }

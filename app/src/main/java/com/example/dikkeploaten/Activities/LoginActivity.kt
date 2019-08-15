@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         register.setOnClickListener {
-            startActivity(Intent(applicationContext, RegistrationActivity::class.java))
+            startActivity(Intent(this, RegistrationActivity::class.java))
         }
 
     }
@@ -33,12 +33,12 @@ class LoginActivity : AppCompatActivity() {
 
         if (TextUtils.isEmpty(email))
         {
-            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please enter email...", Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password))
         {
-            Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Please enter password!", Toast.LENGTH_LONG).show()
             return
         }
 

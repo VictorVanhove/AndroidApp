@@ -31,9 +31,9 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
         Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.image_album)
 
         if(showStatus) {
-            if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id }) {
+            if (API.shared.cache.user.plates!!.any { userAlbum -> userAlbum.albumID == album.id }) {
                 Glide.with(context).load(R.mipmap.ic_in_collection).apply(requestOptions).into(holder.image_status)
-            } else if (API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }){
+            } else if (API.shared.cache.user.wantList!!.any { userAlbum -> userAlbum.albumID == album.id }){
                 Glide.with(context).load(R.mipmap.ic_in_wantlist).apply(requestOptions).into(holder.image_status)
             }
             else {
@@ -62,9 +62,6 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
         val txt_artist = itemView.artist_album
         val image_album = itemView.image_album
         val image_status = itemView.image_status
-
-    }
-
 
     }
 
