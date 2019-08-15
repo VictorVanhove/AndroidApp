@@ -35,10 +35,11 @@ class CollectionFragment : Fragment() {
         API.shared.getUserCollection { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
-            disableLoadingScreen()
+            disableExtraScreens()
         }
 
         fillRecyclerView(this.albums)
+        checkCollectionStatus()
         initSwipe()
     }
 
@@ -65,7 +66,9 @@ class CollectionFragment : Fragment() {
                     albums.removeAt(position)
 
                     if (direction == ItemTouchHelper.LEFT) {
-                        API.shared.deleteCollectionAlbum(album.id)
+                        API.shared.deleteCollectionAlbum(album.id){
+                            checkCollectionStatus()
+                        }
                         adapter.notifyDataSetChanged()
                     }
 
@@ -105,10 +108,17 @@ class CollectionFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private fun disableLoadingScreen() {
+    private fun checkCollectionStatus() {
+        if (API.shared.cache.user.plates!!.isEmpty()){
+            progressBar.visibility = View.GONE
+            emptyMessage.visibility = View.VISIBLE
+        }
+    }
+
+    private fun disableExtraScreens() {
         if(progressBar != null) {
             progressBar.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
+            emptyMessage.visibility = View.GONE
         }
     }
 

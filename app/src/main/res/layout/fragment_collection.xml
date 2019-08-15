@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" android:orientation="vertical">
+                android:layout_height="match_parent">
 
     <ProgressBar
             android:id="@+id/progressBar"
@@ -10,6 +10,14 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:indeterminate="true"/>
+
+    <TextView
+            android:id="@+id/emptyMessage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Je hebt nog geen albums toegevoegd.\nGa naar de zoekfunctie en voeg albums toe!"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

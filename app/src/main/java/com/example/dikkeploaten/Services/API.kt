@@ -138,7 +138,7 @@ class API {
             }
     }
 
-    fun deleteCollectionAlbum(albumId: String) {
+    fun deleteCollectionAlbum(albumId: String, callback: () -> Unit) {
         db.collection("users").document(auth.currentUser!!.uid).collection("platen")
             .whereEqualTo("albumID", albumId)
             .get()
@@ -151,6 +151,7 @@ class API {
                         .document(document.id).delete()
                         .addOnSuccessListener {
                             Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                            callback()
                         }
                         .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
                 }
@@ -160,7 +161,7 @@ class API {
             }
     }
 
-    fun deleteWantlistAlbum(albumId: String) {
+    fun deleteWantlistAlbum(albumId: String, callback: () -> Unit) {
         db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
             .whereEqualTo("albumID", albumId)
             .get()
@@ -172,7 +173,10 @@ class API {
 
                     db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
                         .document(document.id).delete()
-                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                        .addOnSuccessListener {
+                            Log.d(TAG, "DocumentSnapshot successfully deleted!")
+                            callback()
+                        }
                         .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
                 }
             }

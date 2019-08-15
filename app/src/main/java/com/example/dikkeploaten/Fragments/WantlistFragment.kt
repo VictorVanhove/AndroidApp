@@ -35,10 +35,11 @@ class WantlistFragment : Fragment() {
         API.shared.getUserWantlist { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
-            disableLoadingScreen()
+            disableExtraScreens()
         }
 
         fillRecyclerView(this.albums)
+        checkWantlistStatus()
         initSwipe()
     }
 
@@ -65,7 +66,9 @@ class WantlistFragment : Fragment() {
                     albums.removeAt(position)
 
                     if (direction == ItemTouchHelper.LEFT) {
-                        API.shared.deleteWantlistAlbum(album.id)
+                        API.shared.deleteWantlistAlbum(album.id) {
+                            checkWantlistStatus()
+                        }
                         adapter.notifyDataSetChanged()
                     }
 
@@ -105,10 +108,17 @@ class WantlistFragment : Fragment() {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    private fun disableLoadingScreen() {
+    private fun checkWantlistStatus() {
+        if (API.shared.cache.user.wantList!!.isEmpty()){
+            progressBar.visibility = View.GONE
+            emptyMessage.visibility = View.VISIBLE
+        }
+    }
+
+    private fun disableExtraScreens() {
         if(progressBar != null) {
             progressBar.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
+            emptyMessage.visibility = View.GONE
         }
     }
 }
