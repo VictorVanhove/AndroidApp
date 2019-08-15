@@ -35,12 +35,13 @@ class CollectionFragment : Fragment() {
         API.shared.getUserCollection { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
+            disableLoadingScreen()
         }
 
         fillRecyclerView(this.albums)
         initSwipe()
     }
-    
+
     private fun fillRecyclerView(albums: ArrayList<Album>) {
         if (recyclerView != null) {
             adapter = AlbumAdapter(context!!, albums, false)
@@ -102,6 +103,13 @@ class CollectionFragment : Fragment() {
             }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun disableLoadingScreen() {
+        if(progressBar != null) {
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
     }
 
 }

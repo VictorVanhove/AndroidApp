@@ -39,6 +39,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         API.shared.getAlbumList { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
+            disableLoadingScreen()
         }
 
         fillRecyclerView(this.albums)
@@ -193,6 +194,13 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
         }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun disableLoadingScreen() {
+        if(progressBar != null) {
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
     }
 
 }

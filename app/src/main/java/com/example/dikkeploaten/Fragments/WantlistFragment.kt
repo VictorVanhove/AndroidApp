@@ -35,6 +35,7 @@ class WantlistFragment : Fragment() {
         API.shared.getUserWantlist { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
+            disableLoadingScreen()
         }
 
         fillRecyclerView(this.albums)
@@ -102,5 +103,12 @@ class WantlistFragment : Fragment() {
             }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun disableLoadingScreen() {
+        if(progressBar != null) {
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
     }
 }
