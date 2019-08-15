@@ -37,7 +37,7 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
                 Glide.with(context).load(R.mipmap.ic_in_wantlist).apply(requestOptions).into(holder.image_status)
             }
             else {
-                Glide.with(context).load(R.mipmap.ic_not_in_collection).apply(requestOptions).into(holder.image_status)
+                Glide.with(context).load(R.drawable.ic_not_in_collection).apply(requestOptions).into(holder.image_status)
             }
         }
 
