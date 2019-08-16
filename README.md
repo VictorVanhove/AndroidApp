@@ -56,6 +56,11 @@ The best way to submit feedback and report bugs is to open a Github issue.
 Please be sure to include your device, version number, and
 steps to reproduce reported bugs. 
 
+## Documentation
+
+We used [dokka](https://github.com/Kotlin/dokka) for documentation of the project.
+The docs are available under the folder ['doc'](https://github.com/VictorVanhove/Dikke-Ploaten-Android/tree/master/doc/app).
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning.
