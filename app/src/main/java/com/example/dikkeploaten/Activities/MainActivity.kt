@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         val navView: BottomNavigationView = findViewById(com.example.dikkeploaten.R.id.nav_view)
