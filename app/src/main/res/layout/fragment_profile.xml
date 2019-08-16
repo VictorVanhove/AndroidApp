@@ -3,7 +3,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-
     <ImageView
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
@@ -36,22 +35,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
-            android:background="@color/cardview_shadow_end_color"
-            android:elevation="4dp"
+            android:background="#F5F5F5"
+            android:elevation="3dp"
             android:paddingBottom="24dp">
 
-
-        <ImageView
-                android:id="@+id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:clickable="true"
-
-                android:src="@android:drawable/ic_menu_edit" />
 
         <TextView
                 android:id="@+id/name"
@@ -59,56 +46,99 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
-                android:text="John"
-                android:textColor="#fff"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
         <TextView
-                android:id="@+id/location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/designation"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="Surat"
-                android:textColor="#fff"
-                android:textSize="16sp" />
-
-        <TextView
-                android:id="@+id/designation"
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="(Adhyaksh)"
-                android:textColor="#fff"
-                android:textSize="18sp" />
+                android:layout_marginTop="5dp"
+                android:textColor="#A0A0A0"
+                android:textSize="18sp"/>
+
     </RelativeLayout>
 
     <RelativeLayout
             android:id="@+id/collection_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
             android:layout_below="@+id/profile_layout"
             android:elevation="4dp">
 
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:weightSum="2"
+                android:background="@drawable/border"
+                android:padding="10dp"
+                android:id="@+id/linearLayout">
 
-        <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp"/>
-        <TextView
-                android:text="TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView2"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/textView"
-                android:layout_marginTop="50dp"/>
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:text="Collectie:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lbl_collection"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/albums_collection"
+                        android:gravity="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/primaryDarkColor"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                <TextView
+                        android:text="Wantlist:"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lbl_wantlist"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/albums_wantlist"
+                        android:gravity="center"
+                        android:textColor="@color/primaryDarkColor"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </RelativeLayout>
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:elevation="4dp"
+            android:indeterminate="true"/>
+
 
 </RelativeLayout>

@@ -24,6 +24,11 @@ class ProfileFragment : Fragment() {
 
         API.shared.getUser { user ->
                 name.text = user.username
+                email.text = user.email
+                albums_collection.text = API.shared.cache.user.plates.size.toString()
+                albums_wantlist.text = API.shared.cache.user.wantList.size.toString()
+            disableLoadingScreen()
+
         }
         API.shared.getProfileImage { imageURL ->
             val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -32,6 +37,16 @@ class ProfileFragment : Fragment() {
         API.shared.getProfileCover { imageURL ->
         val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
             Glide.with(this).load(imageURL).apply(requestOptions).into(header_cover_image)
+            //disableLoadingScreen()
+        }
+    }
+
+    /**
+     * Disables progressBar.
+     */
+    private fun disableLoadingScreen() {
+        if(progressBar != null) {
+            progressBar.visibility = View.GONE
         }
     }
 
