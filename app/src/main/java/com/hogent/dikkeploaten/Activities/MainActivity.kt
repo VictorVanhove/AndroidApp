@@ -6,10 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hogent.dikkeploaten.fragments.*
 import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.services.API
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -17,8 +17,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
      * Loads the fragment equal to the parameter and updates the container.
      */
     private fun loadFragment(fragment: Fragment): Boolean {
-        if(fragment != null) {
-            supportFragmentManager.beginTransaction().replace(com.hogent.dikkeploaten.R.id.fragment_container, fragment).commit()
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().replace(com.hogent.dikkeploaten.R.id.fragment_container, fragment)
+                .commit()
             return true
         }
         return false
@@ -72,7 +73,8 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     fun goToAlbumDetail(album: Album) {
         val frag = AlbumDetailFragment()
         frag.initiateAlbum(album)
-        supportFragmentManager.beginTransaction().replace(com.hogent.dikkeploaten.R.id.fragment_container, frag).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(com.hogent.dikkeploaten.R.id.fragment_container, frag)
+            .addToBackStack(null).commit()
     }
 
     /**

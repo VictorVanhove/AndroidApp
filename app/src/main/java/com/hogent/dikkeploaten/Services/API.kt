@@ -14,7 +14,7 @@ class API {
 
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()!!
-    private val storageRef =  FirebaseStorage.getInstance("gs://dikke-ploaten.appspot.com").reference
+    private val storageRef = FirebaseStorage.getInstance("gs://dikke-ploaten.appspot.com").reference
 
     val cache = Cache()
 
@@ -23,7 +23,8 @@ class API {
         val shared = API()
     }
 
-    init {}
+    init {
+    }
 
     /**
      * Gets the user's collection with all the albums.
@@ -128,7 +129,8 @@ class API {
         db.collection("users").document(auth.currentUser!!.uid).collection("platen")
             .add(userAlbum)
             .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}") }
+                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
+            }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
             }
@@ -211,10 +213,12 @@ class API {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     db.collection("users").document(auth.currentUser!!.uid)
-                        .set(hashMapOf(
-                            "username" to username,
-                            "email" to email
-                        ))
+                        .set(
+                            hashMapOf(
+                                "username" to username,
+                                "email" to email
+                            )
+                        )
                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
@@ -291,7 +295,7 @@ class API {
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully updated!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error updating document", e) }
 
-            cache.user.username = username
+        cache.user.username = username
     }
 
     /**

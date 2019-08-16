@@ -114,99 +114,124 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
      * Initializes swipe functionality to items in list.
      */
     private fun initSwipe() {
-        val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+        val simpleItemTouchCallback =
+            object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-                return false
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val position = viewHolder.adapterPosition
+                    val album: Album
+
+                    album = if (searchView.isIconified) {
+                        albums[position]
+                    } else {
+                        filteredAlbums[position]
+                    }
+
+                    val text: String
+
+                    if (direction == ItemTouchHelper.LEFT) {
+                        API.shared.addCollectionAlbum(album.id)
+                        text = "Album is toegevoegd aan je collectie!"
+                    } else {
+                        API.shared.addWantlistAlbum(album.id)
+                        text = "Album is toegevoegd aan je wantlist!"
+                    }
+
+                    adapter.notifyDataSetChanged()
+                    Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onChildDraw(
+                    c: Canvas,
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    dX: Float,
+                    dY: Float,
+                    actionState: Int,
+                    isCurrentlyActive: Boolean
+                ) {
+                    val icon: Drawable
+                    val iconBackground: ColorDrawable
+
+                    val itemView = viewHolder.itemView
+
+                    if (dX > 0) {
+                        icon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_favorite_white_24dp)!!
+                        iconBackground = ColorDrawable(Color.parseColor("#ffa500"))
+
+                        val iconMarginVertical = (viewHolder.itemView.height - icon.intrinsicHeight) / 2
+
+                        iconBackground.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
+                        icon.setBounds(
+                            itemView.left + iconMarginVertical,
+                            itemView.top + iconMarginVertical,
+                            itemView.left + iconMarginVertical + icon.intrinsicWidth,
+                            itemView.bottom - iconMarginVertical
+                        )
+                    } else {
+                        icon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_dehaze_white_24dp)!!
+                        iconBackground = ColorDrawable(Color.parseColor("#008000"))
+
+                        val iconMarginVertical = (viewHolder.itemView.height - icon.intrinsicHeight) / 2
+
+                        iconBackground.setBounds(
+                            itemView.right + dX.toInt(),
+                            itemView.top,
+                            itemView.right,
+                            itemView.bottom
+                        )
+                        icon.setBounds(
+                            itemView.right - iconMarginVertical - icon.intrinsicWidth,
+                            itemView.top + iconMarginVertical,
+                            itemView.right - iconMarginVertical,
+                            itemView.bottom - iconMarginVertical
+                        )
+                        icon.level = 0
+                    }
+
+                    iconBackground.draw(c)
+
+                    c.save()
+
+                    if (dX > 0)
+                        c.clipRect(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
+                    else
+                        c.clipRect(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
+
+                    icon.draw(c)
+
+                    c.restore()
+
+                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                }
+
+                override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+                    val position = viewHolder.adapterPosition
+                    val album: Album
+
+                    if (searchView.isIconified) {
+                        album = albums[position]
+                    } else {
+                        album = filteredAlbums[position]
+                    }
+
+                    // Set movement flags based on the layout manager
+                    if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } || API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }) {
+                        return makeMovementFlags(0, 0)
+                    } else {
+                        val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+                        return makeMovementFlags(0, swipeFlags)
+                    }
+                }
             }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                val album: Album
-
-                album = if (searchView.isIconified) {
-                    albums[position]
-                } else {
-                    filteredAlbums[position]
-                }
-
-                val text: String
-
-                if (direction == ItemTouchHelper.LEFT) {
-                    API.shared.addCollectionAlbum(album.id)
-                    text = "Album is toegevoegd aan je collectie!"
-                } else {
-                    API.shared.addWantlistAlbum(album.id)
-                    text = "Album is toegevoegd aan je wantlist!"
-                }
-
-                adapter.notifyDataSetChanged()
-                Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
-            ) {
-                val icon: Drawable
-                val iconBackground: ColorDrawable
-
-                val itemView = viewHolder.itemView
-
-                if (dX > 0) {
-                    icon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_favorite_white_24dp)!!
-                    iconBackground = ColorDrawable(Color.parseColor("#ffa500"))
-
-                    val iconMarginVertical = (viewHolder.itemView.height - icon.intrinsicHeight) / 2
-
-                    iconBackground.setBounds(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
-                    icon.setBounds(itemView.left + iconMarginVertical, itemView.top + iconMarginVertical,
-                        itemView.left + iconMarginVertical + icon.intrinsicWidth, itemView.bottom - iconMarginVertical)
-                } else {
-                    icon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_dehaze_white_24dp)!!
-                    iconBackground = ColorDrawable(Color.parseColor("#008000"))
-
-                    val iconMarginVertical = (viewHolder.itemView.height - icon.intrinsicHeight) / 2
-
-                    iconBackground.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-                    icon.setBounds(itemView.right - iconMarginVertical - icon.intrinsicWidth, itemView.top + iconMarginVertical,
-                        itemView.right - iconMarginVertical, itemView.bottom - iconMarginVertical)
-                    icon.level = 0
-                }
-
-                iconBackground.draw(c)
-
-                c.save()
-
-                if (dX > 0)
-                    c.clipRect(itemView.left, itemView.top, dX.toInt(), itemView.bottom)
-                else
-                    c.clipRect(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-
-                icon.draw(c)
-
-                c.restore()
-
-                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-            }
-
-            override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
-                val position = viewHolder.adapterPosition
-                val album: Album
-
-                if (searchView.isIconified) {
-                    album = albums[position]
-                } else {
-                    album = filteredAlbums[position]
-                }
-
-                // Set movement flags based on the layout manager
-                if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } || API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }) {
-                    return makeMovementFlags(0, 0)
-                } else {
-                    val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-                    return makeMovementFlags(0, swipeFlags)
-                }
-            }
-        }
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
@@ -215,7 +240,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
      * Disables progressBar.
      */
     private fun disableLoadingScreen() {
-        if(progressBar != null) {
+        if (progressBar != null) {
             progressBar.visibility = View.GONE
         }
     }

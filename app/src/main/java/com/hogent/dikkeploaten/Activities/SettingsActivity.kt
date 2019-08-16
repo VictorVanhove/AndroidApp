@@ -3,10 +3,10 @@ package com.hogent.dikkeploaten.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hogent.dikkeploaten.fragments.SettingsFragment
 import com.hogent.dikkeploaten.R
+import com.hogent.dikkeploaten.fragments.SettingsFragment
 
-class SettingsActivity : AppCompatActivity(){
+class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.services.API
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_registration.*
 
-class RegistrationActivity: AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -33,8 +33,7 @@ class RegistrationActivity: AppCompatActivity() {
         val email = email.text.toString()
         val password = password.text.toString()
 
-        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
-        {
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(applicationContext, "Zorg ervoor dat alles ingevuld is.", Toast.LENGTH_LONG).show()
             return
         }
@@ -45,7 +44,11 @@ class RegistrationActivity: AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             } else {
-                Toast.makeText(applicationContext, "Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik.",
+                    Toast.LENGTH_LONG
+                ).show()
 
             }
         }

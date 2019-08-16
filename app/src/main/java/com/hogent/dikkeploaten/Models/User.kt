@@ -1,6 +1,6 @@
 package com.hogent.dikkeploaten.models
 
-data class User (
+data class User(
     var id: String = "",
     var username: String = "",
     var email: String = "",

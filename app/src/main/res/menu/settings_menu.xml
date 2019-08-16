@@ -6,6 +6,6 @@
           android:icon="@drawable/ic_settings_white_24dp"
           android:orderInCategory="50"
           android:title="@string/title_settings"
-          app:showAsAction="never" />
+          app:showAsAction="never"/>
 
 </menu>

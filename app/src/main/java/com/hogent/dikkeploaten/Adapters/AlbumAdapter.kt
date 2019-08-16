@@ -14,14 +14,16 @@ import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
-class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, private var showStatus: Boolean) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, private var showStatus: Boolean) :
+    RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     /**
      * Inflates the AlbumViewHolder.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.layout_albumitem, parent, false)
+            R.layout.layout_albumitem, parent, false
+        )
         return AlbumViewHolder(itemView)
     }
 
@@ -37,18 +39,21 @@ class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, p
         Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.imageAlbum)
 
         //Adds status image if album belongs to collection/wantlist
-        if(showStatus) {
+        if (showStatus) {
             when {
-                API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(R.mipmap.ic_in_collection).apply(requestOptions).into(holder.imageStatus)
-                API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(R.mipmap.ic_in_wantlist).apply(requestOptions).into(holder.imageStatus)
+                API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(
+                    R.mipmap.ic_in_collection
+                ).apply(requestOptions).into(holder.imageStatus)
+                API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(
+                    R.mipmap.ic_in_wantlist
+                ).apply(requestOptions).into(holder.imageStatus)
                 else -> Glide.with(context).load(R.drawable.ic_not_in_collection).apply(requestOptions).into(holder.imageStatus)
             }
         }
 
         holder.itemView.setOnClickListener {
             run {
-                if (context is MainActivity)
-                {
+                if (context is MainActivity) {
                     val activity = context as MainActivity
                     activity.goToAlbumDetail(album)
                 }

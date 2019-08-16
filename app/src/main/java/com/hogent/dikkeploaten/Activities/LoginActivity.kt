@@ -31,8 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val email = email.text.toString()
         val password = password.text.toString()
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
-        {
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(applicationContext, "Zorg ervoor dat alles ingevuld is.", Toast.LENGTH_LONG).show()
             return
         }

@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.adapters.AlbumAdapter
 import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_collection.*
 
@@ -62,7 +62,11 @@ class WantlistFragment : Fragment() {
         val simpleItemTouchCallback =
             object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
-                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
                     return false
                 }
 
@@ -81,7 +85,14 @@ class WantlistFragment : Fragment() {
                     Toast.makeText(context, "Album is verwijderd van je wantlist!", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
+                override fun onChildDraw(
+                    c: Canvas,
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    dX: Float,
+                    dY: Float,
+                    actionState: Int,
+                    isCurrentlyActive: Boolean
                 ) {
                     val deleteIcon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_delete_white_24dp)!!
                     val deleteIconBackground = ColorDrawable(Color.parseColor("#ff0000"))
@@ -90,9 +101,18 @@ class WantlistFragment : Fragment() {
                     val iconMarginVertical = (viewHolder.itemView.height - deleteIcon.intrinsicHeight) / 2
 
                     if (dX < 0) {
-                        deleteIconBackground.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-                        deleteIcon.setBounds(itemView.right - iconMarginVertical - deleteIcon.intrinsicWidth, itemView.top + iconMarginVertical,
-                            itemView.right - iconMarginVertical, itemView.bottom - iconMarginVertical)
+                        deleteIconBackground.setBounds(
+                            itemView.right + dX.toInt(),
+                            itemView.top,
+                            itemView.right,
+                            itemView.bottom
+                        )
+                        deleteIcon.setBounds(
+                            itemView.right - iconMarginVertical - deleteIcon.intrinsicWidth,
+                            itemView.top + iconMarginVertical,
+                            itemView.right - iconMarginVertical,
+                            itemView.bottom - iconMarginVertical
+                        )
                         deleteIcon.level = 0
                     }
 
@@ -118,7 +138,7 @@ class WantlistFragment : Fragment() {
      * Checks if user's wantlist is empty.
      */
     private fun checkWantlistStatus() {
-        if (API.shared.cache.user.wantList.isEmpty()){
+        if (API.shared.cache.user.wantList.isEmpty()) {
             progressBar.visibility = View.GONE
             emptyMessage.visibility = View.VISIBLE
         }
@@ -128,7 +148,7 @@ class WantlistFragment : Fragment() {
      * Disables progressBar and emptyMessage.
      */
     private fun disableExtraScreens() {
-        if(progressBar != null) {
+        if (progressBar != null) {
             progressBar.visibility = View.GONE
             emptyMessage.visibility = View.GONE
         }

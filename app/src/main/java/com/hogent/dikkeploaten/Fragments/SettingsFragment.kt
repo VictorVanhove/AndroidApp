@@ -122,7 +122,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
      */
     private fun encryptPassword(password: String): String {
         var encryptedPassword = ""
-        for(x in 0 until password.length) {
+        for (x in 0 until password.length) {
             encryptedPassword += "*"
         }
         return encryptedPassword

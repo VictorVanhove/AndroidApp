@@ -1,5 +1,5 @@
 package com.hogent.dikkeploaten.models
 
-data class UserAlbum (
+data class UserAlbum(
     var albumID: String = ""
 )

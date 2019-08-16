@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.adapters.AlbumAdapter
 import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_collection.*
 
@@ -62,7 +62,11 @@ class CollectionFragment : Fragment() {
         val simpleItemTouchCallback =
             object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
-                override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
                     return false
                 }
 
@@ -72,7 +76,7 @@ class CollectionFragment : Fragment() {
                     albums.removeAt(position)
 
                     if (direction == ItemTouchHelper.LEFT) {
-                        API.shared.deleteCollectionAlbum(album.id){
+                        API.shared.deleteCollectionAlbum(album.id) {
                             checkCollectionStatus()
                         }
                         adapter.notifyDataSetChanged()
@@ -81,7 +85,14 @@ class CollectionFragment : Fragment() {
                     Toast.makeText(context, "Album is verwijderd van je collectie!", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
+                override fun onChildDraw(
+                    c: Canvas,
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    dX: Float,
+                    dY: Float,
+                    actionState: Int,
+                    isCurrentlyActive: Boolean
                 ) {
                     val deleteIcon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_delete_white_24dp)!!
                     val deleteIconBackground = ColorDrawable(Color.parseColor("#ff0000"))
@@ -90,9 +101,18 @@ class CollectionFragment : Fragment() {
                     val iconMarginVertical = (viewHolder.itemView.height - deleteIcon.intrinsicHeight) / 2
 
                     if (dX < 0) {
-                        deleteIconBackground.setBounds(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-                        deleteIcon.setBounds(itemView.right - iconMarginVertical - deleteIcon.intrinsicWidth, itemView.top + iconMarginVertical,
-                            itemView.right - iconMarginVertical, itemView.bottom - iconMarginVertical)
+                        deleteIconBackground.setBounds(
+                            itemView.right + dX.toInt(),
+                            itemView.top,
+                            itemView.right,
+                            itemView.bottom
+                        )
+                        deleteIcon.setBounds(
+                            itemView.right - iconMarginVertical - deleteIcon.intrinsicWidth,
+                            itemView.top + iconMarginVertical,
+                            itemView.right - iconMarginVertical,
+                            itemView.bottom - iconMarginVertical
+                        )
                         deleteIcon.level = 0
                     }
 
@@ -118,9 +138,9 @@ class CollectionFragment : Fragment() {
      * Checks if user's collection is empty.
      */
     private fun checkCollectionStatus() {
-        if (API.shared.cache.user.plates.isEmpty()){
-                progressBar.visibility = View.GONE
-                emptyMessage.visibility = View.VISIBLE
+        if (API.shared.cache.user.plates.isEmpty()) {
+            progressBar.visibility = View.GONE
+            emptyMessage.visibility = View.VISIBLE
         }
     }
 
@@ -128,7 +148,7 @@ class CollectionFragment : Fragment() {
      * Disables progressBar and emptyMessage.
      */
     private fun disableExtraScreens() {
-        if(progressBar != null) {
+        if (progressBar != null) {
             progressBar.visibility = View.GONE
             emptyMessage.visibility = View.GONE
         }

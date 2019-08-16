@@ -1,6 +1,6 @@
 package com.hogent.dikkeploaten.models
 
-data class Album (
+data class Album(
     var id: String = "",
     var title: String = "",
     var artist: String = "",

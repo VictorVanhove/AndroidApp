@@ -18,18 +18,27 @@
 
     <string name="logIn">Inloggen</string>
     <string name="goToSignUp">Nog geen account? Meld je hier aan</string>
-    <string name="greetingLogin">Welkom en bedankt om lid te worden van de \'Dikke Ploaten\'-community. Log je snel in en neem eens een kijkje in wat deze app te bieden heeft!</string>
+    <string name="greetingLogin">Welkom en bedankt om lid te worden van de \'Dikke Ploaten\'-community. Log je snel in
+        en neem eens een kijkje in wat deze app te bieden heeft!
+    </string>
 
     <string name="signUp">Aanmelden</string>
-    <string name="greetingRegistration">Meld je hier eerst aan en word lid van onze prachtige \'Dikke Ploaten\'-community en zijn features.</string>
+    <string name="greetingRegistration">Meld je hier eerst aan en word lid van onze prachtige \'Dikke
+        Ploaten\'-community en zijn features.
+    </string>
     <string name="username">Gebruikersnaam</string>
 
-    <string name="descriptionApp">Android-applicatie die platencollectie van geregistreerde gebruikers bijhoudt. Gemaakt voor de cursus \'Native Apps I\' aan de Hogeschool Gent.</string>
+    <string name="descriptionApp">Android-applicatie die platencollectie van geregistreerde gebruikers bijhoudt. Gemaakt
+        voor de cursus \'Native Apps I\' aan de Hogeschool Gent.
+    </string>
     <string name="descriptionAuthor">Ontworpen en gemaakt door Victor Vanhove</string>
 
     <string name="placeholder_title">Highway To Hell</string>
     <string name="placeholder_artist">AC/DC</string>
-    <string name="placeholder_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="placeholder_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat.
+    </string>
     <string name="genre">Genre</string>
     <string name="released">Released</string>
     <string name="tracklist">Tracklist</string>

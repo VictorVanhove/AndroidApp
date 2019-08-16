@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.R
+import com.hogent.dikkeploaten.models.Album
 import kotlinx.android.synthetic.main.fragment_album_info.*
 import kotlinx.android.synthetic.main.layout_albumitem.artist_album
 import kotlinx.android.synthetic.main.layout_albumitem.title_album
 
-class AlbumDetailFragment: Fragment() {
+class AlbumDetailFragment : Fragment() {
 
     private lateinit var album: Album
 

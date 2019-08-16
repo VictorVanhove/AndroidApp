@@ -23,10 +23,10 @@ class ProfileFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         API.shared.getUser { user ->
-                name.text = user.username
-                email.text = user.email
-                albums_collection.text = API.shared.cache.user.plates.size.toString()
-                albums_wantlist.text = API.shared.cache.user.wantList.size.toString()
+            name.text = user.username
+            email.text = user.email
+            albums_collection.text = API.shared.cache.user.plates.size.toString()
+            albums_wantlist.text = API.shared.cache.user.wantList.size.toString()
             disableLoadingScreen()
 
         }
@@ -35,7 +35,7 @@ class ProfileFragment : Fragment() {
             Glide.with(this).load(imageURL).apply(requestOptions).into(profile)
         }
         API.shared.getProfileCover { imageURL ->
-        val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+            val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
             Glide.with(this).load(imageURL).apply(requestOptions).into(header_cover_image)
             //disableLoadingScreen()
         }
@@ -45,7 +45,7 @@ class ProfileFragment : Fragment() {
      * Disables progressBar.
      */
     private fun disableLoadingScreen() {
-        if(progressBar != null) {
+        if (progressBar != null) {
             progressBar.visibility = View.GONE
         }
     }
