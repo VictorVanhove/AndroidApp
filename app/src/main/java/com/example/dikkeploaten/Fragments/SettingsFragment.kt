@@ -107,9 +107,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
             "logout" -> {
                 FirebaseAuth.getInstance().signOut()
 
-                val i = Intent(context, LoginActivity::class.java)
-                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                startActivity(i)
+                val activity = context as SettingsActivity
+                activity.signOutUser()
             }
 
 

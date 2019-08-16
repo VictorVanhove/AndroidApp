@@ -1,5 +1,6 @@
 package com.example.dikkeploaten.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dikkeploaten.Fragments.SettingsFragment
@@ -18,5 +19,12 @@ class SettingsActivity : AppCompatActivity(){
             )
             .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    fun signOutUser() {
+        val i = Intent(this, LoginActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(i)
+        finish()
     }
 }
