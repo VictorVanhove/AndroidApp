@@ -27,22 +27,27 @@ class ProfileFragment : Fragment() {
 
         // Load data of the user to the profile page
         API.shared.getUser { user ->
-            name.text = user.username
-            email.text = user.email
-            albums_collection.text = API.shared.cache.user.plates.size.toString()
-            albums_wantlist.text = API.shared.cache.user.wantList.size.toString()
-            disableLoadingScreen()
-
+            if (name != null) {
+                name.text = user.username
+                email.text = user.email
+                albums_collection.text = API.shared.cache.user.plates.size.toString()
+                albums_wantlist.text = API.shared.cache.user.wantList.size.toString()
+                disableLoadingScreen()
+            }
         }
         // Get profile image from the database
         API.shared.getProfileImage { imageURL ->
-            val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-            Glide.with(this).load(imageURL).apply(requestOptions).into(profile)
+            if (activity != null) {
+                val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+                Glide.with(this).load(imageURL).apply(requestOptions).into(profile)
+            }
         }
         // Give us also the profile cover
         API.shared.getProfileCover { imageURL ->
-            val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-            Glide.with(this).load(imageURL).apply(requestOptions).into(header_cover_image)
+            if (activity != null) {
+                val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+                Glide.with(this).load(imageURL).apply(requestOptions).into(header_cover_image)
+            }
         }
     }
 
