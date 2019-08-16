@@ -51,7 +51,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="AC/DC"
-                        android:textSize="14sp" android:fontFamily="@font/oswald"/>
+                        android:textSize="14sp"
+                        android:fontFamily="@font/oswald"
+                        android:textColor="@color/primaryDarkColor"/>
 
             </LinearLayout>
 
