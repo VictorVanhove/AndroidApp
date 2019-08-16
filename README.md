@@ -1,6 +1,8 @@
 # Dikke Ploaten - Android Application
 
-Welcome to the Android version of the 'Dikke Ploaten'-app. This application is specially made for the diehard music fans who want to keep track of their music collection. You simply sign up to our community and start organizing your vinyls or cd's! As a member, you'll be able to swipe albums to your collection or wantlist. It is also possible to discover new albums you've never heard of. For this, we implemented a information screen of each album. You can setup your profile page and adjust the app to your needs. Have a look and become a new member of the 'Dikke Ploaten'-community!
+Welcome to the Android version of the 'Dikke Ploaten'-app. This application is specially made for the diehard music fans who want to keep track of their music collection. You simply sign up to our community and start organizing your vinyls or cd's! As a member, you'll be able to swipe albums to your collection or wantlist. It is also possible to discover new albums you've never heard of. For this, we implemented a information screen of each album. You can setup your profile page and adjust the app to your needs. 
+
+Have a look and become a new member of the 'Dikke Ploaten'-community!
 
 __This application features:__
 * An interface fully in Dutch.
