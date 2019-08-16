@@ -1,6 +1,6 @@
 package com.example.dikkeploaten
 
-import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
@@ -36,18 +36,18 @@ class RegistrationInstrumentedTest {
 
     @Test
     fun goToRegistration_checkIfEverthingIsDisplayed() {
-        Espresso.onView(withId(R.id.username)).check(matches(isDisplayed()))
-        Espresso.onView(withId(R.id.email)).check(matches(isDisplayed()))
-        Espresso.onView(withId(R.id.password)).check(matches(isDisplayed()))
+        onView(withId(R.id.username)).check(matches(isDisplayed()))
+        onView(withId(R.id.email)).check(matches(isDisplayed()))
+        onView(withId(R.id.password)).check(matches(isDisplayed()))
     }
 
     @Test
     fun goToRegistration_SignUpWithValidInformation() {
-        Espresso.onView(withId(R.id.username)).perform(typeText("Adrien")).perform(closeSoftKeyboard())
-        Espresso.onView(withId(R.id.email)).perform(typeText("a@gmail.com")).perform(closeSoftKeyboard())
-        Espresso.onView(withId(R.id.password)).perform(typeText("Testy123")).perform(closeSoftKeyboard())
+        onView(withId(R.id.username)).perform(typeText("Adrien")).perform(closeSoftKeyboard())
+        onView(withId(R.id.email)).perform(typeText("a@gmail.com")).perform(closeSoftKeyboard())
+        onView(withId(R.id.password)).perform(typeText("Testy123")).perform(closeSoftKeyboard())
 
-        Espresso.onView(withId(R.id.register)).perform(click())
+        onView(withId(R.id.register)).perform(click())
 
         Thread.sleep(2000)
         Intents.intended(IntentMatchers.hasComponent(MainActivity::class.java.name))
@@ -55,14 +55,14 @@ class RegistrationInstrumentedTest {
 
     @Test
     fun goToRegistration_SignUpWithExistedInformation() {
-        Espresso.onView(withId(R.id.username)).perform(typeText("Victor")).perform(closeSoftKeyboard())
-        Espresso.onView(withId(R.id.email)).perform(typeText("victor@gmail.com")).perform(closeSoftKeyboard())
-        Espresso.onView(withId(R.id.password)).perform(typeText("Testy123")).perform(closeSoftKeyboard())
+        onView(withId(R.id.username)).perform(typeText("Victor")).perform(closeSoftKeyboard())
+        onView(withId(R.id.email)).perform(typeText("victor@gmail.com")).perform(closeSoftKeyboard())
+        onView(withId(R.id.password)).perform(typeText("Testy123")).perform(closeSoftKeyboard())
 
-        Espresso.onView(withId(R.id.register)).perform(click())
+        onView(withId(R.id.register)).perform(click())
 
         Thread.sleep(2000)
-        Espresso.onView(ViewMatchers.withText("Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik."))
+        onView(ViewMatchers.withText("Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik."))
             .inRoot(RootMatchers.withDecorView(Matchers.not(registrationActivity.activity.getWindow().getDecorView())))
             .check(matches(isDisplayed()));
 
