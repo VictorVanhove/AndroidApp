@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.example.dikkeploaten.Activities.LoginActivity
+import com.example.dikkeploaten.Activities.SettingsActivity
 import com.example.dikkeploaten.Services.API
 import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
@@ -29,7 +29,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         usernamePreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
             val text = preference.text
             if (TextUtils.isEmpty(text)) {
-                "Not set"
+                API.shared.cache.user.username
             } else {
                 API.shared.updateUsername(text)
                 text
@@ -38,7 +38,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         passwordPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
             val text = preference.text
             if (TextUtils.isEmpty(text)) {
-                "Not set"
+                "********"
             } else {
                 API.shared.updatePassword(text)
                 encryptPassword(text)
