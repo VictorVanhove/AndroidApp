@@ -2,27 +2,24 @@ package com.hogent.dikkeploaten.services
 
 import android.graphics.Bitmap
 import android.util.Log
-import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.models.User
-import com.hogent.dikkeploaten.models.UserAlbum
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.hogent.dikkeploaten.models.Album
+import com.hogent.dikkeploaten.models.User
+import com.hogent.dikkeploaten.models.UserAlbum
 import java.io.ByteArrayOutputStream
 
 class API {
 
-    val db = FirebaseFirestore.getInstance()
-    val auth = FirebaseAuth.getInstance()
-    val storageRef =  FirebaseStorage.getInstance("gs://dikke-ploaten.appspot.com").reference
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()!!
+    private val storageRef =  FirebaseStorage.getInstance("gs://dikke-ploaten.appspot.com").reference
 
     val cache = Cache()
 
     companion object {
-        private val TAG = "show"
+        private const val TAG = "show"
         val shared = API()
     }
 
@@ -32,18 +29,18 @@ class API {
      * Gets the user's collection with all the albums.
      */
     fun getUserCollection(callback: (ArrayList<Album>) -> Unit) {
-        var albums = arrayListOf<Album>()
-        var userAlbums = arrayListOf<UserAlbum>()
+        val albums = arrayListOf<Album>()
+        val userAlbums = arrayListOf<UserAlbum>()
 
         val userPlates = db.collection("users").document(auth.currentUser!!.uid).collection("platen")
         userPlates.get().addOnSuccessListener { result ->
             for (document in result) {
-                var userAlbum = document.toObject(UserAlbum::class.java)
+                val userAlbum = document.toObject(UserAlbum::class.java)
                 userAlbums.add(userAlbum)
                 db.collection("platen").document(userAlbum.albumID).get()
                     .addOnSuccessListener { document ->
                         if (document != null) {
-                            var album = document.toObject(Album::class.java)
+                            val album = document.toObject(Album::class.java)
                             album!!.id = document.id
                             albums.add(album)
 
@@ -67,18 +64,18 @@ class API {
      * Gets the user's wantlist with all the albums.
      */
     fun getUserWantlist(callback: (ArrayList<Album>) -> Unit) {
-        var albums = arrayListOf<Album>()
-        var userAlbums = arrayListOf<UserAlbum>()
+        val albums = arrayListOf<Album>()
+        val userAlbums = arrayListOf<UserAlbum>()
 
         val userWantlist = db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
         userWantlist.get().addOnSuccessListener { result ->
             for (document in result) {
-                var userAlbum = document.toObject(UserAlbum::class.java)
+                val userAlbum = document.toObject(UserAlbum::class.java)
                 userAlbums.add(userAlbum)
                 db.collection("platen").document(userAlbum.albumID).get()
                     .addOnSuccessListener { document ->
                         if (document != null) {
-                            var album = document.toObject(Album::class.java)
+                            val album = document.toObject(Album::class.java)
                             album!!.id = document.id
                             albums.add(album)
 
@@ -103,12 +100,12 @@ class API {
      * Gets the whole list of albums out of the database.
      */
     fun getAlbumList(callback: (ArrayList<Album>) -> Unit) {
-        var albums = arrayListOf<Album>()
+        val albums = arrayListOf<Album>()
         db.collection("platen")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    var album = document.toObject(Album::class.java)
+                    val album = document.toObject(Album::class.java)
                     album.id = document.id
                     albums.add(album)
                 }
@@ -126,7 +123,7 @@ class API {
      * Adds album equal to parameter albumId to user's collection.
      */
     fun addCollectionAlbum(albumId: String) {
-        var userAlbum = UserAlbum(albumID = albumId)
+        val userAlbum = UserAlbum(albumID = albumId)
         cache.user.plates.add(userAlbum)
         db.collection("users").document(auth.currentUser!!.uid).collection("platen")
             .add(userAlbum)
@@ -141,7 +138,7 @@ class API {
      * Adds album equal to parameter albumId to user's wantlist.
      */
     fun addWantlistAlbum(albumId: String) {
-        var userAlbum = UserAlbum(albumID = albumId)
+        val userAlbum = UserAlbum(albumID = albumId)
         cache.user.wantList.add(userAlbum)
         db.collection("users").document(auth.currentUser!!.uid).collection("wantList")
             .add(userAlbum)
@@ -211,23 +208,20 @@ class API {
      */
     fun createUser(username: String, email: String, password: String, callback: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(object: OnCompleteListener<AuthResult> {
-                override fun onComplete(task: Task<AuthResult>) {
-                    if (task.isSuccessful)
-                    {
-                        db.collection("users").document(auth.currentUser!!.uid)
-                            .set(hashMapOf(
-                                "username" to username,
-                                "email" to email
-                            ))
-                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-                            .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    db.collection("users").document(auth.currentUser!!.uid)
+                        .set(hashMapOf(
+                            "username" to username,
+                            "email" to email
+                        ))
+                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
-                        cache.user = User(username, email)
-                    }
-                    callback(task.isSuccessful)
+                    cache.user = User(username, email)
                 }
-            })
+                callback(task.isSuccessful)
+            }
     }
 
     /**
@@ -242,7 +236,7 @@ class API {
 
                     val user = document.toObject(User::class.java)
                     cache.user.username = user!!.username
-                    cache.user.email = user!!.email
+                    cache.user.email = user.email
                     callback(user)
                 } else {
                     Log.d(TAG, "No such document")
@@ -267,7 +261,7 @@ class API {
         val profileRef = storageRef.child("images/profile/${auth.currentUser!!.uid}.jpg")
 
         profileRef.downloadUrl.addOnSuccessListener { uri ->
-            var imageURL = uri.toString();
+            val imageURL = uri.toString()
             callback(imageURL)
         }.addOnFailureListener {
             // Handle any errors
@@ -281,7 +275,7 @@ class API {
         val coverRef = storageRef.child("images/cover/${auth.currentUser!!.uid}.jpg")
 
         coverRef.downloadUrl.addOnSuccessListener { uri ->
-            var imageURL = uri.toString();
+            val imageURL = uri.toString()
             callback(imageURL)
         }.addOnFailureListener {
             // Handle any errors
@@ -317,7 +311,7 @@ class API {
      */
     fun uploadProfileImage(bitmap: Bitmap) {
         val itemId = auth.currentUser!!.uid
-        var imagePath = "images/profile/${itemId}.jpg"
+        val imagePath = "images/profile/$itemId.jpg"
         val imageRef = storageRef.child(imagePath)
 
         // Get the data from an ImageView as bytes
@@ -325,7 +319,7 @@ class API {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-        var uploadTask = imageRef.putBytes(data)
+        val uploadTask = imageRef.putBytes(data)
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
         }.addOnSuccessListener {
@@ -340,7 +334,7 @@ class API {
      */
     fun uploadCoverImage(bitmap: Bitmap) {
         val itemId = auth.currentUser!!.uid
-        var imagePath = "images/cover/${itemId}.jpg"
+        val imagePath = "images/cover/$itemId.jpg"
         val imageRef = storageRef.child(imagePath)
 
         // Get the data from an ImageView as bytes
@@ -348,7 +342,7 @@ class API {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
-        var uploadTask = imageRef.putBytes(data)
+        val uploadTask = imageRef.putBytes(data)
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
         }.addOnSuccessListener {

@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.activities.MainActivity
 import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
-class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showStatus: Boolean) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, private var showStatus: Boolean) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
     /**
      * Inflates the AlbumViewHolder.
@@ -30,21 +30,18 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
      */
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = albums[position]
-        holder.txt_title.text = album.title
-        holder.txt_artist.text = album.artist
+        holder.txtTitle.text = album.title
+        holder.txtArtist.text = album.artist
 
         val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-        Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.image_album)
+        Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.imageAlbum)
 
         //Adds status image if album belongs to collection/wantlist
         if(showStatus) {
-            if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id }) {
-                Glide.with(context).load(R.mipmap.ic_in_collection).apply(requestOptions).into(holder.image_status)
-            } else if (API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }){
-                Glide.with(context).load(R.mipmap.ic_in_wantlist).apply(requestOptions).into(holder.image_status)
-            }
-            else {
-                Glide.with(context).load(R.drawable.ic_not_in_collection).apply(requestOptions).into(holder.image_status)
+            when {
+                API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(R.mipmap.ic_in_collection).apply(requestOptions).into(holder.imageStatus)
+                API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(R.mipmap.ic_in_wantlist).apply(requestOptions).into(holder.imageStatus)
+                else -> Glide.with(context).load(R.drawable.ic_not_in_collection).apply(requestOptions).into(holder.imageStatus)
             }
         }
 
@@ -68,10 +65,10 @@ class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showS
 
     class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val txt_title = itemView.title_album
-        val txt_artist = itemView.artist_album
-        val image_album = itemView.image_album
-        val image_status = itemView.image_status
+        val txtTitle = itemView.title_album!!
+        val txtArtist = itemView.artist_album!!
+        val imageAlbum = itemView.image_album!!
+        val imageStatus = itemView.image_status!!
 
     }
 

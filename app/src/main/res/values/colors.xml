@@ -5,4 +5,5 @@
     <color name="primaryDarkColor">#c2c1c2</color>
     <color name="primaryTextColor">#000000</color>
     <color name="colorAccent">#157DFB</color>
+    <color name="backgroundColor">#E5E5E5</color>
 </resources>

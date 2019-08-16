@@ -28,8 +28,8 @@ class LoginInstrumentedTest {
 
     @Before
     fun init() {
-        loginActivity.getActivity()
-            .getSupportFragmentManager().beginTransaction()
+        loginActivity.activity
+            .supportFragmentManager.beginTransaction()
     }
 
     @Test
@@ -64,8 +64,8 @@ class LoginInstrumentedTest {
 
         Thread.sleep(2000)
         onView(withText("Login is mislukt! Probeer opnieuw."))
-            .inRoot(withDecorView(not(loginActivity.activity.getWindow().getDecorView())))
-            .check(matches(isDisplayed()));
+            .inRoot(withDecorView(not(loginActivity.activity.window.decorView)))
+            .check(matches(isDisplayed()))
 
     }
 

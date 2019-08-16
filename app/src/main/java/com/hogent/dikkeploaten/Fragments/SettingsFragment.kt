@@ -17,8 +17,8 @@ import java.io.IOException
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
-    private var SELECT_PROFILEIMAGE = 0
-    private var SELECT_COVERIMAGE = 1
+    private var profileImageCode = 0
+    private var profileCoverCode = 1
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(com.hogent.dikkeploaten.R.xml.preferences, rootKey)
@@ -52,7 +52,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode === SELECT_PROFILEIMAGE) {
+        if (requestCode === profileImageCode) {
             if (resultCode === Activity.RESULT_OK) {
                 if (data != null) {
                     try {
@@ -68,7 +68,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 Toast.makeText(activity, "Canceled", Toast.LENGTH_SHORT).show()
             }
         }
-        if (requestCode === SELECT_COVERIMAGE) {
+        if (requestCode === profileCoverCode) {
             if (resultCode === Activity.RESULT_OK) {
                 if (data != null) {
                     try {
@@ -96,13 +96,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PROFILEIMAGE)
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), profileImageCode)
             }
             "cover" -> {
                 val intent = Intent()
                 intent.type = "image/*"
                 intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_COVERIMAGE)
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), profileCoverCode)
             }
             "logout" -> {
                 FirebaseAuth.getInstance().signOut()

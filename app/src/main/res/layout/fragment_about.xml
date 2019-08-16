@@ -5,13 +5,13 @@
               android:layout_height="match_parent">
 
     <TextView
-            android:text="Android-applicatie die platencollectie van geregistreerde gebruikers bijhoudt. Gemaakt voor de cursus 'Native Apps I' aan de Hogeschool Gent."
+            android:text="@string/descriptionApp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/about"
             android:layout_margin="10dp" android:fontFamily="@font/oswald"/>
     <TextView
-            android:text="Created by Victor Vanhove"
+            android:text="@string/descriptionAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/about2"

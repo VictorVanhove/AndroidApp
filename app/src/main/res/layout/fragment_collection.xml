@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:visibility="gone"
-            android:text="Je hebt nog geen albums toegevoegd.\nGa naar de zoekfunctie en voeg albums toe!"/>
+            android:text="@string/emptyMessage"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

@@ -5,7 +5,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#E5E5E5"
+              android:background="@color/backgroundColor"
               tools:context=".activities.LoginActivity">
 
     <ImageView
@@ -22,12 +22,12 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:layout_constraintHorizontal_bias="0.498"
-            android:contentDescription="Icon of the app"/>
+            android:contentDescription="@string/appIconDescription"/>
 
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Emailadres"
+            android:text="@string/email"
             android:fontFamily="@font/oswald"
             android:textColor="#000000" android:textSize="18sp"
             android:textStyle="bold"
@@ -46,7 +46,7 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Emailadres"
+            android:hint="@string/email"
             android:background="#FFFFFF"
             android:fontFamily="@font/oswald"
             android:textSize="14sp"
@@ -62,12 +62,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginTop="4dp"
+            android:inputType="textEmailAddress"
             android:importantForAutofill="no"/>
 
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wachtwoord"
+            android:text="@string/password"
             android:fontFamily="@font/oswald"
             android:textColor="#000000"
             android:id="@+id/textView3"
@@ -87,7 +88,7 @@
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Wachtwoord"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:background="#FFFFFF"
             android:fontFamily="@font/oswald"
@@ -109,7 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:textAllCaps="false"
-            android:text="Inloggen"
+            android:text="@string/logIn"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="32dp" android:layout_marginStart="32dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +128,7 @@
             app:layout_constraintVertical_bias="1.0"/>
 
     <Button
-            android:text="Nog geen account? Meld je hier aan"
+            android:text="@string/goToSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -146,7 +147,7 @@
             android:fontFamily="@font/oswald"/>
 
     <TextView
-            android:text="Dikke Ploaten"
+            android:text="@string/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
@@ -161,7 +162,7 @@
             android:layout_marginLeft="8dp"/>
 
     <TextView
-            android:text="Welkom en bedankt om lid te worden van de 'Dikke Ploaten'-community. Log je snel in en neem eens een kijkje in wat deze app te bieden heeft!"
+            android:text="@string/greetingLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView6"

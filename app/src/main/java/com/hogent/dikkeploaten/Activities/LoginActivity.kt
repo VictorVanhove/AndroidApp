@@ -5,9 +5,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -41,20 +38,15 @@ class LoginActivity : AppCompatActivity() {
         }
 
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener(object: OnCompleteListener<AuthResult> {
-                override fun onComplete(task: Task<AuthResult>) {
-                    if (task.isSuccessful)
-                    {
-                        Toast.makeText(applicationContext, "Login is succesvol!", Toast.LENGTH_LONG).show()
-                        val intent = Intent(applicationContext, MainActivity::class.java)
-                        startActivity(intent)
-                    }
-                    else
-                    {
-                        Toast.makeText(applicationContext, "Login is mislukt! Probeer opnieuw.", Toast.LENGTH_LONG).show()
-                    }
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(applicationContext, "Login is succesvol!", Toast.LENGTH_LONG).show()
+                    val intent = Intent(applicationContext, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(applicationContext, "Login is mislukt! Probeer opnieuw.", Toast.LENGTH_LONG).show()
                 }
-            })
+            }
     }
 
 }

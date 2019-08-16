@@ -122,15 +122,15 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
-                var album: Album
+                val album: Album
 
-                if (searchView.isIconified) {
-                    album = albums[position]
+                album = if (searchView.isIconified) {
+                    albums[position]
                 } else {
-                    album = filteredAlbums[position]
+                    filteredAlbums[position]
                 }
 
-                var text: String
+                val text: String
 
                 if (direction == ItemTouchHelper.LEFT) {
                     API.shared.addCollectionAlbum(album.id)
@@ -146,8 +146,8 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
 
             override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
             ) {
-                var icon: Drawable
-                var iconBackground: ColorDrawable
+                val icon: Drawable
+                val iconBackground: ColorDrawable
 
                 val itemView = viewHolder.itemView
 
@@ -190,7 +190,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
 
             override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
                 val position = viewHolder.adapterPosition
-                var album: Album
+                val album: Album
 
                 if (searchView.isIconified) {
                     album = albums[position]

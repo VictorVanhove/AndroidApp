@@ -83,8 +83,8 @@ class WantlistFragment : Fragment() {
 
                 override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
                 ) {
-                    var deleteIcon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_delete_white_24dp)!!
-                    var deleteIconBackground = ColorDrawable(Color.parseColor("#ff0000"))
+                    val deleteIcon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_delete_white_24dp)!!
+                    val deleteIconBackground = ColorDrawable(Color.parseColor("#ff0000"))
 
                     val itemView = viewHolder.itemView
                     val iconMarginVertical = (viewHolder.itemView.height - deleteIcon.intrinsicHeight) / 2

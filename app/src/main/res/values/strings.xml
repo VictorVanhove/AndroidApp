@@ -4,11 +4,47 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
     <string name="title_collection">Collectie</string>
     <string name="title_wantlist">Wantlist</string>
     <string name="title_search">Zoeken</string>
     <string name="title_notifications">Notificaties</string>
     <string name="title_profile">Profiel</string>
-    <string name="title_activity_settings">Instellingen</string>
+    <string name="title_settings">Instellingen</string>
+
+    <string name="email">Emailadres</string>
+    <string name="password">Wachtwoord</string>
+
+    <string name="logIn">Inloggen</string>
+    <string name="goToSignUp">Nog geen account? Meld je hier aan</string>
+    <string name="greetingLogin">Welkom en bedankt om lid te worden van de \'Dikke Ploaten\'-community. Log je snel in en neem eens een kijkje in wat deze app te bieden heeft!</string>
+
+    <string name="signUp">Aanmelden</string>
+    <string name="greetingRegistration">Meld je hier eerst aan en word lid van onze prachtige \'Dikke Ploaten\'-community en zijn features.</string>
+    <string name="username">Gebruikersnaam</string>
+
+    <string name="descriptionApp">Android-applicatie die platencollectie van geregistreerde gebruikers bijhoudt. Gemaakt voor de cursus \'Native Apps I\' aan de Hogeschool Gent.</string>
+    <string name="descriptionAuthor">Ontworpen en gemaakt door Victor Vanhove</string>
+
+    <string name="placeholder_title">Highway To Hell</string>
+    <string name="placeholder_artist">AC/DC</string>
+    <string name="placeholder_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="genre">Genre</string>
+    <string name="released">Released</string>
+    <string name="tracklist">Tracklist</string>
+    <string name="members">Leden</string>
+
+    <string name="emptyMessage">Je hebt nog geen albums toegevoegd.\nGa naar de zoekfunctie en voeg albums toe!</string>
+
+    <string name="inCollection">Collectie:</string>
+    <string name="inWantlist">Wantlist:</string>
+
+    <string name="imageAlbumDescription">Image of the album</string>
+    <string name="imageProfileDescription">Image of the user</string>
+    <string name="imageNotificationsDescription">Placeholder image for tab notifications</string>
+    <string name="imageStatusDescription">Image of the specific status of the album</string>
+    <string name="appIconDescription">Icon of the app</string>
+
+
 </resources>

@@ -29,8 +29,8 @@ class RegistrationInstrumentedTest {
 
     @Before
     fun init() {
-        registrationActivity.getActivity()
-            .getSupportFragmentManager().beginTransaction()
+        registrationActivity.activity
+            .supportFragmentManager.beginTransaction()
     }
 
 
@@ -63,8 +63,8 @@ class RegistrationInstrumentedTest {
 
         Thread.sleep(2000)
         onView(ViewMatchers.withText("Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik."))
-            .inRoot(RootMatchers.withDecorView(Matchers.not(registrationActivity.activity.getWindow().getDecorView())))
-            .check(matches(isDisplayed()));
+            .inRoot(RootMatchers.withDecorView(Matchers.not(registrationActivity.activity.window.decorView)))
+            .check(matches(isDisplayed()))
 
     }
 
