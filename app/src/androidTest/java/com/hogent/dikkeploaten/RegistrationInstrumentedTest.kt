@@ -33,7 +33,6 @@ class RegistrationInstrumentedTest {
             .supportFragmentManager.beginTransaction()
     }
 
-
     @Test
     fun goToRegistration_checkIfEverthingIsDisplayed() {
         onView(withId(R.id.username)).check(matches(isDisplayed()))
