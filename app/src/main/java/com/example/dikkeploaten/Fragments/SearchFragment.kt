@@ -199,7 +199,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                 }
 
                 // Set movement flags based on the layout manager
-                if (API.shared.cache.user.plates!!.any { userAlbum -> userAlbum.albumID == album.id } || API.shared.cache.user.wantList!!.any { userAlbum -> userAlbum.albumID == album.id }) {
+                if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } || API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }) {
                     return makeMovementFlags(0, 0)
                 } else {
                     val swipeFlags = ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT

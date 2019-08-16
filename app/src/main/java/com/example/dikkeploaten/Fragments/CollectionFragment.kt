@@ -118,9 +118,9 @@ class CollectionFragment : Fragment() {
      * Checks if user's collection is empty.
      */
     private fun checkCollectionStatus() {
-        if (API.shared.cache.user.plates!!.isEmpty()){
-            progressBar.visibility = View.GONE
-            emptyMessage.visibility = View.VISIBLE
+        if (API.shared.cache.user.plates.isEmpty()){
+                progressBar.visibility = View.GONE
+                emptyMessage.visibility = View.VISIBLE
         }
     }
 

@@ -118,7 +118,7 @@ class WantlistFragment : Fragment() {
      * Checks if user's wantlist is empty.
      */
     private fun checkWantlistStatus() {
-        if (API.shared.cache.user.wantList!!.isEmpty()){
+        if (API.shared.cache.user.wantList.isEmpty()){
             progressBar.visibility = View.GONE
             emptyMessage.visibility = View.VISIBLE
         }
