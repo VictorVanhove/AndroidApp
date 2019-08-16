@@ -1,10 +1,10 @@
-package com.example.dikkeploaten.Activities
+package com.hogent.dikkeploaten.Activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dikkeploaten.Fragments.SettingsFragment
-import com.example.dikkeploaten.R
+import com.hogent.dikkeploaten.Fragments.SettingsFragment
+import com.hogent.dikkeploaten.R
 
 class SettingsActivity : AppCompatActivity(){
 

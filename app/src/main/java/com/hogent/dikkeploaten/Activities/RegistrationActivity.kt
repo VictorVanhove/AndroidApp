@@ -1,12 +1,12 @@
-package com.example.dikkeploaten.Activities
+package com.hogent.dikkeploaten.Activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dikkeploaten.R
-import com.example.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.R
+import com.hogent.dikkeploaten.Services.API
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_registration.*
 

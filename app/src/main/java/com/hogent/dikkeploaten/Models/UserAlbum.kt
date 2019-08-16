@@ -1,4 +1,4 @@
-package com.example.dikkeploaten.Models
+package com.hogent.dikkeploaten.Models
 
 data class UserAlbum (
     var albumID: String = ""

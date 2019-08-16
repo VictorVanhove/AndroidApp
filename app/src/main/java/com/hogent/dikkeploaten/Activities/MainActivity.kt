@@ -1,4 +1,4 @@
-package com.example.dikkeploaten.Activities
+package com.hogent.dikkeploaten.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.dikkeploaten.Fragments.*
-import com.example.dikkeploaten.Models.Album
-import com.example.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.Fragments.*
+import com.hogent.dikkeploaten.Models.Album
+import com.hogent.dikkeploaten.Services.API
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
      */
     private fun loadFragment(fragment: Fragment): Boolean {
         if(fragment != null) {
-            supportFragmentManager.beginTransaction().replace(com.example.dikkeploaten.R.id.fragment_container, fragment).commit()
+            supportFragmentManager.beginTransaction().replace(com.hogent.dikkeploaten.R.id.fragment_container, fragment).commit()
             return true
         }
         return false
@@ -30,19 +30,19 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var fragment = Fragment()
         when (item.itemId) {
-            com.example.dikkeploaten.R.id.navigation_collection -> {
+            com.hogent.dikkeploaten.R.id.navigation_collection -> {
                 fragment = CollectionFragment()
             }
-            com.example.dikkeploaten.R.id.navigation_wantlist -> {
+            com.hogent.dikkeploaten.R.id.navigation_wantlist -> {
                 fragment = WantlistFragment()
             }
-            com.example.dikkeploaten.R.id.navigation_search -> {
+            com.hogent.dikkeploaten.R.id.navigation_search -> {
                 fragment = SearchFragment()
             }
-            com.example.dikkeploaten.R.id.navigation_notifications -> {
+            com.hogent.dikkeploaten.R.id.navigation_notifications -> {
                 fragment = NotificationsFragment()
             }
-            com.example.dikkeploaten.R.id.navigation_profile -> {
+            com.hogent.dikkeploaten.R.id.navigation_profile -> {
                 fragment = ProfileFragment()
             }
         }
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.dikkeploaten.R.layout.activity_main)
+        setContentView(com.hogent.dikkeploaten.R.layout.activity_main)
 
         if (API.shared.isUserLoggedIn()) {
             loadFragment(CollectionFragment())
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             finish()
         }
 
-        val navView: BottomNavigationView = findViewById(com.example.dikkeploaten.R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(com.hogent.dikkeploaten.R.id.nav_view)
 
         navView.setOnNavigationItemSelectedListener(this)
     }
@@ -72,14 +72,14 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     fun goToAlbumDetail(album: Album) {
         val frag = AlbumDetailFragment()
         frag.initiateAlbum(album)
-        supportFragmentManager.beginTransaction().replace(com.example.dikkeploaten.R.id.fragment_container, frag).addToBackStack(null).commit()
+        supportFragmentManager.beginTransaction().replace(com.hogent.dikkeploaten.R.id.fragment_container, frag).addToBackStack(null).commit()
     }
 
     /**
      * Inflates the settings menu item into the actionbar.
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(com.example.dikkeploaten.R.menu.settings_menu, menu)
+        menuInflater.inflate(com.hogent.dikkeploaten.R.menu.settings_menu, menu)
         return true
     }
 
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            com.example.dikkeploaten.R.id.action_settings -> {
+            com.hogent.dikkeploaten.R.id.action_settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
                 return true

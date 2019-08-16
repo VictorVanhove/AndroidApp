@@ -45,7 +45,7 @@
         app:key="about_fragment"
         app:title="Over deze app"
         app:icon="@drawable/ic_info_black_24dp"
-        app:fragment="com.example.dikkeploaten.Fragments.AboutFragment"
+        app:fragment="com.hogent.dikkeploaten.Fragments.AboutFragment"
         />
 
     </PreferenceCategory>

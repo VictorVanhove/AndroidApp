@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:486653173190:android:6b28464131316820",
+        "mobilesdk_app_id": "1:486653173190:android:75ce8b4d3eb7bf7c",
         "android_client_info": {
-          "package_name": "com.example.dikkeploaten"
+          "package_name": "com.hogent.dikkeploaten"
         }
       },
       "oauth_client": [

@@ -1,4 +1,4 @@
-package com.example.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.Fragments
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -13,33 +13,33 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dikkeploaten.Adapters.AlbumAdapter
-import com.example.dikkeploaten.Models.Album
-import com.example.dikkeploaten.R
-import com.example.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.Adapters.AlbumAdapter
+import com.hogent.dikkeploaten.Models.Album
+import com.hogent.dikkeploaten.R
+import com.hogent.dikkeploaten.Services.API
 import kotlinx.android.synthetic.main.fragment_collection.*
 
-class WantlistFragment : Fragment() {
+class CollectionFragment : Fragment() {
 
     private lateinit var adapter: AlbumAdapter
     private var albums = arrayListOf<Album>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wantlist, container, false)
+        return inflater.inflate(R.layout.fragment_collection, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        API.shared.getUserWantlist { albums ->
+        API.shared.getUserCollection { albums ->
             this.albums = albums
             fillRecyclerView(this.albums)
             disableExtraScreens()
         }
 
         fillRecyclerView(this.albums)
-        checkWantlistStatus()
+        checkCollectionStatus()
         initSwipe()
     }
 
@@ -72,13 +72,13 @@ class WantlistFragment : Fragment() {
                     albums.removeAt(position)
 
                     if (direction == ItemTouchHelper.LEFT) {
-                        API.shared.deleteWantlistAlbum(album.id) {
-                            checkWantlistStatus()
+                        API.shared.deleteCollectionAlbum(album.id){
+                            checkCollectionStatus()
                         }
                         adapter.notifyDataSetChanged()
                     }
 
-                    Toast.makeText(context, "Album is verwijderd van je wantlist!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Album is verwijderd van je collectie!", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean
@@ -115,12 +115,12 @@ class WantlistFragment : Fragment() {
     }
 
     /**
-     * Checks if user's wantlist is empty.
+     * Checks if user's collection is empty.
      */
-    private fun checkWantlistStatus() {
-        if (API.shared.cache.user.wantList.isEmpty()){
-            progressBar.visibility = View.GONE
-            emptyMessage.visibility = View.VISIBLE
+    private fun checkCollectionStatus() {
+        if (API.shared.cache.user.plates.isEmpty()){
+                progressBar.visibility = View.GONE
+                emptyMessage.visibility = View.VISIBLE
         }
     }
 
@@ -133,4 +133,5 @@ class WantlistFragment : Fragment() {
             emptyMessage.visibility = View.GONE
         }
     }
+
 }

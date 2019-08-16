@@ -1,4 +1,4 @@
-package com.example.dikkeploaten.Adapters
+package com.hogent.dikkeploaten.Adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.example.dikkeploaten.Activities.MainActivity
-import com.example.dikkeploaten.Models.Album
-import com.example.dikkeploaten.R
-import com.example.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.Activities.MainActivity
+import com.hogent.dikkeploaten.Models.Album
+import com.hogent.dikkeploaten.R
+import com.hogent.dikkeploaten.Services.API
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
 class AlbumAdapter(var context: Context, var albums: ArrayList<Album>, var showStatus: Boolean) : RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {

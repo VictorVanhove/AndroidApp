@@ -1,4 +1,4 @@
-package com.example.dikkeploaten.Activities
+package com.hogent.dikkeploaten.Activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,7 +15,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.dikkeploaten.R.layout.activity_login)
+        setContentView(com.hogent.dikkeploaten.R.layout.activity_login)
 
         login.setOnClickListener {
             loginUser()

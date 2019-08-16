@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
     defaultConfig {
-        applicationId "com.example.dikkeploaten"
+        applicationId "com.hogent.dikkeploaten"
         minSdkVersion 19
         targetSdkVersion 28
         multiDexEnabled true

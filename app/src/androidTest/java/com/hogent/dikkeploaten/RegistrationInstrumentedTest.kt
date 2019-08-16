@@ -1,4 +1,4 @@
-package com.example.dikkeploaten
+package com.hogent.dikkeploaten
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
@@ -10,8 +10,8 @@ import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import com.example.dikkeploaten.Activities.MainActivity
-import com.example.dikkeploaten.Activities.RegistrationActivity
+import com.hogent.dikkeploaten.Activities.MainActivity
+import com.hogent.dikkeploaten.Activities.RegistrationActivity
 import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule

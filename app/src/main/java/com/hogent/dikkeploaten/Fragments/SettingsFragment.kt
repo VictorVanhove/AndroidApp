@@ -1,4 +1,4 @@
-package com.example.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.Fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -9,9 +9,9 @@ import android.widget.Toast
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.example.dikkeploaten.Activities.SettingsActivity
-import com.example.dikkeploaten.Services.API
 import com.google.firebase.auth.FirebaseAuth
+import com.hogent.dikkeploaten.Activities.SettingsActivity
+import com.hogent.dikkeploaten.Services.API
 import java.io.IOException
 
 
@@ -21,7 +21,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private var SELECT_COVERIMAGE = 1
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(com.example.dikkeploaten.R.xml.preferences, rootKey)
+        setPreferencesFromResource(com.hogent.dikkeploaten.R.xml.preferences, rootKey)
 
         val usernamePreference: EditTextPreference? = findPreference("username")
         val passwordPreference: EditTextPreference? = findPreference("password")
