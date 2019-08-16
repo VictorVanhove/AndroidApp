@@ -1,7 +1,7 @@
-package com.hogent.dikkeploaten.Services
+package com.hogent.dikkeploaten.services
 
-import com.hogent.dikkeploaten.Models.Album
-import com.hogent.dikkeploaten.Models.User
+import com.hogent.dikkeploaten.models.Album
+import com.hogent.dikkeploaten.models.User
 
 class Cache {
     var user: User = User(username= "", email= "", plates= arrayListOf(), wantList= arrayListOf())

@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.fragments
 
 import android.app.Activity
 import android.content.Intent
@@ -10,8 +10,8 @@ import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.hogent.dikkeploaten.Activities.SettingsActivity
-import com.hogent.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.activities.SettingsActivity
+import com.hogent.dikkeploaten.services.API
 import java.io.IOException
 
 

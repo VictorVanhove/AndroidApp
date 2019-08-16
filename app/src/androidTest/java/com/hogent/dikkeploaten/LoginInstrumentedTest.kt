@@ -8,8 +8,8 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.RootMatchers.withDecorView
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.hogent.dikkeploaten.Activities.LoginActivity
-import com.hogent.dikkeploaten.Activities.MainActivity
+import com.hogent.dikkeploaten.activities.LoginActivity
+import com.hogent.dikkeploaten.activities.MainActivity
 import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule

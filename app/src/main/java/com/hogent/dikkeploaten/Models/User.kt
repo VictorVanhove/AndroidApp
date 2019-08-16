@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Models
+package com.hogent.dikkeploaten.models
 
 data class User (
     var id: String = "",

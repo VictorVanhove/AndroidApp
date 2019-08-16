@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Activities
+package com.hogent.dikkeploaten.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.hogent.dikkeploaten.Fragments.*
-import com.hogent.dikkeploaten.Models.Album
-import com.hogent.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.fragments.*
+import com.hogent.dikkeploaten.models.Album
+import com.hogent.dikkeploaten.services.API
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {

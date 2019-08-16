@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Activities
+package com.hogent.dikkeploaten.activities
 
 import android.content.Intent
 import android.os.Bundle

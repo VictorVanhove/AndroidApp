@@ -1,10 +1,10 @@
-package com.hogent.dikkeploaten.Services
+package com.hogent.dikkeploaten.services
 
 import android.graphics.Bitmap
 import android.util.Log
-import com.hogent.dikkeploaten.Models.Album
-import com.hogent.dikkeploaten.Models.User
-import com.hogent.dikkeploaten.Models.UserAlbum
+import com.hogent.dikkeploaten.models.Album
+import com.hogent.dikkeploaten.models.User
+import com.hogent.dikkeploaten.models.UserAlbum
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult

@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.hogent.dikkeploaten.Models.Album
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.R
 import kotlinx.android.synthetic.main.fragment_album_info.*
 import kotlinx.android.synthetic.main.layout_albumitem.artist_album

@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : Fragment() {

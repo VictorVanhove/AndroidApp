@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

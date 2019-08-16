@@ -10,8 +10,8 @@ import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import com.hogent.dikkeploaten.Activities.MainActivity
-import com.hogent.dikkeploaten.Activities.RegistrationActivity
+import com.hogent.dikkeploaten.activities.MainActivity
+import com.hogent.dikkeploaten.activities.RegistrationActivity
 import org.hamcrest.Matchers
 import org.junit.Before
 import org.junit.Rule

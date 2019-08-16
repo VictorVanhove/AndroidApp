@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.Fragments
+package com.hogent.dikkeploaten.fragments
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hogent.dikkeploaten.Adapters.AlbumAdapter
-import com.hogent.dikkeploaten.Models.Album
+import com.hogent.dikkeploaten.adapters.AlbumAdapter
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.Services.API
+import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_collection.*
 
 class WantlistFragment : Fragment() {
