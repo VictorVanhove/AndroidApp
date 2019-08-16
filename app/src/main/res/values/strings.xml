@@ -5,9 +5,10 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
 
-    <string name="title_collection">Collection</string>
+    <string name="title_collection">Collectie</string>
     <string name="title_wantlist">Wantlist</string>
-    <string name="title_search">Search</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_search">Zoeken</string>
+    <string name="title_notifications">Notificaties</string>
+    <string name="title_profile">Profiel</string>
+    <string name="title_activity_settings">Instellingen</string>
 </resources>

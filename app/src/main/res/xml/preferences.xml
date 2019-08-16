@@ -7,43 +7,43 @@
 
         <Preference
                 app:key="profile"
-                app:title="Photo"
-                app:summary="Change your profile picture"
+                app:title="Profielfoto"
+                app:summary="Verander je profielfoto"
                 app:icon="@drawable/ic_person_black_24dp"
         />
 
         <Preference
                 app:key="cover"
-                app:title="Cover"
-                app:summary="Change your profile cover"
+                app:title="Omslagfoto"
+                app:summary="Verander je omslagfoto"
                 app:icon="@drawable/ic_photo_black_24dp"
         />
 
     </PreferenceCategory>
 
     <PreferenceCategory
-            app:title="Your personal information">
+            app:title="Uw persoonlijke informatie">
 
         <EditTextPreference
                 app:key="username"
-                app:title="Username"
-                app:summary="Change your profile's username"
+                app:title="Gebruikersnaam"
+                app:summary="Verander je gebruikersnaam"
                 app:icon="@drawable/ic_edit_black_24dp"/>
 
         <EditTextPreference
                 app:key="password"
-                app:title="Password"
-                app:summary="Change your profile's password"
+                app:title="Wachtwoord"
+                app:summary="Verander je wachtwoord"
                 app:icon="@drawable/ic_edit_black_24dp"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-            app:title="About">
+            app:title="Over ons">
 
         <Preference
         app:key="about_fragment"
-        app:title="About this app"
+        app:title="Over deze app"
         app:icon="@drawable/ic_info_black_24dp"
         app:fragment="com.example.dikkeploaten.Fragments.AboutFragment"
         />
@@ -54,7 +54,7 @@
 
         <Preference
                 app:key="logout"
-                app:title="Log out"
+                app:title="Uitloggen"
                 app:icon="@drawable/ic_exit_to_app_black_24dp"
         />
 

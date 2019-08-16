@@ -33,21 +33,21 @@ class RegistrationActivity: AppCompatActivity() {
         val email = email.text.toString()
         val password = password.text.toString()
 
-        if (TextUtils.isEmpty(email))
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
         {
-            Toast.makeText(this, "Please enter email...", Toast.LENGTH_LONG).show()
-            return
-        }
-        if (TextUtils.isEmpty(password))
-        {
-            Toast.makeText(this, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Zorg ervoor dat alles ingevuld is.", Toast.LENGTH_LONG).show()
             return
         }
 
-        API.shared.createUser(username, email, password) {
-            Toast.makeText(this, "Registration successful!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        API.shared.createUser(username, email, password) { isSuccessful ->
+            if (isSuccessful) {
+                Toast.makeText(applicationContext, "Registratie is gelukt!", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(applicationContext, "Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik.", Toast.LENGTH_LONG).show()
+
+            }
         }
     }
 

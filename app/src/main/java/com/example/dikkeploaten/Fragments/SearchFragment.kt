@@ -134,10 +134,10 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
 
                 if (direction == ItemTouchHelper.LEFT) {
                     API.shared.addCollectionAlbum(album.id)
-                    text = "Album successfully added to collection!"
+                    text = "Album is toegevoegd aan je collectie!"
                 } else {
                     API.shared.addWantlistAlbum(album.id)
-                    text = "Album successfully added to wantlist!"
+                    text = "Album is toegevoegd aan je wantlist!"
                 }
 
                 adapter.notifyDataSetChanged()

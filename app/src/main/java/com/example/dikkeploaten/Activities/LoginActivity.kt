@@ -34,14 +34,9 @@ class LoginActivity : AppCompatActivity() {
         val email = email.text.toString()
         val password = password.text.toString()
 
-        if (TextUtils.isEmpty(email))
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password))
         {
-            Toast.makeText(this, "Please enter email...", Toast.LENGTH_LONG).show()
-            return
-        }
-        if (TextUtils.isEmpty(password))
-        {
-            Toast.makeText(this, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Zorg ervoor dat alles ingevuld is.", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -50,13 +45,13 @@ class LoginActivity : AppCompatActivity() {
                 override fun onComplete(task: Task<AuthResult>) {
                     if (task.isSuccessful)
                     {
-                        Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Login is succesvol!", Toast.LENGTH_LONG).show()
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                     }
                     else
                     {
-                        Toast.makeText(applicationContext, "Login failed! Please try again later", Toast.LENGTH_LONG).show()
+                        Toast.makeText(applicationContext, "Login is mislukt! Probeer opnieuw.", Toast.LENGTH_LONG).show()
                     }
                 }
             })

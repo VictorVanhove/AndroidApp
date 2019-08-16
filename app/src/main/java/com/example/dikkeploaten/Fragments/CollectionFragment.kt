@@ -78,7 +78,7 @@ class CollectionFragment : Fragment() {
                         adapter.notifyDataSetChanged()
                     }
 
-                    Toast.makeText(context, "Album successfully removed from collection!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Album is verwijderd van je collectie!", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean

@@ -209,7 +209,7 @@ class API {
     /**
      * Creates user with given credentials.
      */
-    fun createUser(username: String, email: String, password: String, callback: () -> Unit) {
+    fun createUser(username: String, email: String, password: String, callback: (Boolean) -> Unit) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(object: OnCompleteListener<AuthResult> {
                 override fun onComplete(task: Task<AuthResult>) {
@@ -224,8 +224,8 @@ class API {
                             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
                         cache.user = User(username, email)
-                        callback()
                     }
+                    callback(task.isSuccessful)
                 }
             })
     }
