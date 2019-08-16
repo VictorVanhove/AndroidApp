@@ -14,6 +14,9 @@ import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.layout_albumitem.view.*
 
+/**
+ * Adapter class for each album in recyclerView.
+ */
 class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, private var showStatus: Boolean) :
     RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
 
@@ -68,6 +71,9 @@ class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, p
         return albums.size
     }
 
+    /**
+     * Holds the view for the album.
+     */
     class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val txtTitle = itemView.title_album!!
@@ -84,6 +90,7 @@ class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, p
         this.albums = filteredList
         notifyDataSetChanged()
     }
+
 }
 
 

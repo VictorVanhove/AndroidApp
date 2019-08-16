@@ -5,20 +5,18 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.activity_registration.*
 
+/**
+ * Activity class for registration.
+ */
 class RegistrationActivity : AppCompatActivity() {
-
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-
-        auth = FirebaseAuth.getInstance()
 
         register.setOnClickListener {
             registerNewUser()
@@ -49,7 +47,6 @@ class RegistrationActivity : AppCompatActivity() {
                     "Registratie is mislukt! Wachtwoord bevat te weinig tekens of emailadres is reeds in gebruik.",
                     Toast.LENGTH_LONG
                 ).show()
-
             }
         }
     }

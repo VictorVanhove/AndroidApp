@@ -19,6 +19,9 @@ import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_collection.*
 
+/**
+ * Fragment class for the 'Search' tab.
+ */
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
 
     private lateinit var adapter: AlbumAdapter
@@ -125,6 +128,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                     return false
                 }
 
+                // Manages the swipe functionality
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
                     val album: Album
@@ -149,6 +153,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                     Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
                 }
 
+                // Adds the background to the swipe
                 override fun onChildDraw(
                     c: Canvas,
                     recyclerView: RecyclerView,
@@ -213,6 +218,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                     super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                 }
 
+                // Disables swipe if album is already in collection/wantlist
                 override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
                     val position = viewHolder.adapterPosition
                     val album: Album
@@ -223,7 +229,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener, MenuItem.OnAc
                         album = filteredAlbums[position]
                     }
 
-                    // Set movement flags based on the layout manager
                     if (API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } || API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id }) {
                         return makeMovementFlags(0, 0)
                     } else {

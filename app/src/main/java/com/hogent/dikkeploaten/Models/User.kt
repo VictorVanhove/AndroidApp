@@ -1,5 +1,8 @@
 package com.hogent.dikkeploaten.models
 
+/**
+ * Model class for user.
+ */
 data class User(
     var id: String = "",
     var username: String = "",

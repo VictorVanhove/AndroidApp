@@ -19,6 +19,9 @@ import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_collection.*
 
+/**
+ * Fragment class for the 'Wantlist' tab.
+ */
 class WantlistFragment : Fragment() {
 
     private lateinit var adapter: AlbumAdapter
@@ -70,6 +73,7 @@ class WantlistFragment : Fragment() {
                     return false
                 }
 
+                // Manages the swipe functionality
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.adapterPosition
                     val album = albums[position]
@@ -85,6 +89,7 @@ class WantlistFragment : Fragment() {
                     Toast.makeText(context, "Album is verwijderd van je wantlist!", Toast.LENGTH_SHORT).show()
                 }
 
+                // Adds the background to the swipe
                 override fun onChildDraw(
                     c: Canvas,
                     recyclerView: RecyclerView,
@@ -153,4 +158,5 @@ class WantlistFragment : Fragment() {
             emptyMessage.visibility = View.GONE
         }
     }
+
 }

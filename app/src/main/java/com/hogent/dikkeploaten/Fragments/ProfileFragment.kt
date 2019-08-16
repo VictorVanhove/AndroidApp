@@ -12,6 +12,9 @@ import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.services.API
 import kotlinx.android.synthetic.main.fragment_profile.*
 
+/**
+ * Fragment class for the 'Profile' tab.
+ */
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -22,6 +25,7 @@ class ProfileFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        // Load data of the user to the profile page
         API.shared.getUser { user ->
             name.text = user.username
             email.text = user.email
@@ -30,14 +34,15 @@ class ProfileFragment : Fragment() {
             disableLoadingScreen()
 
         }
+        // Get profile image from the database
         API.shared.getProfileImage { imageURL ->
             val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
             Glide.with(this).load(imageURL).apply(requestOptions).into(profile)
         }
+        // Give us also the profile cover
         API.shared.getProfileCover { imageURL ->
             val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
             Glide.with(this).load(imageURL).apply(requestOptions).into(header_cover_image)
-            //disableLoadingScreen()
         }
     }
 

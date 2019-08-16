@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.fragment_album_info.*
 import kotlinx.android.synthetic.main.layout_albumitem.artist_album
 import kotlinx.android.synthetic.main.layout_albumitem.title_album
 
+/**
+ * Fragment class for information page of each album.
+ */
 class AlbumDetailFragment : Fragment() {
 
     private lateinit var album: Album

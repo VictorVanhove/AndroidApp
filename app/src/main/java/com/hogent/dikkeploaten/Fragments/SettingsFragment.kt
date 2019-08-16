@@ -14,7 +14,9 @@ import com.hogent.dikkeploaten.activities.SettingsActivity
 import com.hogent.dikkeploaten.services.API
 import java.io.IOException
 
-
+/**
+ * Fragment class for the settings page.
+ */
 class SettingsFragment : PreferenceFragmentCompat() {
 
     private var profileImageCode = 0

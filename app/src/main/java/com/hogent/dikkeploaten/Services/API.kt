@@ -328,7 +328,6 @@ class API {
             // Handle unsuccessful uploads
         }.addOnSuccessListener {
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
         }
 
     }
@@ -351,10 +350,8 @@ class API {
             // Handle unsuccessful uploads
         }.addOnSuccessListener {
             // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
         }
 
     }
-
 
 }

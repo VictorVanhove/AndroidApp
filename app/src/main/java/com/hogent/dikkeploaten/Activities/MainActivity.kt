@@ -11,6 +11,9 @@ import com.hogent.dikkeploaten.fragments.*
 import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.services.API
 
+/**
+ * Activity class for the main part of the app.
+ */
 class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     /**
@@ -99,4 +102,5 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
         return super.onOptionsItemSelected(item)
     }
+
 }

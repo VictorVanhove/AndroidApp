@@ -7,6 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.hogent.dikkeploaten.R
 
+/**
+ * Fragment class for the 'Notifications' tab.
+ */
 class NotificationsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
