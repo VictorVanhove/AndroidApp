@@ -1,8 +1,9 @@
 # Dikke Ploaten - Android Application
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Welcome to the Android version of the 'Dikke Ploaten'-app. This application is specially made for the diehard music fans who want to keep track of their music collection. You simply sign up to our community and start organizing your vinyls or cd's! As a member, you'll be able to swipe albums to your collection or wantlist. It is also possible to discover new albums you've never heard of. For this, we implemented a information screen of each album. You can setup your profile page and adjust the app to your needs. Have a look and become a new member of the 'Dikke Ploaten'-community!
 
 __This application features:__
+* An interface fully in Dutch.
 * Login page to get access to the app.
 * Sign up to register you as 'Dikke Ploaten'-user.
 * Bottom Navigation Menu for a better user experience.
@@ -35,7 +36,7 @@ What things you need to install the software:
 4. Run the app. Click `Run > Run 'app'`. After the project builds you'll be
    prompted to build or launch an emulator.
    
-## Running the tests
+## Running the instrumented tests
 
 1. Go to Android Studio.
 2. Go to a specific test class.
@@ -59,7 +60,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
-This app is brought to you by **Victor Vanhove** .
+This app is brought to you by **Victor Vanhove**.
 
 ## License
 
