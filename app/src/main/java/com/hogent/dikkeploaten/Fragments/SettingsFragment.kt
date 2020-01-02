@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
-import com.google.firebase.auth.FirebaseAuth
 import com.hogent.dikkeploaten.activities.SettingsActivity
-import com.hogent.dikkeploaten.services.API
 import java.io.IOException
 
 /**
@@ -28,24 +26,24 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val usernamePreference: EditTextPreference? = findPreference("username")
         val passwordPreference: EditTextPreference? = findPreference("password")
 
-        usernamePreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
-            val text = preference.text
-            if (TextUtils.isEmpty(text)) {
-                API.shared.cache.user.username
-            } else {
-                API.shared.updateUsername(text)
-                text
-            }
-        }
-        passwordPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
-            val text = preference.text
-            if (TextUtils.isEmpty(text)) {
-                "********"
-            } else {
-                API.shared.updatePassword(text)
-                encryptPassword(text)
-            }
-        }
+//        usernamePreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
+//            val text = preference.text
+//            if (TextUtils.isEmpty(text)) {
+//                API.shared.cache.user.username
+//            } else {
+//                API.shared.updateUsername(text)
+//                text
+//            }
+//        }
+//        passwordPreference?.summaryProvider = Preference.SummaryProvider<EditTextPreference> { preference ->
+//            val text = preference.text
+//            if (TextUtils.isEmpty(text)) {
+//                "********"
+//            } else {
+//                API.shared.updatePassword(text)
+//                encryptPassword(text)
+//            }
+//        }
     }
 
     /**
@@ -58,9 +56,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             if (resultCode === Activity.RESULT_OK) {
                 if (data != null) {
                     try {
-                        val source = ImageDecoder.createSource(activity!!.contentResolver, data.data!!)
-                        val bitmap = ImageDecoder.decodeBitmap(source)
-                        API.shared.uploadProfileImage(bitmap)
+//                        val source = ImageDecoder.createSource(activity!!.contentResolver, data.data!!)
+//                        val bitmap = ImageDecoder.decodeBitmap(source)
+//                        API.shared.uploadProfileImage(bitmap)
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
@@ -74,9 +72,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
             if (resultCode === Activity.RESULT_OK) {
                 if (data != null) {
                     try {
-                        val source = ImageDecoder.createSource(activity!!.contentResolver, data.data!!)
-                        val bitmap = ImageDecoder.decodeBitmap(source)
-                        API.shared.uploadCoverImage(bitmap)
+//                        val source = ImageDecoder.createSource(activity!!.contentResolver, data.data!!)
+//                        val bitmap = ImageDecoder.decodeBitmap(source)
+//                        API.shared.uploadCoverImage(bitmap)
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
@@ -107,7 +105,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), profileCoverCode)
             }
             "logout" -> {
-                FirebaseAuth.getInstance().signOut()
+//                FirebaseAuth.getInstance().signOut()
 
                 val activity = context as SettingsActivity
                 activity.signOutUser()
