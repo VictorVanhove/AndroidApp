@@ -1,159 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+        <variable
+                name="viewModel"
+                type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel"/>
+    </data>
+
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF">
+            android:layout_height="match_parent"
+            tools:context=".AlbumDetailFragment">
 
-        <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/image_album"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/imageAlbumDescription"/>
-
-        <LinearLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/image_album"
-                android:orientation="vertical"
-                android:layout_marginTop="-130dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/layout_rounded_edge"
-                android:gravity="center">
+                android:background="#FFFFFF">
 
-            <TextView
-                    android:text="@string/placeholder_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/title_album"
-                    android:layout_marginTop="20dp"
-                    android:textSize="30sp"
-                    android:textStyle="bold"/>
-
-            <TextView
-                    android:text="@string/placeholder_artist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:textSize="20sp"
-                    android:id="@+id/artist_album" android:textColor="@color/primaryDarkColor"/>
-
-            <TextView
-                    android:text="@string/placeholder_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/description_album"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-
-            <LinearLayout
-                    android:orientation="horizontal"
+            <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:weightSum="2"
-                    android:background="@drawable/border"
-                    android:padding="10dp"
-                    android:id="@+id/linearLayout" android:baselineAligned="false">
+                    android:id="@+id/image_album"
+                    app:srcCompat="@mipmap/ic_launcher"
+                    app:imageUrl="@{viewModel.selectedProperty.thumb}"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/imageAlbumDescription"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/image_album"
+                    android:orientation="vertical"
+                    android:layout_marginTop="-130dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/layout_rounded_edge"
+                    android:gravity="center">
+
+                <TextView
+                        android:text="@{viewModel.selectedProperty.title}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/title_album"
+                        android:layout_marginTop="20dp"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        tools:text="@string/placeholder_title"/>
+
+                <TextView
+                        android:text="@{viewModel.selectedProperty.artist}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="20sp"
+                        android:id="@+id/artist_album"
+                        android:textColor="@color/primaryDarkColor"
+                        tools:text="@string/placeholder_artist"/>
+
+                <TextView
+                        android:text="@{viewModel.selectedProperty.description}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/description_album"
+                        android:layout_marginTop="36dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        tools:text="@string/placeholder_text"/>
 
                 <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:weightSum="2"
+                        android:background="@drawable/border"
+                        android:padding="10dp"
+                        android:id="@+id/linearLayout"
+                        android:baselineAligned="false">
 
-                    <TextView
-                            android:text="@string/genre"
-                            android:layout_width="match_parent"
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/lbl_genre"
-                            android:textStyle="bold"
-                            android:gravity="center"/>
+                            android:layout_weight="1">
 
-                    <TextView
-                            android:text="@string/genre"
-                            android:layout_width="match_parent"
+                        <TextView
+                                android:text="@string/genre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/lbl_genre"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        <TextView
+                                android:text="@{viewModel.selectedProperty.genre}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/genre_album"
+                                android:gravity="center"
+                                android:textAllCaps="false"
+                                android:textColor="@color/primaryDarkColor"
+                                tools:text="@string/genre"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/genre_album"
-                            android:gravity="center" android:textAllCaps="false"
-                            android:textColor="@color/primaryDarkColor"/>
+                            android:layout_weight="1">
+
+                        <TextView
+                                android:text="@string/released"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/lbl_release"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                        <TextView
+                                android:text="@{viewModel.selectedProperty.releaseYear}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/release_album"
+                                android:gravity="center"
+                                android:textColor="@color/primaryDarkColor"
+                                tools:text="@string/released"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
+                <TextView
+                        android:text="@string/tracklist"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/textView10"
+                        android:textStyle="bold"/>
 
-                    <TextView
-                            android:text="@string/released"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lbl_release"
-                            android:textStyle="bold"
-                            android:gravity="center"/>
+                <TextView
+                        android:text="@{viewModel.selectedProperty.trackList}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tracklist_album"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        tools:text="@string/placeholder_text"/>
 
-                    <TextView
-                            android:text="@string/released"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/release_album"
-                            android:gravity="center" android:textColor="@color/primaryDarkColor"/>
+                <TextView
+                        android:text="@string/members"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:id="@+id/lbl_musicians"
+                        android:textStyle="bold"/>
 
-                </LinearLayout>
+
+                <TextView
+                        android:text="@{viewModel.selectedProperty.musicians}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/musicians_album"
+                        android:layout_marginBottom="200dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        tools:text="@string/placeholder_text"/>
 
             </LinearLayout>
 
-            <TextView
-                    android:text="@string/tracklist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/textView10"
-                    android:textStyle="bold"/>
 
-            <TextView
-                    android:text="@string/placeholder_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tracklist_album"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
+        </RelativeLayout>
 
-            <TextView
-                    android:text="@string/members"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:id="@+id/lbl_musicians"
-                    android:textStyle="bold"/>
+    </ScrollView>
 
-
-            <TextView
-                    android:text="@string/placeholder_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/musicians_album"
-                    android:layout_marginBottom="200dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-</ScrollView>
+</layout>
