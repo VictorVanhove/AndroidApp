@@ -3,42 +3,59 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/navigation"
-            app:startDestination="@id/navigation_collection">
+            app:startDestination="@id/collectionFragment">
 
-    <fragment android:id="@+id/navigation_collection"
-              android:name="com.hogent.dikkeploaten.fragments.CollectionFragment"
-              android:label="fragment_collection"
-              tools:layout="@layout/fragment_collection">
-        <action
-                android:id="@+id/action_collectionFragment_to_wantlistFragment2"
-                app:destination="@id/navigation_wantlist"/>
+    <fragment
+            android:id="@+id/collectionFragment"
+            android:name="com.hogent.dikkeploaten.fragments.CollectionFragment"
+            android:label="fragment_collection"
+            tools:layout="@layout/fragment_collection">
+        <action android:id="@+id/action_collectionFragment_to_wantlistFragment" app:destination="@id/wantlistFragment"/>
     </fragment>
-    <fragment android:id="@+id/navigation_wantlist"
-              android:name="com.hogent.dikkeploaten.fragments.WantlistFragment"
-              android:label="fragment_wantlist"
-              tools:layout="@layout/fragment_wantlist">
-        <action
-                android:id="@+id/action_wantlistFragment_to_searchFragment"
-                app:destination="@id/navigation_search"/>
+
+    <fragment
+            android:id="@+id/wantlistFragment"
+            android:name="com.hogent.dikkeploaten.fragments.WantlistFragment"
+            android:label="fragment_wantlist"
+            tools:layout="@layout/fragment_wantlist">
+        <action android:id="@+id/action_wantlistFragment_to_searchFragment" app:destination="@id/searchFragment"/>
     </fragment>
-    <fragment android:id="@+id/navigation_search"
-              android:name="com.hogent.dikkeploaten.fragments.SearchFragment"
-              android:label="fragment_search"
-              tools:layout="@layout/fragment_search">
-        <action
-                android:id="@+id/action_searchFragment_to_notificationsFragment"
-                app:destination="@id/navigation_notifications"/>
+
+    <fragment
+            android:id="@+id/searchFragment"
+            android:name="com.hogent.dikkeploaten.fragments.SearchFragment"
+            android:label="fragment_search"
+            tools:layout="@layout/fragment_search">
+        <action android:id="@+id/action_searchFragment_to_notificationsFragment"
+                app:destination="@id/notificationsFragment"/>
+        <action android:id="@+id/action_showDetail"
+                app:destination="@id/albumDetailFragment"/>
     </fragment>
-    <fragment android:id="@+id/navigation_notifications"
-              android:name="com.hogent.dikkeploaten.fragments.NotificationsFragment"
-              android:label="fragment_notifications"
-              tools:layout="@layout/fragment_notifications">
-        <action
-                android:id="@+id/action_notificationsFragment_to_profileFragment"
-                app:destination="@id/navigation_profile"/>
+
+    <fragment
+            android:id="@+id/notificationsFragment"
+            android:name="com.hogent.dikkeploaten.fragments.NotificationsFragment"
+            android:label="fragment_notifications"
+            tools:layout="@layout/fragment_notifications">
+        <action android:id="@+id/action_notificationsFragment_to_profileFragment"
+                app:destination="@id/profileFragment"/>
     </fragment>
-    <fragment android:id="@+id/navigation_profile"
-              android:name="com.hogent.dikkeploaten.fragments.ProfileFragment"
-              android:label="fragment_profile"
-    />
+
+    <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.hogent.dikkeploaten.fragments.ProfileFragment"
+            android:label="fragment_profile"
+            tools:layout="@layout/fragment_profile"/>
+
+    <fragment
+            android:id="@+id/albumDetailFragment"
+            android:name="com.hogent.dikkeploaten.fragments.AlbumDetailFragment"
+            android:label="fragment_album_info"
+            tools:layout="@layout/fragment_album_info">
+        <argument
+                android:name="selectedProperty"
+                app:argType="com.hogent.dikkeploaten.network.AlbumProperty"
+        />
+    </fragment>
+
 </navigation>
