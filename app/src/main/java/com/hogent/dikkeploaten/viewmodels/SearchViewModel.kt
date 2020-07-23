@@ -21,41 +21,44 @@ class SearchViewModel : ViewModel() {
 
     // Internally, we use a MutableLiveData, because we will be updating the List of MarsProperty
     // with new values
-    private val _properties = MutableLiveData<List<AlbumProperty>>()
+    private val _properties = MutableLiveData<List<DatabaseAlbum>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val properties: LiveData<List<AlbumProperty>>
+    val properties: LiveData<List<DatabaseAlbum>>
         get() = _properties
 
+    val albums: LiveData<List<DatabaseAlbum>> = albumRepository.getAlbums()
+
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedProperty = MutableLiveData<AlbumProperty>()
+    private val _navigateToSelectedProperty = MutableLiveData<DatabaseAlbum>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<AlbumProperty>
+    val navigateToSelectedProperty: LiveData<DatabaseAlbum>
         get() = _navigateToSelectedProperty
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
     // the Coroutine runs using the Main (UI) dispatcher
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     /**
-     * Call getMarsRealEstateProperties() on init so we can display status immediately.
+     * Call loadAlbumsFromNetwork() on init so we can display status immediately.
      */
     init {
-        getAlbumProperties()
+        loadAlbumsFromNetwork()
     }
 
     /**
-     * Gets Mars real estate property information from the Mars API Retrofit service and updates the
-     * [MarsProperty] [List] and [MarsApiStatus] [LiveData]. The Retrofit service returns a
+     * Gets Mars real estate property information from the API Retrofit service and updates the
+     * [DatabaseAlbum] [List] and [ApiStatus] [LiveData]. The Retrofit service returns a
      * coroutine Deferred, which we await to get the result of the transaction.
      */
-    private fun getAlbumProperties() {
-        coroutineScope.launch {
+    private fun loadAlbumsFromNetwork()
+    {
+        viewModelScope.launch {
             // Get the Deferred object for our Retrofit request
-            var getAlbumsDeferred = Api.retrofitService.getProperties()
+            var getAlbumsDeferred = Api.retrofitService.getAlbumList()
             try {
                 _status.value = ApiStatus.LOADING
                 // this will run on a thread managed by Retrofit
@@ -82,8 +85,8 @@ class SearchViewModel : ViewModel() {
      * When the property is clicked, set the [_navigateToSelectedProperty] [MutableLiveData]
      * @param marsProperty The [MarsProperty] that was clicked on.
      */
-    fun displayPropertyDetails(albumProperty: AlbumProperty) {
-        _navigateToSelectedProperty.value = albumProperty
+    fun displayPropertyDetails(album: DatabaseAlbum) {
+        _navigateToSelectedProperty.value = album
     }
 
     /**

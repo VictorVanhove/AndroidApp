@@ -5,15 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.hogent.dikkeploaten.database.DatabaseAlbum
 import com.hogent.dikkeploaten.databinding.LayoutAlbumItemBinding
-import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.network.AlbumProperty
 
 /**
  * Adapter class for each album in recyclerView.
  */
-class AlbumAdapter(val onClickListener: OnClickListener) :
-    ListAdapter<AlbumProperty, AlbumAdapter.AlbumPropertyViewHolder>(DiffCallback) {
+class AlbumAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<DatabaseAlbum, AlbumAdapter.AlbumPropertyViewHolder>(DiffCallback) {
 
     /**
      * The MarsPropertyViewHolder constructor takes the binding variable from the associated
@@ -21,8 +20,8 @@ class AlbumAdapter(val onClickListener: OnClickListener) :
      */
     class AlbumPropertyViewHolder(private var binding: LayoutAlbumItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(albumProperty: AlbumProperty) {
-            binding.property = albumProperty
+        fun bind(albumProperty: DatabaseAlbum) {
+            binding.album = albumProperty
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
@@ -34,13 +33,13 @@ class AlbumAdapter(val onClickListener: OnClickListener) :
      * Allows the RecyclerView to determine which items have changed when the [List] of [MarsProperty]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<AlbumProperty>() {
-        override fun areItemsTheSame(oldItem: AlbumProperty, newItem: AlbumProperty): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<DatabaseAlbum>() {
+        override fun areItemsTheSame(oldItem: DatabaseAlbum, newItem: DatabaseAlbum): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: AlbumProperty, newItem: AlbumProperty): Boolean {
-            return oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: DatabaseAlbum, newItem: DatabaseAlbum): Boolean {
+            return oldItem.albumId == newItem.albumId
         }
     }
 
@@ -94,7 +93,7 @@ class AlbumAdapter(val onClickListener: OnClickListener) :
     /**
      * Filters the albums in the recyclerView
      */
-    fun setFilter(filteredList: ArrayList<Album>) {
+    fun setFilter(filteredList: ArrayList<DatabaseAlbum>) {
         //this.albums = filteredList
         notifyDataSetChanged()
     }
@@ -104,8 +103,8 @@ class AlbumAdapter(val onClickListener: OnClickListener) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [MarsProperty]
      */
-    class OnClickListener(val clickListener: (albumProperty: AlbumProperty) -> Unit) {
-        fun onClick(albumProperty: AlbumProperty) = clickListener(albumProperty)
+    class OnClickListener(val clickListener: (albumProperty: DatabaseAlbum) -> Unit) {
+        fun onClick(albumProperty: DatabaseAlbum) = clickListener(albumProperty)
     }
 
 }

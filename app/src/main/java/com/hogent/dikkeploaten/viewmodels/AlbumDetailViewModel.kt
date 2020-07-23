@@ -15,7 +15,7 @@ class AlbumDetailViewModel(albumProperty: AlbumProperty, app: Application) : And
     private val _selectedProperty = MutableLiveData<AlbumProperty>()
 
     // The external LiveData for the SelectedProperty
-    val selectedProperty: LiveData<AlbumProperty>
+    val selectedProperty: LiveData<DatabaseAlbum>
         get() = _selectedProperty
 
     // Initialize the _selectedProperty MutableLiveData
