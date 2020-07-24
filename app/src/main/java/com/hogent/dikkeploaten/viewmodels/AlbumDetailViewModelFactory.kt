@@ -1,21 +1,22 @@
 package com.hogent.dikkeploaten.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hogent.dikkeploaten.network.AlbumProperty
+import com.hogent.dikkeploaten.database.DatabaseAlbum
+import com.hogent.dikkeploaten.repositories.UserAlbumRepository
 
 /**
- * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
+ * Simple ViewModel factory that provides the DatabaseAlbum and context to the ViewModel.
  */
 class AlbumDetailViewModelFactory(
-    private val albumProperty: AlbumProperty,
-    private val application: Application
+    private val userAlbumRepository: UserAlbumRepository,
+    private val album: DatabaseAlbum
 ) : ViewModelProvider.Factory {
+
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AlbumDetailViewModel::class.java)) {
-            return AlbumDetailViewModel(albumProperty, application) as T
+            return AlbumDetailViewModel(userAlbumRepository, album) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
