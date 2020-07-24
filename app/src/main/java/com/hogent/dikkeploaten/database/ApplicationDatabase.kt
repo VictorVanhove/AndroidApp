@@ -4,14 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [DatabaseUser::class, DatabaseAlbum::class, UserAlbum::class], version = 3, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class ApplicationDatabase : RoomDatabase() {
 
-    abstract val userDao: UserDao
+    abstract fun userDao(): UserDao
+    abstract fun userAlbumDao(): UserAlbumDao
+    abstract fun albumDao(): AlbumDao
 
-    companion object {
-
+   companion object {
         @Volatile
         private var INSTANCE: ApplicationDatabase? = null
 
@@ -23,20 +26,14 @@ abstract class ApplicationDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         ApplicationDatabase::class.java,
-                        "application_database"
-                    )
+                        "application_database")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
-
                 }
 
                 return instance
             }
-
         }
-
-
     }
-
 }
