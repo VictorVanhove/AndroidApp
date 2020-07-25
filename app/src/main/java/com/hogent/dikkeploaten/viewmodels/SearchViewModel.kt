@@ -1,16 +1,19 @@
 package com.hogent.dikkeploaten.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.hogent.dikkeploaten.network.AlbumProperty
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.*
+import com.hogent.dikkeploaten.database.DatabaseAlbum
+import com.hogent.dikkeploaten.database.DatabaseUser
+import com.hogent.dikkeploaten.network.Album
 import com.hogent.dikkeploaten.network.Api
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import com.hogent.dikkeploaten.repositories.AlbumRepository
+import kotlinx.coroutines.*
 
-class SearchViewModel : ViewModel() {
+enum class ApiStatus { LOADING, ERROR, DONE }
+
+class SearchViewModel internal constructor(
+    val albumRepository: AlbumRepository) : ViewModel() {
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ApiStatus>()
@@ -26,8 +29,6 @@ class SearchViewModel : ViewModel() {
     // The external LiveData interface to the property is immutable, so only this class can modify
     val properties: LiveData<List<DatabaseAlbum>>
         get() = _properties
-
-    val albums: LiveData<List<DatabaseAlbum>> = albumRepository.getAlbums()
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedProperty = MutableLiveData<DatabaseAlbum>()
@@ -65,10 +66,18 @@ class SearchViewModel : ViewModel() {
                 val listResult = getAlbumsDeferred.await()
                 _status.value = ApiStatus.DONE
                 _properties.value = listResult
+
+                saveAlbumsToDatabase(listResult)
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR
                 _properties.value = ArrayList()
             }
+        }
+    }
+
+    private suspend fun saveAlbumsToDatabase(list: List<DatabaseAlbum>) {
+        withContext(Dispatchers.IO) {
+            albumRepository.saveAlbumsToDatabase(list)
         }
     }
 
