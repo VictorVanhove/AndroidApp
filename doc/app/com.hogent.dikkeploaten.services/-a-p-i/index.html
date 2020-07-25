@@ -42,7 +42,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">addCollectionAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$addCollectionAlbum(kotlin.String)/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Adds album equal to parameter albumId to user's collection.</p>
+<p>Adds album equal to parameter albumId to databaseUser's collection.</p>
 </td>
 </tr>
 <tr>
@@ -51,16 +51,16 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">addWantlistAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$addWantlistAlbum(kotlin.String)/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Adds album equal to parameter albumId to user's wantlist.</p>
+<p>Adds album equal to parameter albumId to databaseUser's wantlist.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="create-user.html">createUser</a></p>
+<p><a href="create-databaseUser.html">createUser</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">createUser</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/username">username</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.services.API$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/email">email</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.services.API$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/password">password</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.services.API$createUser(kotlin.String, kotlin.String, kotlin.String, kotlin.Function1((kotlin.Boolean, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Creates user with given credentials.</p>
+<p>Creates databaseUser with given credentials.</p>
 </td>
 </tr>
 <tr>
@@ -69,7 +69,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">deleteCollectionAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$deleteCollectionAlbum(kotlin.String, kotlin.Function0((kotlin.Unit)))/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.services.API$deleteCollectionAlbum(kotlin.String, kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Deletes album equal to parameter albumId from user's collection.</p>
+<p>Deletes album equal to parameter albumId from databaseUser's collection.</p>
 </td>
 </tr>
 <tr>
@@ -78,7 +78,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">deleteWantlistAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$deleteWantlistAlbum(kotlin.String, kotlin.Function0((kotlin.Unit)))/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.services.API$deleteWantlistAlbum(kotlin.String, kotlin.Function0((kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Deletes album equal to parameter albumId from user's wantlist.</p>
+<p>Deletes album equal to parameter albumId from databaseUser's wantlist.</p>
 </td>
 </tr>
 <tr>
@@ -96,7 +96,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getProfileCover</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$getProfileCover(kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Gets the profile cover of the current user.</p>
+<p>Gets the profile cover of the current databaseUser.</p>
 </td>
 </tr>
 <tr>
@@ -105,43 +105,43 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getProfileImage</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$getProfileImage(kotlin.Function1((kotlin.String, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Gets the profile image of the current user.</p>
+<p>Gets the profile image of the current databaseUser.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="get-user.html">getUser</a></p>
+<p><a href="get-databaseUser.html">getUser</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">getUser</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$getUser(kotlin.Function1((com.hogent.dikkeploaten.models.User, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">user</span><span class="symbol">:</span>&nbsp;<a href="../../com.hogent.dikkeploaten.models/-user/index.html"><span class="identifier">User</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Gets the current user from the database.</p>
+<code><span class="keyword">fun </span><span class="identifier">getUser</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$getUser(kotlin.Function1((com.hogent.dikkeploaten.models.User, kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="identifier">databaseUser</span><span class="symbol">:</span>&nbsp;<a href="../../com.hogent.dikkeploaten.models/-databaseUser/index.html"><span class="identifier">User</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Gets the current databaseUser from the database.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="get-user-collection.html">getUserCollection</a></p>
+<p><a href="get-databaseUser-collection.html">getUserCollection</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getUserCollection</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$getUserCollection(kotlin.Function1((java.util.ArrayList((com.hogent.dikkeploaten.models.Album)), kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.dikkeploaten.models/-album/index.html"><span class="identifier">Album</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Gets the user's collection with all the albums.</p>
+<p>Gets the databaseUser's collection with all the albums.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="get-user-wantlist.html">getUserWantlist</a></p>
+<p><a href="get-databaseUser-wantlist.html">getUserWantlist</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">getUserWantlist</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$getUserWantlist(kotlin.Function1((java.util.ArrayList((com.hogent.dikkeploaten.models.Album)), kotlin.Unit)))/callback">callback</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.dikkeploaten.models/-album/index.html"><span class="identifier">Album</span></a><span class="symbol">&gt;</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Gets the user's wantlist with all the albums.</p>
+<p>Gets the databaseUser's wantlist with all the albums.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="is-user-logged-in.html">isUserLoggedIn</a></p>
+<p><a href="is-databaseUser-logged-in.html">isUserLoggedIn</a></p>
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">isUserLoggedIn</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
-<p>Checks if user is logged in.</p>
+<p>Checks if databaseUser is logged in.</p>
 </td>
 </tr>
 <tr>
@@ -150,7 +150,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">updatePassword</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$updatePassword(kotlin.String)/newPassword">newPassword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Updates the user's password.</p>
+<p>Updates the databaseUser's password.</p>
 </td>
 </tr>
 <tr>
@@ -159,7 +159,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">updateUsername</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$updateUsername(kotlin.String)/username">username</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Updates the user's username.</p>
+<p>Updates the databaseUser's username.</p>
 </td>
 </tr>
 <tr>
@@ -168,7 +168,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">uploadCoverImage</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$uploadCoverImage(android.graphics.Bitmap)/bitmap">bitmap</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Bitmap.html"><span class="identifier">Bitmap</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Updates the user's profile cover.</p>
+<p>Updates the databaseUser's profile cover.</p>
 </td>
 </tr>
 <tr>
@@ -177,7 +177,7 @@
 </td>
 <td>
 <code><span class="keyword">fun </span><span class="identifier">uploadProfileImage</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.services.API$uploadProfileImage(android.graphics.Bitmap)/bitmap">bitmap</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/graphics/Bitmap.html"><span class="identifier">Bitmap</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Updates the user's profile image.</p>
+<p>Updates the databaseUser's profile image.</p>
 </td>
 </tr>
 </tbody>
