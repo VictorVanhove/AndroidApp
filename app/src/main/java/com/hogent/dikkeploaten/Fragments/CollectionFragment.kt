@@ -11,7 +11,6 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hogent.dikkeploaten.adapters.UserAlbumAdapter
 import com.hogent.dikkeploaten.databinding.FragmentCollectionBinding
-import com.hogent.dikkeploaten.network.Album
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel
 
@@ -22,8 +21,6 @@ class CollectionFragment : Fragment() {
 
     private lateinit var binding: FragmentCollectionBinding
 
-    private lateinit var adapter: AlbumAdapter
-    private var albums = arrayListOf<Album>()
     /**
      * Lazily initialize our [UserAlbumListViewModel].
      */
@@ -44,17 +41,35 @@ class CollectionFragment : Fragment() {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        binding.albumList.adapter = AlbumAdapter(AlbumAdapter.OnClickListener {
+        val adapter = UserAlbumAdapter(UserAlbumAdapter.OnClickListener {
             viewModel.displayPropertyDetails(it)
         })
 
         binding.albumList.adapter = adapter
 
+        subscribeUi(adapter, binding)
 
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                // Must find the NavController from the Fragment
+                this.findNavController().navigate(
+                    CollectionFragmentDirections.actionCollectionFragmentToUserAlbumDetailFragment(
+                        it
+                    )
+                )
+                // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
+                viewModel.displayPropertyDetailsComplete()
             }
+        })
 
         return binding.root
     }
 
+    private fun subscribeUi(adapter: UserAlbumAdapter, binding: FragmentCollectionBinding) {
+        viewModel.albumAndUserAlbumsCollection.observe(viewLifecycleOwner) { result ->
+            binding.hasAlbums = !result.isNullOrEmpty()
+            adapter.submitList(result)
+        }
+    }
 
 }
