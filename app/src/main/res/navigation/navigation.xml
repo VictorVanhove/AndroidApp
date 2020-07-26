@@ -8,28 +8,31 @@
     <fragment
             android:id="@+id/collectionFragment"
             android:name="com.hogent.dikkeploaten.fragments.CollectionFragment"
-            android:label="fragment_collection"
+            android:label="Collection"
             tools:layout="@layout/fragment_collection">
-        <action android:id="@+id/action_collectionFragment_to_wantlistFragment" app:destination="@id/wantlistFragment"/>
+        <action
+            android:id="@+id/action_collectionFragment_to_userAlbumDetailFragment"
+            app:destination="@id/userAlbumDetailFragment" />
     </fragment>
 
     <fragment
             android:id="@+id/wantlistFragment"
             android:name="com.hogent.dikkeploaten.fragments.WantlistFragment"
-            android:label="fragment_wantlist"
+            android:label="Wantlist"
             tools:layout="@layout/fragment_wantlist">
-        <action android:id="@+id/action_wantlistFragment_to_searchFragment" app:destination="@id/searchFragment"/>
+        <action
+            android:id="@+id/action_wantlistFragment_to_userAlbumDetailFragment"
+            app:destination="@id/userAlbumDetailFragment" />
     </fragment>
 
     <fragment
             android:id="@+id/searchFragment"
             android:name="com.hogent.dikkeploaten.fragments.SearchFragment"
-            android:label="fragment_search"
+            android:label="Search"
             tools:layout="@layout/fragment_search">
         <action android:id="@+id/action_showDetail"
                 app:destination="@id/albumDetailFragment"/>
     </fragment>
-
 
     <fragment
             android:id="@+id/albumDetailFragment"
@@ -37,9 +40,18 @@
             android:label="fragment_album_info"
             tools:layout="@layout/fragment_album_info">
         <argument
-                android:name="selectedProperty"
-                app:argType="com.hogent.dikkeploaten.network.AlbumProperty"
-        />
+            android:name="selectedProperty"
+            app:argType="com.hogent.dikkeploaten.database.DatabaseAlbum" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/userAlbumDetailFragment"
+        android:name="com.hogent.dikkeploaten.fragments.UserAlbumDetailFragment"
+        android:label="UserAlbumDetailFragment"
+        tools:layout="@layout/fragment_user_album_info">
+        <argument
+            android:name="selectedProperty"
+            app:argType="com.hogent.dikkeploaten.database.AlbumAndUserAlbums" />
     </fragment>
 
 </navigation>
