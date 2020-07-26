@@ -50,7 +50,7 @@
     <string name="inWantlist">Wantlist:</string>
 
     <string name="imageAlbumDescription">Image of the album</string>
-    <string name="imageProfileDescription">Image of the user</string>
+    <string name="imageProfileDescription">Image of the databaseUser</string>
     <string name="imageNotificationsDescription">Placeholder image for tab notifications</string>
     <string name="imageStatusDescription">Image of the specific status of the album</string>
     <string name="appIconDescription">Icon of the app</string>
