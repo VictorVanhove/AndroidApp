@@ -53,9 +53,7 @@ class CollectionFragment : Fragment() {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(
-                    CollectionFragmentDirections.actionCollectionFragmentToUserAlbumDetailFragment(
-                        it
-                    )
+                    ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it)
                 )
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
                 viewModel.displayPropertyDetailsComplete()
