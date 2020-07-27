@@ -4,8 +4,12 @@
     <style name="Theme.DikkePloaten" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/secondaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorOnSurface">@color/secondaryDarkColor</item>
+        <item name="colorAccent">@color/primaryDarkColor</item>
+        <item name="colorSurface">@color/secondaryLightColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
         <item name="android:fontFamily">@font/oswald</item>
     </style>
 

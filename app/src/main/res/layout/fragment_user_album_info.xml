@@ -48,7 +48,7 @@
                 <ImageView
                     android:id="@+id/detail_image"
                     android:layout_width="match_parent"
-                    android:layout_height="278dp"
+                    android:layout_height="@dimen/album_detail_app_bar_height"
                     android:contentDescription="Image of album"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
