@@ -27,6 +27,7 @@
             android:layout_height="@dimen/album_detail_app_bar_height"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:stateListAnimator="@animator/show_toolbar"
             android:background="#FFFFFF"
             android:animateLayoutChanges="true">
 
@@ -38,10 +39,23 @@
                 app:contentScrim="#FFFFFF"
                 app:statusBarScrim="#FFFFFF"
                 app:collapsedTitleGravity="center"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.DikkePloaten.Toolbar.Text"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:title="@{viewModel.selectedProperty.album.title}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar">
+
+                <ImageView
+                    android:id="@+id/detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="278dp"
+                    android:contentDescription="Image of album"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:imageFromUrl="@{viewModel.selectedProperty.album.thumb}"
+                    app:layout_anchor="@+id/appbar"
+                    app:layout_anchorGravity="center"
+                    app:layout_collapseMode="parallax" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -50,7 +64,8 @@
                     android:background="@android:color/transparent"
                     app:titleTextColor="#FFFFFF"
                     app:layout_collapseMode="pin"
-                    app:contentInsetStartWithNavigation="0dp" />
+                    app:contentInsetStartWithNavigation="0dp"
+                    app:navigationIcon="@drawable/ic_go_back"/>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -132,18 +147,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
-
-        <ImageView
-            android:id="@+id/detail_image"
-            android:layout_width="match_parent"
-            android:layout_height="278dp"
-            android:contentDescription="Image of album"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            app:imageFromUrl="@{viewModel.selectedProperty.album.thumb}"
-            app:layout_anchor="@+id/appbar"
-            app:layout_anchorGravity="center"
-            app:layout_collapseMode="parallax" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab3"
