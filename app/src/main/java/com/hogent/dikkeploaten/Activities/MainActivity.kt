@@ -22,25 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val bottomNavigationView = binding.bottomNavView
-        val navController = findNavController(R.id.nav_host_fragment)
-
-        bottomNavigationView.setupWithNavController(navController)
-
-        // Setting Up ActionBar with Navigation Controller
-        var appBarConfiguration = AppBarConfiguration(
-            topLevelDestinationIds = setOf (
-                R.id.collectionFragment,
-                R.id.searchFragment,
-                R.id.wantlistFragment
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-    }
-
-            }
-        }
     }
 
 }
