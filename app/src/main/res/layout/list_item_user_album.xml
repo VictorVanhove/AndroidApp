@@ -22,7 +22,7 @@
             android:layout_gravity="center"
             app:cardElevation="3dp"
             app:cardPreventCornerOverlap="false"
-            app:cardCornerRadius="12dp"
+            app:cardCornerRadius="5dp"
             app:cardUseCompatPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,7 @@
                 <ImageView
                     android:id="@+id/image_album"
                     android:layout_width="0dp"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/imageAlbumDescription"
                     android:adjustViewBounds="true"
@@ -46,7 +46,7 @@
                     android:id="@+id/title_album"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_small"
                     android:fontFamily="@font/oswald"
                     android:gravity="center_horizontal"
                     android:text="@{viewModel.albumTitle}"
@@ -62,7 +62,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_extra_small"
-                    android:layout_marginBottom="@dimen/margin_normal"
                     android:fontFamily="@font/oswald"
                     android:gravity="center_horizontal"
                     android:text="@{viewModel.albumArtist}"
@@ -70,8 +69,43 @@
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/title_album"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/title_album" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/artist_album"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/title_date_album_bought"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="In collectie sinds: "
+                        android:textAppearance="?attr/textAppearanceSubtitle2"
+                        android:textColor="@color/secondaryTextColor"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/date_album_bought"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="left"
+                        android:text="@{viewModel.albumDateString}"
+                        android:textColor="@color/primaryTextColor"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
