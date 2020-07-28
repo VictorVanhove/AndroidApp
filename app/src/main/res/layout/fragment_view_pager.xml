@@ -51,7 +51,7 @@
                 style="@style/Widget.MaterialComponents.TabLayout.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/primaryLightColor"
+                android:background="?attr/colorAccent"
                 app:tabIconTint="@drawable/tab_icon_color_selector"
                 app:tabTextColor="?attr/colorPrimaryDark"/>
 
