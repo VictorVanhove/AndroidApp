@@ -41,7 +41,7 @@
     </string>
     <string name="genre">Genre</string>
     <string name="released">Released</string>
-    <string name="tracklist">Tracklist</string>
+    <string name="trackList">Tracklist</string>
     <string name="members">Leden</string>
 
     <string name="emptyMessage">Je hebt nog geen albums toegevoegd.\nGa naar de zoekfunctie en voeg albums toe!</string>

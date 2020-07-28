@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel"/>
+            type="com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel" />
+
         <variable
             name="callback"
             type="com.hogent.dikkeploaten.fragments.UserAlbumDetailFragment.Callback" />
@@ -16,31 +18,31 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
         android:fitsSystemWindows="true"
-        android:background="#FFFFFF"
-        tools:context="com.google.samples.apps.sunflower.GardenActivity"
+        tools:context="com.hogent.dikkeploaten.activities.MainActivity"
         tools:ignore="MergeRootFrame">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/album_detail_app_bar_height"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:stateListAnimator="@animator/show_toolbar"
+            android:animateLayoutChanges="true"
             android:background="#FFFFFF"
-            android:animateLayoutChanges="true">
+            android:fitsSystemWindows="true"
+            android:stateListAnimator="@animator/show_toolbar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="#FFFFFF"
-                app:statusBarScrim="#FFFFFF"
                 app:collapsedTitleGravity="center"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.DikkePloaten.Toolbar.Text"
+                app:contentScrim="#FFFFFF"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="#FFFFFF"
                 app:title="@{viewModel.selectedProperty.album.title}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar">
@@ -62,10 +64,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@android:color/transparent"
-                    app:titleTextColor="#FFFFFF"
-                    app:layout_collapseMode="pin"
                     app:contentInsetStartWithNavigation="0dp"
-                    app:navigationIcon="@drawable/ic_go_back"/>
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_go_back"
+                    app:titleTextColor="#FFFFFF" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -84,65 +86,218 @@
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/margin_normal">
 
-                <TextView
-                    android:id="@+id/album_detail_name"
-                    android:layout_width="0dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/album_head"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginEnd="@dimen/margin_small"
-                    android:gravity="center_horizontal"
-                    android:text="@{viewModel.selectedProperty.album.title}"
-                    android:textColor="?attr/colorAccent"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@string/placeholder_title" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/album_detail_artist"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginEnd="@dimen/margin_small"
-                    android:gravity="center_horizontal"
-                    android:text="@{viewModel.selectedProperty.album.artist}"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/album_detail_name"
-                    tools:text="@string/placeholder_artist"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/album_detail_description"
-                    android:layout_width="0dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/margin_normal"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/album_detail_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:text="@{viewModel.selectedProperty.album.title}"
+                                android:textColor="@color/primaryDarkColor"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                tools:text="@string/placeholder_title" />
+
+                            <TextView
+                                android:id="@+id/album_detail_artist"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:text="@{viewModel.selectedProperty.album.artist}"
+                                android:textSize="18sp"
+                                android:textColor="@color/secondaryDarkColor"
+                                tools:text="@string/placeholder_artist" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1px"
+                            android:background="@color/dividerColor" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/margin_normal"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/album_detail_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:text="@{viewModel.selectedProperty.album.description}"
+                                tools:text="@string/placeholder_text" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/album_intro"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginEnd="@dimen/margin_small"
-                    android:gravity="center_horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/album_detail_artist"
-                    android:text="@{viewModel.selectedProperty.album.description}"
-                    tools:text="@string/placeholder_text" />
+                    app:layout_constraintTop_toBottomOf="@id/album_head">
 
-                <TextView
-                    android:id="@+id/album_detail_trackList"
-                    style="?android:attr/textAppearanceMedium"
-                    android:layout_width="0dp"
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:padding="@dimen/margin_normal"
+                        android:baselineAligned="false">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:text="@string/genre"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/lbl_genre"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:text="@{viewModel.selectedProperty.album.genre}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/genre_album"
+                                android:gravity="center"
+                                android:textAllCaps="false"
+                                android:textColor="@color/primaryDarkColor"
+                                tools:text="@string/genre"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:text="@string/released"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/lbl_release"
+                                android:textStyle="bold"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:text="@{viewModel.selectedProperty.album.releaseYear}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/release_album"
+                                android:gravity="center"
+                                android:textColor="@color/primaryDarkColor"
+                                tools:text="@string/released"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/album_trackList"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginTop="@dimen/margin_big"
-                    android:layout_marginEnd="@dimen/margin_small"
-                    android:textIsSelectable="true"
-                    android:minHeight="@dimen/album_description_min_height"
-                    android:text="@{viewModel.selectedProperty.album.trackList}"
+                    android:layout_marginTop="@dimen/margin_normal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/album_detail_description"
-                    tools:text="@string/placeholder_text" />
+                    app:layout_constraintTop_toBottomOf="@id/album_intro">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/margin_normal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="@string/trackList"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/lbl_trackList"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/album_detail_trackList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:text="@{viewModel.selectedProperty.album.trackList}"
+                            tools:text="@string/placeholder_text" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/album_musicians"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/album_trackList">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/margin_normal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="@string/members"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/lbl_musicians"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:text="@{viewModel.selectedProperty.album.musicians}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:id="@+id/musicians_album"
+                            tools:text="@string/placeholder_text"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -164,185 +319,3 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
-
-    <!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--        xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--        xmlns:tools="http://schemas.android.com/tools">-->
-
-    <!--    <data>-->
-    <!--        <variable-->
-    <!--                name="viewModel"-->
-    <!--                type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel"/>-->
-    <!--    </data>-->
-
-    <!--    <ScrollView-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            tools:context=".AlbumDetailFragment">-->
-
-    <!--        <RelativeLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:background="#FFFFFF">-->
-
-    <!--            <ImageView-->
-    <!--                    android:layout_width="fill_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:id="@+id/image_album"-->
-    <!--                    app:srcCompat="@mipmap/ic_launcher"-->
-    <!--                    app:imageUrl="@{viewModel.selectedProperty.thumb}"-->
-    <!--                    android:adjustViewBounds="true"-->
-    <!--                    android:contentDescription="@string/imageAlbumDescription"/>-->
-
-    <!--            <LinearLayout-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_below="@id/image_album"-->
-    <!--                    android:orientation="vertical"-->
-    <!--                    android:layout_marginTop="-130dp"-->
-    <!--                    android:layout_marginLeft="16dp"-->
-    <!--                    android:layout_marginRight="16dp"-->
-    <!--                    android:background="@drawable/layout_rounded_edge"-->
-    <!--                    android:gravity="center">-->
-
-    <!--                <TextView-->
-    <!--                        android:text="@{viewModel.selectedProperty.title}"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:id="@+id/title_album"-->
-    <!--                        android:layout_marginTop="20dp"-->
-    <!--                        android:textSize="30sp"-->
-    <!--                        android:textStyle="bold"-->
-    <!--                        tools:text="@string/placeholder_title"/>-->
-
-    <!--                <TextView-->
-    <!--                        android:text="@{viewModel.selectedProperty.artist}"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="10dp"-->
-    <!--                        android:textSize="20sp"-->
-    <!--                        android:id="@+id/artist_album"-->
-    <!--                        android:textColor="@color/primaryDarkColor"-->
-    <!--                        tools:text="@string/placeholder_artist"/>-->
-
-    <!--                <TextView-->
-    <!--                        android:text="@{viewModel.selectedProperty.description}"-->
-    <!--                        android:layout_width="match_parent"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:id="@+id/description_album"-->
-    <!--                        android:layout_marginTop="36dp"-->
-    <!--                        android:layout_marginLeft="5dp"-->
-    <!--                        android:layout_marginRight="5dp"-->
-    <!--                        tools:text="@string/placeholder_text"/>-->
-
-    <!--                <LinearLayout-->
-    <!--                        android:orientation="horizontal"-->
-    <!--                        android:layout_width="fill_parent"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="20dp"-->
-    <!--                        android:layout_marginLeft="5dp"-->
-    <!--                        android:layout_marginRight="5dp"-->
-    <!--                        android:weightSum="2"-->
-    <!--                        android:background="@drawable/border"-->
-    <!--                        android:padding="10dp"-->
-    <!--                        android:id="@+id/linearLayout"-->
-    <!--                        android:baselineAligned="false">-->
-
-    <!--                    <LinearLayout-->
-    <!--                            android:orientation="vertical"-->
-    <!--                            android:layout_width="0dp"-->
-    <!--                            android:layout_height="wrap_content"-->
-    <!--                            android:layout_weight="1">-->
-
-    <!--                        <TextView-->
-    <!--                                android:text="@string/genre"-->
-    <!--                                android:layout_width="match_parent"-->
-    <!--                                android:layout_height="wrap_content"-->
-    <!--                                android:id="@+id/lbl_genre"-->
-    <!--                                android:textStyle="bold"-->
-    <!--                                android:gravity="center"/>-->
-
-    <!--                        <TextView-->
-    <!--                                android:text="@{viewModel.selectedProperty.genre}"-->
-    <!--                                android:layout_width="match_parent"-->
-    <!--                                android:layout_height="wrap_content"-->
-    <!--                                android:id="@+id/genre_album"-->
-    <!--                                android:gravity="center"-->
-    <!--                                android:textAllCaps="false"-->
-    <!--                                android:textColor="@color/primaryDarkColor"-->
-    <!--                                tools:text="@string/genre"/>-->
-
-    <!--                    </LinearLayout>-->
-
-    <!--                    <LinearLayout-->
-    <!--                            android:orientation="vertical"-->
-    <!--                            android:layout_width="0dp"-->
-    <!--                            android:layout_height="wrap_content"-->
-    <!--                            android:layout_weight="1">-->
-
-    <!--                        <TextView-->
-    <!--                                android:text="@string/released"-->
-    <!--                                android:layout_width="match_parent"-->
-    <!--                                android:layout_height="wrap_content"-->
-    <!--                                android:id="@+id/lbl_release"-->
-    <!--                                android:textStyle="bold"-->
-    <!--                                android:gravity="center"/>-->
-
-    <!--                        <TextView-->
-    <!--                                android:text="@{viewModel.selectedProperty.releaseYear}"-->
-    <!--                                android:layout_width="match_parent"-->
-    <!--                                android:layout_height="wrap_content"-->
-    <!--                                android:id="@+id/release_album"-->
-    <!--                                android:gravity="center"-->
-    <!--                                android:textColor="@color/primaryDarkColor"-->
-    <!--                                tools:text="@string/released"/>-->
-
-    <!--                    </LinearLayout>-->
-
-    <!--                </LinearLayout>-->
-
-    <!--                <TextView-->
-    <!--                        android:text="@string/tracklist"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="20dp"-->
-    <!--                        android:id="@+id/textView10"-->
-    <!--                        android:textStyle="bold"/>-->
-
-    <!--                <TextView-->
-    <!--                        android:text="@{viewModel.selectedProperty.trackList}"-->
-    <!--                        android:layout_width="match_parent"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:id="@+id/tracklist_album"-->
-    <!--                        android:layout_marginTop="16dp"-->
-    <!--                        android:layout_marginLeft="5dp"-->
-    <!--                        android:layout_marginRight="5dp"-->
-    <!--                        tools:text="@string/placeholder_text"/>-->
-
-    <!--                <TextView-->
-    <!--                        android:text="@string/members"-->
-    <!--                        android:layout_width="wrap_content"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:layout_marginTop="20dp"-->
-    <!--                        android:id="@+id/lbl_musicians"-->
-    <!--                        android:textStyle="bold"/>-->
-
-
-    <!--                <TextView-->
-    <!--                        android:text="@{viewModel.selectedProperty.musicians}"-->
-    <!--                        android:layout_width="match_parent"-->
-    <!--                        android:layout_height="wrap_content"-->
-    <!--                        android:id="@+id/musicians_album"-->
-    <!--                        android:layout_marginBottom="200dp"-->
-    <!--                        android:layout_marginLeft="5dp"-->
-    <!--                        android:layout_marginRight="5dp"-->
-    <!--                        tools:text="@string/placeholder_text"/>-->
-
-    <!--            </LinearLayout>-->
-
-
-    <!--        </RelativeLayout>-->
-
-    <!--    </ScrollView>-->
-
-    <!--</layout>-->
