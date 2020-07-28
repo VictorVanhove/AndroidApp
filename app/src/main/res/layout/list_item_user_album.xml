@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="In collectie sinds: "
+                        android:text="@string/date_album_added"
                         android:textAppearance="?attr/textAppearanceSubtitle2"
                         android:textColor="@color/secondaryTextColor"
                         android:textSize="10sp"
@@ -100,7 +100,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:gravity="left"
+                        android:gravity="center"
                         android:text="@{viewModel.albumDateString}"
                         android:textColor="@color/primaryTextColor"
                         android:textSize="10sp" />
