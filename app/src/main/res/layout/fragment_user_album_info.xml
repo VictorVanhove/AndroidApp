@@ -78,18 +78,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/fab_bottom_padding"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_normal">
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/album_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -160,6 +163,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/album_head">
@@ -180,21 +186,21 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:text="@string/genre"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/lbl_genre"
-                                android:textStyle="bold"
-                                android:gravity="center"/>
+                                android:gravity="center"
+                                android:text="@string/genre"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:text="@{viewModel.selectedProperty.album.genre}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/genre_album"
                                 android:gravity="center"
                                 android:textAllCaps="false"
                                 android:textColor="@color/primaryDarkColor"
+                                android:text="@{viewModel.selectedProperty.album.genre}"
                                 tools:text="@string/genre"/>
 
                         </LinearLayout>
@@ -207,20 +213,19 @@
                             android:layout_weight="1">
 
                             <TextView
-                                android:text="@string/released"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/lbl_release"
-                                android:textStyle="bold"
-                                android:gravity="center"/>
+                                android:text="@string/released"
+                                android:gravity="center"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                             <TextView
-                                android:text="@{viewModel.selectedProperty.album.releaseYear}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/release_album"
                                 android:gravity="center"
                                 android:textColor="@color/primaryDarkColor"
+                                android:text="@{viewModel.selectedProperty.album.releaseYear}"
                                 tools:text="@string/released"/>
 
                         </LinearLayout>
@@ -234,6 +239,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/album_intro">
@@ -246,11 +254,11 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:text="@string/trackList"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/lbl_trackList"
-                            android:textStyle="bold"/>
+                            android:text="@string/trackList"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/album_detail_trackList"
@@ -269,6 +277,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_small"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/album_trackList">
@@ -281,18 +292,17 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:text="@string/members"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/lbl_musicians"
-                            android:textStyle="bold"/>
+                            android:text="@string/members"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                         <TextView
-                            android:text="@{viewModel.selectedProperty.album.musicians}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:id="@+id/musicians_album"
+                            android:text="@{viewModel.selectedProperty.album.musicians}"
                             tools:text="@string/placeholder_text"/>
 
                     </LinearLayout>
@@ -310,7 +320,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="@{() -> callback.removeUserAlbumFromCollection()}"
-            android:tint="@android:color/white"
+            app:tint="@color/tintColor"
             app:isGone="@{!viewModel.isInCollection}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"

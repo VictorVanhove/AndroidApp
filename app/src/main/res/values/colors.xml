@@ -10,4 +10,5 @@
     <color name="secondaryTextColor">#61000000</color>
     <color name="dividerColor">#B6B6B6</color>
     <color name="backgroundColor">#FFF5F5F5</color>
+    <color name="tintColor">#FFFFFF</color>
 </resources>
