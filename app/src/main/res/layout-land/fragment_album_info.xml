@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel"/>
+            type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel" />
+
         <variable
             name="callback"
             type="com.hogent.dikkeploaten.fragments.AlbumDetailFragment.Callback" />
@@ -81,10 +83,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_normal"
                 android:layout_marginLeft="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_small">
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_normal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -115,9 +117,9 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:padding="@dimen/margin_normal"
                                     android:gravity="center_vertical"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/margin_normal">
 
                                     <TextView
                                         android:id="@+id/album_detail_name"
@@ -136,8 +138,8 @@
                                         android:layout_height="wrap_content"
                                         android:gravity="center_horizontal"
                                         android:text="@{viewModel.selectedProperty.artist}"
-                                        android:textSize="18sp"
                                         android:textColor="@color/secondaryDarkColor"
+                                        android:textSize="18sp"
                                         tools:text="@string/placeholder_artist" />
 
                                 </LinearLayout>
@@ -150,9 +152,9 @@
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:padding="@dimen/margin_normal"
                                     android:gravity="center_vertical"
-                                    android:orientation="vertical">
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/margin_normal">
 
                                     <TextView
                                         android:id="@+id/album_detail_description"
@@ -320,35 +322,64 @@
 
         </androidx.core.widget.NestedScrollView>
 
+        <LinearLayout
+            android:id="@+id/dial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_anchor="@id/fab"
+            app:layout_anchorGravity="top|center_horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab1"
+                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:clickable="true"
+                android:onClick="@{() -> callback.addToCollection(viewModel.selectedProperty)}"
+                app:fabSize="mini"
+                app:isGone="@{viewModel.isInCollection}"
+                app:rippleColor="@color/secondaryColor"
+                app:srcCompat="@drawable/ic_dehaze_black_24dp"
+                app:tint="@color/tintColor" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab2"
+                style="@style/Widget.MaterialComponents.FloatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:clickable="true"
+                android:onClick="@{() -> callback.addToWantlist(viewModel.selectedProperty)}"
+                app:fabSize="mini"
+                app:isGone="@{viewModel.isInCollection}"
+                app:rippleColor="@color/secondaryColor"
+                app:srcCompat="@drawable/ic_favorite_black_24dp"
+                app:tint="@color/tintColor" />
+
+        </LinearLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{() -> callback.addToCollection(viewModel.selectedProperty)}"
+            android:layout_margin="@dimen/margin_normal"
             android:clickable="true"
-            app:rippleColor="@color/secondaryColor"
-            app:tint="@color/tintColor"
-            app:isGone="@{viewModel.isInCollection}"
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|left"
-            app:srcCompat="@drawable/ic_dehaze_black_24dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab2"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{() -> callback.addToWantlist(viewModel.selectedProperty)}"
-            android:clickable="true"
-            app:rippleColor="@color/secondaryColor"
-            app:tint="@color/tintColor"
             app:isGone="@{viewModel.isInCollection}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"
-            app:srcCompat="@drawable/ic_favorite_black_24dp" />
+            app:rippleColor="@color/secondaryColor"
+            app:srcCompat="@drawable/ic_edit_black_24dp"
+            app:tint="@color/tintColor" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

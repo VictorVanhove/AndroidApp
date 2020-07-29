@@ -5,9 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel"/>
+            type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel" />
+
         <variable
             name="callback"
             type="com.hogent.dikkeploaten.fragments.AlbumDetailFragment.Callback" />
@@ -81,10 +83,10 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_normal"
                 android:layout_marginLeft="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_small">
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_normal">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/album_head"
@@ -103,9 +105,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="@dimen/margin_normal"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_normal">
 
                             <TextView
                                 android:id="@+id/album_detail_name"
@@ -124,8 +126,8 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
                                 android:text="@{viewModel.selectedProperty.artist}"
-                                android:textSize="18sp"
                                 android:textColor="@color/secondaryDarkColor"
+                                android:textSize="18sp"
                                 tools:text="@string/placeholder_artist" />
 
                         </LinearLayout>
@@ -138,9 +140,9 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="@dimen/margin_normal"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_normal">
 
                             <TextView
                                 android:id="@+id/album_detail_description"
@@ -160,28 +162,28 @@
                     android:id="@+id/album_intro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/album_head">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="2"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
                         android:padding="@dimen/margin_normal"
-                        android:baselineAligned="false">
+                        android:weightSum="2">
 
                         <LinearLayout
-                            android:orientation="vertical"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:layout_weight="1">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -192,29 +194,29 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/genre_album"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/genre_album"
                                 android:gravity="center"
+                                android:text="@{viewModel.selectedProperty.genre}"
                                 android:textAllCaps="false"
                                 android:textColor="@color/primaryDarkColor"
-                                android:text="@{viewModel.selectedProperty.genre}"
-                                tools:text="@string/genre"/>
+                                tools:text="@string/genre" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="vertical"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:layout_weight="1">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/released"
                                 android:gravity="center"
+                                android:text="@string/released"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
 
@@ -222,9 +224,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:textColor="@color/primaryDarkColor"
                                 android:text="@{viewModel.selectedProperty.releaseYear}"
-                                tools:text="@string/released"/>
+                                android:textColor="@color/primaryDarkColor"
+                                tools:text="@string/released" />
 
                         </LinearLayout>
 
@@ -236,10 +238,10 @@
                     android:id="@+id/album_trackList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/album_intro">
@@ -248,8 +250,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:padding="@dimen/margin_normal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_normal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -274,10 +276,10 @@
                     android:id="@+id/album_musicians"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/album_trackList">
@@ -286,8 +288,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:padding="@dimen/margin_normal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_normal">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -301,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
                             android:text="@{viewModel.selectedProperty.musicians}"
-                            tools:text="@string/placeholder_text"/>
+                            tools:text="@string/placeholder_text" />
 
                     </LinearLayout>
 
@@ -311,35 +313,64 @@
 
         </androidx.core.widget.NestedScrollView>
 
+        <LinearLayout
+            android:id="@+id/dial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:layout_anchor="@id/fab"
+            app:layout_anchorGravity="top|center_horizontal">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab1"
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:clickable="true"
+                    android:onClick="@{() -> callback.addToCollection(viewModel.selectedProperty)}"
+                    app:fabSize="mini"
+                    app:isGone="@{viewModel.isInCollection}"
+                    app:rippleColor="@color/secondaryColor"
+                    app:srcCompat="@drawable/ic_dehaze_black_24dp"
+                    app:tint="@color/tintColor" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab2"
+                    style="@style/Widget.MaterialComponents.FloatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:clickable="true"
+                    android:onClick="@{() -> callback.addToWantlist(viewModel.selectedProperty)}"
+                    app:fabSize="mini"
+                    app:isGone="@{viewModel.isInCollection}"
+                    app:rippleColor="@color/secondaryColor"
+                    app:srcCompat="@drawable/ic_favorite_black_24dp"
+                    app:tint="@color/tintColor" />
+
+        </LinearLayout>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{() -> callback.addToCollection(viewModel.selectedProperty)}"
+            android:layout_margin="@dimen/margin_normal"
             android:clickable="true"
-            app:rippleColor="@color/secondaryColor"
-            app:tint="@color/tintColor"
-            app:isGone="@{viewModel.isInCollection}"
-            app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="bottom|left"
-            app:srcCompat="@drawable/ic_dehaze_black_24dp" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab2"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{() -> callback.addToWantlist(viewModel.selectedProperty)}"
-            android:clickable="true"
-            app:rippleColor="@color/secondaryColor"
-            app:tint="@color/tintColor"
             app:isGone="@{viewModel.isInCollection}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"
-            app:srcCompat="@drawable/ic_favorite_black_24dp" />
+            app:rippleColor="@color/secondaryColor"
+            app:srcCompat="@drawable/ic_edit_black_24dp"
+            app:tint="@color/tintColor" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
