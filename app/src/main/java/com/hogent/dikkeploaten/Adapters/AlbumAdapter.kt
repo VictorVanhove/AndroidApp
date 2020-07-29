@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hogent.dikkeploaten.database.DatabaseAlbum
-import com.hogent.dikkeploaten.databinding.LayoutAlbumItemBinding
+import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
 
 /**
  * Adapter class for each album in recyclerView.
@@ -15,10 +15,11 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<DatabaseAlbum, AlbumAdapter.AlbumPropertyViewHolder>(DiffCallback) {
 
     /**
-     * The MarsPropertyViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [MarsProperty] information.
+     * The AlbumPropertyViewHolder constructor takes the binding variable from the associated
+     * GridViewItem, which nicely gives it access to the full [DatabaseAlbum] information.
      */
-    class AlbumPropertyViewHolder(private var binding: LayoutAlbumItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class AlbumPropertyViewHolder(private var binding: ListItemAlbumBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(albumProperty: DatabaseAlbum) {
             binding.album = albumProperty
@@ -30,7 +31,7 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     }
 
     /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [MarsProperty]
+     * Allows the RecyclerView to determine which items have changed when the [List] of [DatabaseAlbum]
      * has been updated.
      */
     companion object DiffCallback : DiffUtil.ItemCallback<DatabaseAlbum>() {
@@ -47,7 +48,7 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
      * Create new [RecyclerView] item views (invoked by the layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumPropertyViewHolder {
-        return AlbumPropertyViewHolder(LayoutAlbumItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return AlbumPropertyViewHolder(ListItemAlbumBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**
