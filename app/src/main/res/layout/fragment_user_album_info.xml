@@ -320,6 +320,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="@{() -> callback.removeUserAlbumFromCollection()}"
+            android:clickable="true"
+            app:rippleColor="@color/secondaryColor"
             app:tint="@color/tintColor"
             app:isGone="@{!viewModel.isInCollection}"
             app:layout_anchor="@id/appbar"

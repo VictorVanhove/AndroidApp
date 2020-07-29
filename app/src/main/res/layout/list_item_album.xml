@@ -17,6 +17,8 @@
             android:layout_marginEnd="@dimen/card_side_margin"
             android:layout_marginBottom="@dimen/card_bottom_margin"
             android:layout_gravity="center"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
             app:cardCornerRadius="5dp"
             app:cardElevation="3dp"
             app:cardPreventCornerOverlap="false"

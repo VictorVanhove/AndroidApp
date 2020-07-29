@@ -4,9 +4,9 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorOnPrimary">@color/secondaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorOnSurface">@color/secondaryColor</item>
+        <item name="colorOnSurface">@color/secondaryDarkColor</item>
         <item name="colorAccent">@color/primaryLightColor</item>
-        <item name="colorSurface">@color/secondaryLightColor</item>
+        <item name="colorSurface">@color/tintColor</item>
         <item name="colorSecondary">@color/secondaryDarkColor</item>
         <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="android:fontFamily">@font/oswald</item>
