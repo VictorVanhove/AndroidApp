@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
@@ -53,11 +54,26 @@ class AlbumDetailFragment : Fragment() {
 
                 override fun addToWantlist(plant: DatabaseAlbum?) {
                     plant?.let {
-                        hideAppBarFab(fab2)
+                        hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToWantlist()
                         Snackbar.make(root, "Added album to wantlist", Snackbar.LENGTH_LONG)
                             .show()
                     }
+                }
+            }
+
+            var isFabExpanded = false
+
+            fab.setOnClickListener {
+                if (isFabExpanded) {
+                    fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                    fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                    isFabExpanded = false
+                } else {
+                    dial!!.visibility = View.VISIBLE
+                    fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
+                    fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
+                    isFabExpanded = true
                 }
             }
 
