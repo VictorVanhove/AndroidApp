@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hogent.dikkeploaten.adapters.AlbumAdapter
+import com.hogent.dikkeploaten.adapters.UserAlbumAdapter
+import com.hogent.dikkeploaten.databinding.FragmentCollectionBinding
 import com.hogent.dikkeploaten.databinding.FragmentSearchBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.SearchViewModel
@@ -48,6 +51,8 @@ class SearchFragment : Fragment() {
         // tells the viewModel when our property is clicked
         binding.albumList.adapter = adapter
 
+        subscribeUi(adapter)
+
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 // Must find the NavController from the Fragment
@@ -60,6 +65,12 @@ class SearchFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    private fun subscribeUi(adapter: AlbumAdapter) {
+        viewModel.albums.observe(viewLifecycleOwner) { result ->
+            adapter.submitList(result)
+        }
     }
 
 }

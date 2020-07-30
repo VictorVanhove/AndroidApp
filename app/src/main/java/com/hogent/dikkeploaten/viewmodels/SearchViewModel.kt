@@ -1,12 +1,7 @@
 package com.hogent.dikkeploaten.viewmodels
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.hogent.dikkeploaten.database.DatabaseAlbum
-import com.hogent.dikkeploaten.database.DatabaseUser
-import com.hogent.dikkeploaten.network.Album
-import com.hogent.dikkeploaten.network.Api
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import kotlinx.coroutines.*
 
@@ -22,13 +17,7 @@ class SearchViewModel internal constructor(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    // Internally, we use a MutableLiveData, because we will be updating the List of MarsProperty
-    // with new values
-    private val _properties = MutableLiveData<List<DatabaseAlbum>>()
-
-    // The external LiveData interface to the property is immutable, so only this class can modify
-    val properties: LiveData<List<DatabaseAlbum>>
-        get() = _properties
+    val albums = albumRepository.albums
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedProperty = MutableLiveData<DatabaseAlbum>()
@@ -58,26 +47,14 @@ class SearchViewModel internal constructor(
     private fun loadAlbumsFromNetwork()
     {
         viewModelScope.launch {
-            // Get the Deferred object for our Retrofit request
-            var getAlbumsDeferred = Api.retrofitService.getAlbumList()
             try {
                 _status.value = ApiStatus.LOADING
-                // this will run on a thread managed by Retrofit
-                val listResult = getAlbumsDeferred.await()
-                _status.value = ApiStatus.DONE
-                _properties.value = listResult
-
-                saveAlbumsToDatabase(listResult)
-            } catch (e: Exception) {
+                albumRepository.updateAlbums()
+            } catch (e: Error) {
                 _status.value = ApiStatus.ERROR
-                _properties.value = ArrayList()
+            } finally {
+                _status.value = ApiStatus.DONE
             }
-        }
-    }
-
-    private suspend fun saveAlbumsToDatabase(list: List<DatabaseAlbum>) {
-        withContext(Dispatchers.IO) {
-            albumRepository.saveAlbumsToDatabase(list)
         }
     }
 

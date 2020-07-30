@@ -10,7 +10,7 @@ interface AlbumDao {
     fun insertAlbum(album: DatabaseAlbum)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllAlbums(albums: List<DatabaseAlbum>)
+    suspend fun insertAllAlbums(albums: List<DatabaseAlbum>)
 
     @Update
     fun updateAlbum(album: DatabaseAlbum)
