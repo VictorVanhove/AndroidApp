@@ -54,7 +54,7 @@
                     android:contentDescription="Image of album"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:imageFromUrl="@{viewModel.selectedProperty.thumb}"
+                    app:imageUrl="@{viewModel.selectedProperty.thumb}"
                     app:layout_anchor="@+id/appbar"
                     app:layout_anchorGravity="center"
                     app:layout_collapseMode="parallax" />
