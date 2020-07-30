@@ -26,7 +26,7 @@ import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
  */
 class AlbumDetailFragment : Fragment() {
 
-    private lateinit var album: Album
+    private var isFabExpanded = false
     private val args: AlbumDetailFragmentArgs by navArgs()
 
     private val albumDetailViewModel: AlbumDetailViewModel by viewModels {
@@ -62,15 +62,16 @@ class AlbumDetailFragment : Fragment() {
                 }
             }
 
-            var isFabExpanded = false
-
+            // Checks if fab is pressed and in which state it is, then load the right animation
             fab.setOnClickListener {
                 if (isFabExpanded) {
+                    fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.reverse_rotate_button))
                     fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                     fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                     isFabExpanded = false
                 } else {
                     dial!!.visibility = View.VISIBLE
+                    fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotate_button))
                     fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
                     fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
                     isFabExpanded = true
@@ -82,6 +83,13 @@ class AlbumDetailFragment : Fragment() {
             // scroll change listener begins at Y = 0 when image is fully collapsed
             albumDetailScrollview.setOnScrollChangeListener(
                 NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+
+                    // Makes sure that the option fabs (if expanded) are removed as well when view gets scrolled
+                    if (isFabExpanded) {
+                        fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                        fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                        isFabExpanded = false
+                    }
 
                     // User scrolled past image to height of toolbar and the title text is
                     // underneath the toolbar, so the toolbar should be shown.
@@ -116,6 +124,7 @@ class AlbumDetailFragment : Fragment() {
         val params = fab.layoutParams as CoordinatorLayout.LayoutParams
         val behavior = params.behavior as FloatingActionButton.Behavior
         behavior.isAutoHideEnabled = false
+        isFabExpanded = false
         fab.hide()
     }
 
