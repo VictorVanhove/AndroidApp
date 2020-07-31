@@ -19,9 +19,7 @@ package com.hogent.dikkeploaten
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.hogent.dikkeploaten.database.ApplicationDatabase
-import com.hogent.dikkeploaten.database.User
-import com.hogent.dikkeploaten.database.UserDao
+import com.hogent.database.ApplicationDatabase
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -39,14 +37,14 @@ import java.io.IOException
 class ApplicationDatabaseTest {
 
     private lateinit var userDao: UserDao
-    private lateinit var db: ApplicationDatabase
+    private lateinit var db: com.hogent.database.ApplicationDatabase
 
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         // Using an in-memory database because the information stored here disappears when the
         // process is killed.
-        db = Room.inMemoryDatabaseBuilder(context, ApplicationDatabase::class.java)
+        db = Room.inMemoryDatabaseBuilder(context, com.hogent.database.ApplicationDatabase::class.java)
                 // Allowing main thread queries, just for testing.
                 .allowMainThreadQueries()
                 .build()

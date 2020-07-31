@@ -6,10 +6,9 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.hogent.dikkeploaten.adapters.AlbumAdapter
-import com.hogent.dikkeploaten.database.DatabaseAlbum
+import com.hogent.database.DatabaseAlbum
 import com.hogent.dikkeploaten.viewmodels.ApiStatus
 
 
@@ -26,7 +25,7 @@ fun bindIsGone(view: View, isGone: Boolean) {
  * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<DatabaseAlbum>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<com.hogent.database.DatabaseAlbum>?) {
     val adapter = recyclerView.adapter as AlbumAdapter
     adapter.submitList(data)
 }

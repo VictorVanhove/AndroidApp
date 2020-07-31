@@ -15,7 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.database.DatabaseAlbum
+import com.hogent.database.DatabaseAlbum
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
@@ -42,7 +42,7 @@ class AlbumDetailFragment : Fragment() {
             viewModel = albumDetailViewModel
             lifecycleOwner = viewLifecycleOwner
             callback = object : Callback {
-                override fun addToCollection(plant: DatabaseAlbum?) {
+                override fun addToCollection(plant: com.hogent.database.DatabaseAlbum?) {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToCollection()
@@ -51,7 +51,7 @@ class AlbumDetailFragment : Fragment() {
                     }
                 }
 
-                override fun addToWantlist(plant: DatabaseAlbum?) {
+                override fun addToWantlist(plant: com.hogent.database.DatabaseAlbum?) {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToWantlist()
@@ -128,7 +128,7 @@ class AlbumDetailFragment : Fragment() {
     }
 
     interface Callback {
-        fun addToCollection(plant: DatabaseAlbum?)
-        fun addToWantlist(plant: DatabaseAlbum?)
+        fun addToCollection(plant: com.hogent.database.DatabaseAlbum?)
+        fun addToWantlist(plant: com.hogent.database.DatabaseAlbum?)
     }
 }

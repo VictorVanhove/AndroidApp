@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.database
+package com.hogent.database
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo

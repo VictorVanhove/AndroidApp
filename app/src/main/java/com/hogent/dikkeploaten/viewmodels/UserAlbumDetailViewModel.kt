@@ -1,10 +1,8 @@
 package com.hogent.dikkeploaten.viewmodels
 
-import android.app.Application
 import androidx.lifecycle.*
-import com.hogent.dikkeploaten.database.AlbumAndUserAlbums
-import com.hogent.dikkeploaten.database.DatabaseAlbum
-import com.hogent.dikkeploaten.database.UserAlbum
+import com.hogent.database.AlbumAndUserAlbums
+import com.hogent.database.UserAlbum
 import com.hogent.dikkeploaten.repositories.UserAlbumRepository
 import kotlinx.coroutines.launch
 
@@ -14,12 +12,12 @@ import kotlinx.coroutines.launch
  */
 class UserAlbumDetailViewModel(
     private val userAlbumRepository: UserAlbumRepository,
-    private val albumProperty: AlbumAndUserAlbums
+    private val albumProperty: com.hogent.database.AlbumAndUserAlbums
 ) : ViewModel() {
-    private val _selectedProperty = MutableLiveData<AlbumAndUserAlbums>()
+    private val _selectedProperty = MutableLiveData<com.hogent.database.AlbumAndUserAlbums>()
 
     // The external LiveData for the SelectedProperty
-    val selectedProperty: LiveData<AlbumAndUserAlbums>
+    val selectedProperty: LiveData<com.hogent.database.AlbumAndUserAlbums>
         get() = _selectedProperty
 
     // Initialize the _selectedProperty MutableLiveData

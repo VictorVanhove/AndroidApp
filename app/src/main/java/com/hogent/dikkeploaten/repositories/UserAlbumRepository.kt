@@ -1,22 +1,22 @@
 package com.hogent.dikkeploaten.repositories
 
-import com.hogent.dikkeploaten.database.UserAlbum
-import com.hogent.dikkeploaten.database.UserAlbumDao
+import com.hogent.database.UserAlbum
+import com.hogent.database.UserAlbumDao
 
 class UserAlbumRepository private constructor(
-    private val userAlbumDao: UserAlbumDao
+    private val userAlbumDao: com.hogent.database.UserAlbumDao
 ) {
 
     suspend fun createUserAlbum(albumId: String, albumType: String) {
-        val userAlbum = UserAlbum(albumId, albumType)
+        val userAlbum = com.hogent.database.UserAlbum(albumId, albumType)
         userAlbumDao.insertUserAlbum(userAlbum)
     }
 
-    suspend fun removeUserAlbum(userAlbum: UserAlbum) {
+    suspend fun removeUserAlbum(userAlbum: com.hogent.database.UserAlbum) {
         userAlbumDao.deleteUserAlbum(userAlbum)
     }
 
-    suspend fun getUserAlbum(albumId: String): UserAlbum = userAlbumDao.getUserAlbum(albumId)
+    suspend fun getUserAlbum(albumId: String): com.hogent.database.UserAlbum = userAlbumDao.getUserAlbum(albumId)
 
     fun isInCollection(albumId: String) =
         userAlbumDao.isInCollection(albumId)
@@ -29,7 +29,7 @@ class UserAlbumRepository private constructor(
         // For Singleton instantiation
         @Volatile private var instance: UserAlbumRepository? = null
 
-        fun getInstance(userAlbumDao: UserAlbumDao) =
+        fun getInstance(userAlbumDao: com.hogent.database.UserAlbumDao) =
             instance ?: synchronized(this) {
                 instance ?: UserAlbumRepository(userAlbumDao).also { instance = it }
             }

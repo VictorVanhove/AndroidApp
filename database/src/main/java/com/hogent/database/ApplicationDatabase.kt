@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.database
+package com.hogent.database
 
 import android.content.Context
 import androidx.room.Database
@@ -11,7 +11,7 @@ import androidx.room.TypeConverters
 abstract class ApplicationDatabase : RoomDatabase() {
     
     abstract fun userAlbumDao(): UserAlbumDao
-    abstract fun albumDao(): AlbumDao
+    abstract fun albumDao(): com.hogent.database.AlbumDao
 
    companion object {
         @Volatile
@@ -19,7 +19,8 @@ abstract class ApplicationDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): ApplicationDatabase {
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(

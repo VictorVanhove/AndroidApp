@@ -1,13 +1,10 @@
 package com.hogent.dikkeploaten.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.hogent.dikkeploaten.database.AlbumAndUserAlbums
-import com.hogent.dikkeploaten.database.DatabaseAlbum
+import com.hogent.database.AlbumAndUserAlbums
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AlbumAndUserAlbumsViewModel(albums: AlbumAndUserAlbums) {
+class AlbumAndUserAlbumsViewModel(albums: com.hogent.database.AlbumAndUserAlbums) {
 
     private val album = checkNotNull(albums.album)
     private val userAlbums = albums.userAlbums[0]

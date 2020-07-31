@@ -6,7 +6,7 @@
     <data>
         <variable
             name="album"
-            type="com.hogent.dikkeploaten.database.DatabaseAlbum" />
+            type="com.hogent.database.DatabaseAlbum" />
     </data>
 
         <androidx.cardview.widget.CardView

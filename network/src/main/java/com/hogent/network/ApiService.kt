@@ -1,14 +1,11 @@
-package com.hogent.dikkeploaten.network
+package com.hogent.network
 
-import com.hogent.dikkeploaten.database.DatabaseAlbum
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.hogent.database.DatabaseAlbum
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
 import retrofit2.http.GET
 
 private const val BASE_URL = "https://dikke-ploaten-backend.herokuapp.com/api/"
@@ -41,7 +38,7 @@ interface ApiService {
      * HTTP method
      */
     @GET("albums")
-    suspend fun getAlbumList(): List<DatabaseAlbum>
+    suspend fun getAlbumList(): List<com.hogent.database.DatabaseAlbum>
 
 }
 
@@ -49,5 +46,6 @@ interface ApiService {
  * A public Api object that exposes the lazy-initialized Retrofit service
  */
 object Api {
-    val retrofitService: ApiService by lazy { retrofit.create(ApiService::class.java) }
+    val retrofitService: ApiService by lazy { retrofit.create(
+        ApiService::class.java) }
 }

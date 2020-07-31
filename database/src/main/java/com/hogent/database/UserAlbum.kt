@@ -1,4 +1,4 @@
-package com.hogent.dikkeploaten.database
+package com.hogent.database
 
 import androidx.room.*
 import java.util.*
@@ -6,7 +6,7 @@ import java.util.*
 @Entity(
     tableName = "user_albums",
     foreignKeys = [
-        ForeignKey(entity = DatabaseAlbum::class, parentColumns = ["id"], childColumns = ["album_id"])
+        ForeignKey(entity = com.hogent.database.DatabaseAlbum::class, parentColumns = ["id"], childColumns = ["album_id"])
     ],
     indices = [Index("album_id")]
 )

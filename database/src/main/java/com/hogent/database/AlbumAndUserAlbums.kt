@@ -1,8 +1,10 @@
-package com.hogent.dikkeploaten.database
+package com.hogent.database
 
 import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Relation
+import com.hogent.dikkeploaten.database.DatabaseAlbum
+import com.hogent.dikkeploaten.database.UserAlbum
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 

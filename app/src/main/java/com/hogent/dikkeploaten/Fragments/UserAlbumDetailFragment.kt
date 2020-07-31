@@ -9,21 +9,15 @@ import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.database.DatabaseAlbum
-import com.hogent.dikkeploaten.database.UserAlbum
-import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
+import com.hogent.database.DatabaseAlbum
 import com.hogent.dikkeploaten.databinding.FragmentUserAlbumInfoBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
-import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
-import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModelFactory
 import com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel
-import com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModelFactory
 
 /**
  * Fragment class for information page of each album.

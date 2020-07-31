@@ -1,17 +1,17 @@
 package com.hogent.dikkeploaten.repositories
 
 import androidx.lifecycle.LiveData
-import com.hogent.dikkeploaten.database.AlbumDao
-import com.hogent.dikkeploaten.database.DatabaseAlbum
-import com.hogent.dikkeploaten.network.Api
+import com.hogent.database.AlbumDao
+import com.hogent.database.DatabaseAlbum
+import com.hogent.network.Api
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AlbumRepository private constructor(private val albumDao: AlbumDao) {
+class AlbumRepository private constructor(private val albumDao: com.hogent.database.AlbumDao) {
 
-    val albums: LiveData<List<DatabaseAlbum>> = albumDao.getAlbumList()
+    val albums: LiveData<List<com.hogent.database.DatabaseAlbum>> = albumDao.getAlbumList()
 
-    fun getAlbumWithId(id: String): LiveData<DatabaseAlbum> {
+    fun getAlbumWithId(id: String): LiveData<com.hogent.database.DatabaseAlbum> {
         return albumDao.getAlbumWithId(id)
     }
 
@@ -19,7 +19,7 @@ class AlbumRepository private constructor(private val albumDao: AlbumDao) {
         withContext(Dispatchers.IO) {
             val listResult = try {
                 // Make network request using a blocking call
-                Api.retrofitService.getAlbumList()
+                com.hogent.network.Api.retrofitService.getAlbumList()
             } catch (cause: Throwable) {
                 // If the network throws an exception, inform the caller
                 throw Error("Unable to refresh albums", cause)
@@ -35,7 +35,7 @@ class AlbumRepository private constructor(private val albumDao: AlbumDao) {
         @Volatile
         private var instance: AlbumRepository? = null
 
-        fun getInstance(albumDao: AlbumDao) =
+        fun getInstance(albumDao: com.hogent.database.AlbumDao) =
             instance ?: synchronized(this) {
                 instance ?: AlbumRepository(albumDao).also { instance = it }
             }
