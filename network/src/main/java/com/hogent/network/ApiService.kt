@@ -1,9 +1,7 @@
 package com.hogent.network
 
-import com.hogent.database.DatabaseAlbum
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -38,7 +36,7 @@ interface ApiService {
      * HTTP method
      */
     @GET("albums")
-    suspend fun getAlbumList(): List<com.hogent.database.DatabaseAlbum>
+    suspend fun getAlbumList(): List<NetworkAlbum>
 
 }
 

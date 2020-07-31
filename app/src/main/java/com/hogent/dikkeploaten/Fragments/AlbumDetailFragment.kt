@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
-import com.hogent.database.DatabaseAlbum
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel

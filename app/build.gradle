@@ -55,6 +55,9 @@ dependencies {
     // Android KTX
     implementation 'androidx.core:core-ktx:1.0.2'
 
+    // Room and Lifecycle dependencies
+    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+
     // Database library
     implementation project(path: ":database")
 

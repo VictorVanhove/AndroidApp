@@ -10,8 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hogent.dikkeploaten.adapters.AlbumAdapter
-import com.hogent.dikkeploaten.adapters.UserAlbumAdapter
-import com.hogent.dikkeploaten.databinding.FragmentCollectionBinding
 import com.hogent.dikkeploaten.databinding.FragmentSearchBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.SearchViewModel

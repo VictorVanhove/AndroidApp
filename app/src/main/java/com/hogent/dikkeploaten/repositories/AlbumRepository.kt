@@ -25,7 +25,7 @@ class AlbumRepository private constructor(private val albumDao: com.hogent.datab
                 throw Error("Unable to refresh albums", cause)
             }
 
-            albumDao.insertAllAlbums(listResult)
+            albumDao.insertAllAlbums(listResult.map { DatabaseAlbum(it.albumId, it.title, it.artist, it.thumb, it.description, it.genre, it.releaseYear, it.trackList, it.musicians) })
         }
     }
 
