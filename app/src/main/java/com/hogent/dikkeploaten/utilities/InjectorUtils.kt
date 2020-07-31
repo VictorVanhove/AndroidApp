@@ -8,7 +8,6 @@ import com.hogent.dikkeploaten.database.DatabaseAlbum
 import com.hogent.dikkeploaten.database.UserAlbum
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import com.hogent.dikkeploaten.repositories.UserAlbumRepository
-import com.hogent.dikkeploaten.repositories.UserRepository
 import com.hogent.dikkeploaten.viewmodels.*
 
 /**

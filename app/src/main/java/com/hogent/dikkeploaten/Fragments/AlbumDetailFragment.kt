@@ -17,7 +17,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.database.DatabaseAlbum
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
-import com.hogent.dikkeploaten.network.Album
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
 
@@ -66,13 +65,13 @@ class AlbumDetailFragment : Fragment() {
             fab.setOnClickListener {
                 if (isFabExpanded) {
                     fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.reverse_rotate_button))
-                    fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                    fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                     fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                     isFabExpanded = false
                 } else {
-                    dial!!.visibility = View.VISIBLE
+                    dial.visibility = View.VISIBLE
                     fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotate_button))
-                    fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
+                    fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
                     fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
                     isFabExpanded = true
                 }
@@ -86,7 +85,7 @@ class AlbumDetailFragment : Fragment() {
 
                     // Makes sure that the option fabs (if expanded) are removed as well when view gets scrolled
                     if (isFabExpanded) {
-                        fab1!!.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                        fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                         fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                         isFabExpanded = false
                     }

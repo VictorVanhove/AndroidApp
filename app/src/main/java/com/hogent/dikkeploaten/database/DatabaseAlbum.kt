@@ -4,7 +4,6 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.hogent.dikkeploaten.network.Album
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 

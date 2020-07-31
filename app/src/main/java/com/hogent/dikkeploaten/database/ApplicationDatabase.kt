@@ -6,11 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [DatabaseUser::class, DatabaseAlbum::class, UserAlbum::class], version = 3, exportSchema = false)
+@Database(entities = [DatabaseAlbum::class, UserAlbum::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ApplicationDatabase : RoomDatabase() {
-
-    abstract fun userDao(): UserDao
+    
     abstract fun userAlbumDao(): UserAlbumDao
     abstract fun albumDao(): AlbumDao
 

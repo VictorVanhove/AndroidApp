@@ -19,7 +19,6 @@ import com.hogent.dikkeploaten.database.DatabaseAlbum
 import com.hogent.dikkeploaten.database.UserAlbum
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.databinding.FragmentUserAlbumInfoBinding
-import com.hogent.dikkeploaten.network.Album
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModelFactory
@@ -31,7 +30,6 @@ import com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModelFactory
  */
 class UserAlbumDetailFragment : Fragment() {
 
-    private lateinit var album: Album
     private val args: UserAlbumDetailFragmentArgs by navArgs()
 
     private val userAlbumDetailViewModel: UserAlbumDetailViewModel by viewModels {
