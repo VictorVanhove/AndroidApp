@@ -56,6 +56,9 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.0.2'
 
     // Room and Lifecycle dependencies
+    implementation "androidx.room:room-runtime:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
     // Database library
