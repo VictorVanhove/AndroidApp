@@ -9,7 +9,6 @@ import com.hogent.database.models.UserAlbum
 private const val COLLECTION_TYPE = "collection"
 private const val WANTLIST_TYPE = "wantlist"
 
-// TODO: Make all functions suspend instead of returning LiveData.
 class DatabaseDataSource internal constructor(
     private val albumDao: AlbumDao,
     private val userAlbumDao: UserAlbumDao
@@ -17,9 +16,9 @@ class DatabaseDataSource internal constructor(
 
     //region Albums
 
-    fun getAlbumList(): LiveData<List<DatabaseAlbum>> = albumDao.getAlbumList()
+    suspend fun getAlbumList(): List<DatabaseAlbum> = albumDao.getAlbumList()
 
-    fun getAlbumWithId(id: String): LiveData<DatabaseAlbum> = albumDao.getAlbumWithId(id)
+    suspend fun getAlbumWithId(id: String): DatabaseAlbum = albumDao.getAlbumWithId(id)
 
     suspend fun insertAllAlbums(albums: List<DatabaseAlbum>) = albumDao.insertAllAlbums(albums)
 
@@ -38,12 +37,12 @@ class DatabaseDataSource internal constructor(
 
     suspend fun getUserAlbum(albumId: String): UserAlbum = userAlbumDao.getUserAlbum(albumId)
 
-    fun isInCollection(albumId: String) =
+    suspend fun isInCollection(albumId: String) =
         userAlbumDao.isInCollection(albumId)
 
-    fun getCollectionUser() = userAlbumDao.getAlbumsUser(COLLECTION_TYPE)
+    suspend fun getCollectionUser() = userAlbumDao.getAlbumsUser(COLLECTION_TYPE)
 
-    fun getWantlistUser() = userAlbumDao.getAlbumsUser(WANTLIST_TYPE)
+    suspend fun getWantlistUser() = userAlbumDao.getAlbumsUser(WANTLIST_TYPE)
 
     //endregion
 }

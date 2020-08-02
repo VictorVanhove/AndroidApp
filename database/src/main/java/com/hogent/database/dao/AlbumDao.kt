@@ -1,6 +1,5 @@
 package com.hogent.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.hogent.database.models.DatabaseAlbum
 
@@ -8,20 +7,20 @@ import com.hogent.database.models.DatabaseAlbum
 internal interface AlbumDao {
 
     @Insert
-    fun insertAlbum(album: DatabaseAlbum)
+    suspend fun insertAlbum(album: DatabaseAlbum)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllAlbums(albums: List<DatabaseAlbum>)
 
     @Update
-    fun updateAlbum(album: DatabaseAlbum)
+    suspend fun updateAlbum(album: DatabaseAlbum)
 
     @Query("DELETE FROM album_table WHERE id = :albumId")
-    fun deleteAlbum(albumId: String)
+    suspend fun deleteAlbum(albumId: String)
 
     @Query("SELECT * FROM album_table")
-    fun getAlbumList(): LiveData<List<DatabaseAlbum>>
+    suspend fun getAlbumList(): List<DatabaseAlbum>
 
     @Query("SELECT * FROM album_table WHERE id = :albumId")
-    fun getAlbumWithId(albumId: String): LiveData<DatabaseAlbum>
+    suspend fun getAlbumWithId(albumId: String): DatabaseAlbum
 }

@@ -12,9 +12,11 @@ class AlbumRepository private constructor(
     private val networkDataSource: NetworkDataSource
 ) {
 
-    val albums: LiveData<List<DatabaseAlbum>> = databaseDataSource.getAlbumList()
+    suspend fun getAllAlbums(): List<DatabaseAlbum> {
+        return databaseDataSource.getAlbumList()
+    }
 
-    fun getAlbumWithId(id: String): LiveData<DatabaseAlbum> {
+    suspend fun getAlbumWithId(id: String): DatabaseAlbum {
         return databaseDataSource.getAlbumWithId(id)
     }
 

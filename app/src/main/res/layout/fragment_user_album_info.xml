@@ -6,6 +6,8 @@
 
     <data>
 
+        <variable name="isInCollection" type="boolean" />
+
         <variable
             name="viewModel"
             type="com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel" />
@@ -323,7 +325,7 @@
             android:clickable="true"
             app:rippleColor="@color/secondaryColor"
             app:tint="@color/tintColor"
-            app:isGone="@{!viewModel.isInCollection}"
+            app:isGone="@{!isInCollection}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"
             app:srcCompat="@drawable/ic_delete_white_24dp" />

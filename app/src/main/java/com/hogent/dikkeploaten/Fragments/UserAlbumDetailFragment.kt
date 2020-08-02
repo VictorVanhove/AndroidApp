@@ -9,11 +9,13 @@ import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
+import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.databinding.FragmentUserAlbumInfoBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel
@@ -77,6 +79,8 @@ class UserAlbumDetailFragment : Fragment() {
 
         }
 
+        isInCollection(binding)
+
         return binding.root
     }
 
@@ -87,6 +91,12 @@ class UserAlbumDetailFragment : Fragment() {
         val behavior = params.behavior as FloatingActionButton.Behavior
         behavior.isAutoHideEnabled = false
         fab.hide()
+    }
+
+    fun isInCollection(binding: FragmentUserAlbumInfoBinding) {
+        userAlbumDetailViewModel.inCollection.observe(viewLifecycleOwner) {
+            binding.isInCollection = it
+        }
     }
 
     interface Callback {

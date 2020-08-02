@@ -47,6 +47,7 @@ class CollectionFragment : Fragment() {
 
         binding.albumList.adapter = adapter
 
+        viewModel.loadAlbumsAndUserAlbums()
         subscribeUi(adapter, binding)
 
         viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {

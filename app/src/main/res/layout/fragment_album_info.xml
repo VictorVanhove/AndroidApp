@@ -6,6 +6,8 @@
 
     <data>
 
+        <variable name="isInCollection" type="boolean" />
+
         <variable
             name="viewModel"
             type="com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel" />
@@ -334,7 +336,7 @@
                     android:clickable="true"
                     android:onClick="@{() -> callback.addToCollection(viewModel.selectedProperty)}"
                     app:fabSize="mini"
-                    app:isGone="@{viewModel.isInCollection}"
+                    app:isGone="@{isInCollection}"
                     app:rippleColor="@color/secondaryColor"
                     app:srcCompat="@drawable/ic_dehaze_black_24dp"
                     app:tint="@color/tintColor" />
@@ -351,7 +353,7 @@
                     android:clickable="true"
                     android:onClick="@{() -> callback.addToWantlist(viewModel.selectedProperty)}"
                     app:fabSize="mini"
-                    app:isGone="@{viewModel.isInCollection}"
+                    app:isGone="@{isInCollection}"
                     app:rippleColor="@color/secondaryColor"
                     app:srcCompat="@drawable/ic_favorite_black_24dp"
                     app:tint="@color/tintColor" />
@@ -365,7 +367,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
             android:clickable="true"
-            app:isGone="@{viewModel.isInCollection}"
+            app:isGone="@{isInCollection}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"
             app:rippleColor="@color/secondaryColor"

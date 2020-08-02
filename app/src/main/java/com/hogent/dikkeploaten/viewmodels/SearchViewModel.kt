@@ -1,6 +1,7 @@
 package com.hogent.dikkeploaten.viewmodels
 
 import androidx.lifecycle.*
+import com.hogent.database.DatabaseDataSource
 import com.hogent.database.models.DatabaseAlbum
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import kotlinx.coroutines.*
@@ -17,7 +18,11 @@ class SearchViewModel internal constructor(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    val albums = albumRepository.albums
+    private val _albums = MutableLiveData<List<DatabaseAlbum>>()
+
+    // The external immutable LiveData for the request status
+    val albums: LiveData<List<DatabaseAlbum>>
+        get() = _albums
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
     private val _navigateToSelectedProperty = MutableLiveData<DatabaseAlbum>()
@@ -50,6 +55,8 @@ class SearchViewModel internal constructor(
             try {
                 _status.value = ApiStatus.LOADING
                 albumRepository.updateAlbums()
+
+                _albums.value = albumRepository.getAllAlbums()
             } catch (e: Error) {
                 _status.value = ApiStatus.ERROR
             } finally {

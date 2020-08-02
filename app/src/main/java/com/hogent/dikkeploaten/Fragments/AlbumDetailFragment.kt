@@ -10,6 +10,7 @@ import androidx.core.widget.NestedScrollView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.hogent.database.models.DatabaseAlbum
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
+import com.hogent.dikkeploaten.databinding.FragmentCollectionBinding
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
 
@@ -46,6 +48,7 @@ class AlbumDetailFragment : Fragment() {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToCollection()
+                        albumDetailViewModel.isInCollection()
                         Snackbar.make(root, "Added album to collection", Snackbar.LENGTH_LONG)
                             .show()
                     }
@@ -55,6 +58,7 @@ class AlbumDetailFragment : Fragment() {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToWantlist()
+                        albumDetailViewModel.isInCollection()
                         Snackbar.make(root, "Added album to wantlist", Snackbar.LENGTH_LONG)
                             .show()
                     }
@@ -114,6 +118,8 @@ class AlbumDetailFragment : Fragment() {
 
         }
 
+        isInCollection(binding)
+
         return binding.root
     }
 
@@ -125,6 +131,12 @@ class AlbumDetailFragment : Fragment() {
         behavior.isAutoHideEnabled = false
         isFabExpanded = false
         fab.hide()
+    }
+
+    fun isInCollection(binding: FragmentAlbumInfoBinding) {
+        albumDetailViewModel.inCollection.observe(viewLifecycleOwner) {
+            binding.isInCollection = it
+        }
     }
 
     interface Callback {

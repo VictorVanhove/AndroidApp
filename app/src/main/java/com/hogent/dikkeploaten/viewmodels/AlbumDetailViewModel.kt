@@ -16,18 +16,30 @@ class AlbumDetailViewModel(
     private val userAlbumRepository: UserAlbumRepository,
     private val album: DatabaseAlbum
 )   : ViewModel() {
+
     private val _selectedProperty = MutableLiveData<DatabaseAlbum>()
 
     // The external LiveData for the SelectedProperty
     val selectedProperty: LiveData<DatabaseAlbum>
         get() = _selectedProperty
 
+    private val _inCollection = MutableLiveData<Boolean>()
+
+    // The external immutable LiveData for the request status
+    val inCollection: LiveData<Boolean>
+        get() = _inCollection
+
     // Initialize the _selectedProperty MutableLiveData
     init {
         _selectedProperty.value = album
+        isInCollection()
     }
 
-    val isInCollection = userAlbumRepository.isInCollection(album.albumId)
+    fun isInCollection() {
+        viewModelScope.launch {
+            _inCollection.value = userAlbumRepository.isInCollection(album.albumId)
+        }
+    }
 
     fun addAlbumToCollection() {
         viewModelScope.launch {

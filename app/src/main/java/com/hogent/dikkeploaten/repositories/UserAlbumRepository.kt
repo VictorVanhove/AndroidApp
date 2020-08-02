@@ -18,12 +18,12 @@ class UserAlbumRepository private constructor(
 
     suspend fun getUserAlbum(albumId: String): UserAlbum = databaseDataSource.getUserAlbum(albumId)
 
-    fun isInCollection(albumId: String) =
+    suspend fun isInCollection(albumId: String) =
         databaseDataSource.isInCollection(albumId)
 
-    fun getCollectionUser() = databaseDataSource.getCollectionUser()
+    suspend fun getCollectionUser() = databaseDataSource.getCollectionUser()
 
-    fun getWantlistUser() = databaseDataSource.getWantlistUser()
+    suspend fun getWantlistUser() = databaseDataSource.getWantlistUser()
 
     companion object {
 
