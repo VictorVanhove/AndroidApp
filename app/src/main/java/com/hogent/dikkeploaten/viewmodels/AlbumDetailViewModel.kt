@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hogent.database.models.DatabaseAlbum
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.repositories.UserAlbumRepository
 import kotlinx.coroutines.launch
 
@@ -14,14 +14,14 @@ import kotlinx.coroutines.launch
  */
 class AlbumDetailViewModel(
     private val userAlbumRepository: UserAlbumRepository,
-    private val album: DatabaseAlbum
+    private val album: Album
 )   : ViewModel() {
 
-    private val _selectedProperty = MutableLiveData<DatabaseAlbum>()
+    private val _selectedAlbum = MutableLiveData<Album>()
 
-    // The external LiveData for the SelectedProperty
-    val selectedProperty: LiveData<DatabaseAlbum>
-        get() = _selectedProperty
+    // The external LiveData for the SelectedAlbum
+    val selectedAlbum: LiveData<Album>
+        get() = _selectedAlbum
 
     private val _inCollection = MutableLiveData<Boolean>()
 
@@ -29,9 +29,10 @@ class AlbumDetailViewModel(
     val inCollection: LiveData<Boolean>
         get() = _inCollection
 
-    // Initialize the _selectedProperty MutableLiveData
     init {
-        _selectedProperty.value = album
+        // Initialize the _selectedAlbum MutableLiveData
+        _selectedAlbum.value = album
+        // Update de fab buttons
         isInCollection()
     }
 

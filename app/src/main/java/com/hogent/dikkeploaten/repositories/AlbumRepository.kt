@@ -1,8 +1,7 @@
 package com.hogent.dikkeploaten.repositories
 
-import androidx.lifecycle.LiveData
 import com.hogent.database.DatabaseDataSource
-import com.hogent.database.models.DatabaseAlbum
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.network.NetworkDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,12 +11,20 @@ class AlbumRepository private constructor(
     private val networkDataSource: NetworkDataSource
 ) {
 
-    suspend fun getAllAlbums(): List<DatabaseAlbum> {
-        return databaseDataSource.getAlbumList()
-    }
-
-    suspend fun getAlbumWithId(id: String): DatabaseAlbum {
-        return databaseDataSource.getAlbumWithId(id)
+    suspend fun getAllAlbums(): List<Album> {
+        return databaseDataSource.getAlbumList().map {
+            Album(
+                it.albumId,
+                it.title,
+                it.artist,
+                it.thumb,
+                it.description,
+                it.genre,
+                it.releaseYear,
+                it.trackList,
+                it.musicians
+            )
+        }
     }
 
     suspend fun updateAlbums() {
@@ -31,7 +38,7 @@ class AlbumRepository private constructor(
             }
 
             databaseDataSource.insertAllAlbums(listResult.map {
-                DatabaseAlbum(
+                com.hogent.database.models.DatabaseAlbum(
                     it.albumId,
                     it.title,
                     it.artist,

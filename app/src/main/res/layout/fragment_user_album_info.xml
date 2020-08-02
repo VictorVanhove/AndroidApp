@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable name="isInCollection" type="boolean" />
 
         <variable
@@ -45,7 +44,7 @@
                 app:contentScrim="#FFFFFF"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:statusBarScrim="#FFFFFF"
-                app:title="@{viewModel.selectedProperty.album.title}"
+                app:title="@{viewModel.selectedAlbum.album.title}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar">
 
@@ -56,7 +55,7 @@
                     android:contentDescription="Image of album"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{viewModel.selectedProperty.album.thumb}"
+                    app:imageUrl="@{viewModel.selectedAlbum.album.thumb}"
                     app:layout_anchor="@+id/appbar"
                     app:layout_anchorGravity="center"
                     app:layout_collapseMode="parallax" />
@@ -116,7 +115,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
-                                android:text="@{viewModel.selectedProperty.album.title}"
+                                android:text="@{viewModel.selectedAlbum.album.title}"
                                 android:textColor="@color/primaryDarkColor"
                                 android:textSize="24sp"
                                 android:textStyle="bold"
@@ -127,7 +126,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
-                                android:text="@{viewModel.selectedProperty.album.artist}"
+                                android:text="@{viewModel.selectedAlbum.album.artist}"
                                 android:textSize="18sp"
                                 android:textColor="@color/secondaryDarkColor"
                                 tools:text="@string/placeholder_artist" />
@@ -151,7 +150,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
-                                android:text="@{viewModel.selectedProperty.album.description}"
+                                android:text="@{viewModel.selectedAlbum.album.description}"
                                 tools:text="@string/placeholder_text" />
 
                         </LinearLayout>
@@ -202,7 +201,7 @@
                                 android:gravity="center"
                                 android:textAllCaps="false"
                                 android:textColor="@color/primaryDarkColor"
-                                android:text="@{viewModel.selectedProperty.album.genre}"
+                                android:text="@{viewModel.selectedAlbum.album.genre}"
                                 tools:text="@string/genre"/>
 
                         </LinearLayout>
@@ -227,7 +226,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textColor="@color/primaryDarkColor"
-                                android:text="@{viewModel.selectedProperty.album.releaseYear}"
+                                android:text="@{viewModel.selectedAlbum.album.releaseYear}"
                                 tools:text="@string/released"/>
 
                         </LinearLayout>
@@ -267,7 +266,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewModel.selectedProperty.album.trackList}"
+                            android:text="@{viewModel.selectedAlbum.album.trackList}"
                             tools:text="@string/placeholder_text" />
 
                     </LinearLayout>
@@ -304,7 +303,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewModel.selectedProperty.album.musicians}"
+                            android:text="@{viewModel.selectedAlbum.album.musicians}"
                             tools:text="@string/placeholder_text"/>
 
                     </LinearLayout>

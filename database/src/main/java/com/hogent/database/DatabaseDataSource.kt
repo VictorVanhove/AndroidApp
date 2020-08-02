@@ -1,10 +1,9 @@
 package com.hogent.database
 
-import androidx.lifecycle.LiveData
 import com.hogent.database.dao.AlbumDao
 import com.hogent.database.dao.UserAlbumDao
 import com.hogent.database.models.DatabaseAlbum
-import com.hogent.database.models.UserAlbum
+import com.hogent.database.models.DatabaseUserAlbum
 
 private const val COLLECTION_TYPE = "collection"
 private const val WANTLIST_TYPE = "wantlist"
@@ -27,15 +26,15 @@ class DatabaseDataSource internal constructor(
     //region User Albums
 
     suspend fun createUserAlbum(albumId: String, albumType: String) {
-        val userAlbum = UserAlbum(albumId, albumType)
+        val userAlbum = DatabaseUserAlbum(albumId, albumType)
         userAlbumDao.insertUserAlbum(userAlbum)
     }
 
-    suspend fun removeUserAlbum(userAlbum: UserAlbum) {
+    suspend fun removeUserAlbum(userAlbum: DatabaseUserAlbum) {
         userAlbumDao.deleteUserAlbum(userAlbum)
     }
 
-    suspend fun getUserAlbum(albumId: String): UserAlbum = userAlbumDao.getUserAlbum(albumId)
+    suspend fun getUserAlbum(albumId: String): DatabaseUserAlbum = userAlbumDao.getUserAlbum(albumId)
 
     suspend fun isInCollection(albumId: String) =
         userAlbumDao.isInCollection(albumId)

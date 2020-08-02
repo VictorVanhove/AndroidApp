@@ -1,8 +1,7 @@
 package com.hogent.dikkeploaten.viewmodels
 
 import androidx.lifecycle.*
-import com.hogent.database.DatabaseDataSource
-import com.hogent.database.models.DatabaseAlbum
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import kotlinx.coroutines.*
 
@@ -18,18 +17,18 @@ class SearchViewModel internal constructor(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _albums = MutableLiveData<List<DatabaseAlbum>>()
+    private val _albums = MutableLiveData<List<Album>>()
 
     // The external immutable LiveData for the request status
-    val albums: LiveData<List<DatabaseAlbum>>
+    val albums: LiveData<List<Album>>
         get() = _albums
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedProperty = MutableLiveData<DatabaseAlbum>()
+    private val _navigateToSelectedAlbum = MutableLiveData<Album>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<DatabaseAlbum>
-        get() = _navigateToSelectedProperty
+    val navigateToSelectedAlbum: LiveData<Album>
+        get() = _navigateToSelectedAlbum
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
@@ -46,7 +45,7 @@ class SearchViewModel internal constructor(
 
     /**
      * Gets Mars real estate property information from the API Retrofit service and updates the
-     * [DatabaseAlbum] [List] and [ApiStatus] [LiveData]. The Retrofit service returns a
+     * [Album] [List] and [ApiStatus] [LiveData]. The Retrofit service returns a
      * coroutine Deferred, which we await to get the result of the transaction.
      */
     private fun loadAlbumsFromNetwork()
@@ -75,17 +74,17 @@ class SearchViewModel internal constructor(
     }
 
     /**
-     * When the property is clicked, set the [_navigateToSelectedProperty] [MutableLiveData]
-     * @param marsProperty The [MarsProperty] that was clicked on.
+     * When the album is clicked, set the [_navigateToSelectedAlbum] [MutableLiveData]
+     * @param album The [Album] that was clicked on.
      */
-    fun displayPropertyDetails(album: DatabaseAlbum) {
-        _navigateToSelectedProperty.value = album
+    fun displayAlbumDetails(album: Album) {
+        _navigateToSelectedAlbum.value = album
     }
 
     /**
-     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
+     * After the navigation has taken place, make sure navigateToSelectedAlbum is set to null
      */
-    fun displayPropertyDetailsComplete() {
-        _navigateToSelectedProperty.value = null
+    fun displayAlbumDetailsComplete() {
+        _navigateToSelectedAlbum.value = null
     }
 }

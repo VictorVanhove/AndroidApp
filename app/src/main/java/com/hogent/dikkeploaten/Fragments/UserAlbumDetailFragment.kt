@@ -28,7 +28,7 @@ class UserAlbumDetailFragment : Fragment() {
     private val args: UserAlbumDetailFragmentArgs by navArgs()
 
     private val userAlbumDetailViewModel: UserAlbumDetailViewModel by viewModels {
-        InjectorUtils.provideUserAlbumDetailViewModelFactory(requireActivity(), args.selectedProperty)
+        InjectorUtils.provideUserAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum)
     }
 
     override fun onCreateView(

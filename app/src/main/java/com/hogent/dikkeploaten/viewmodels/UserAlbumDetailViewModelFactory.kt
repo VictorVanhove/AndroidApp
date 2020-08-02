@@ -9,7 +9,7 @@ import com.hogent.dikkeploaten.repositories.UserAlbumRepository
  * Simple ViewModel factory that provides the AlbumAndUserAlbums and context to the ViewModel.
  */
 class UserAlbumDetailViewModelFactory
- (
+    (
     private val userAlbumRepository: UserAlbumRepository,
     private val album: AlbumAndUserAlbums
 ) : ViewModelProvider.Factory {
@@ -20,4 +20,4 @@ class UserAlbumDetailViewModelFactory
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
-    }
+}

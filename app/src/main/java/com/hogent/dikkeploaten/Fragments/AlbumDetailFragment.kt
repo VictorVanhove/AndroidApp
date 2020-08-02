@@ -15,10 +15,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.hogent.database.models.DatabaseAlbum
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
-import com.hogent.dikkeploaten.databinding.FragmentCollectionBinding
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
 
@@ -31,7 +30,7 @@ class AlbumDetailFragment : Fragment() {
     private val args: AlbumDetailFragmentArgs by navArgs()
 
     private val albumDetailViewModel: AlbumDetailViewModel by viewModels {
-        InjectorUtils.provideAlbumDetailViewModelFactory(requireActivity(), args.selectedProperty)
+        InjectorUtils.provideAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum)
     }
 
     override fun onCreateView(
@@ -44,7 +43,7 @@ class AlbumDetailFragment : Fragment() {
             viewModel = albumDetailViewModel
             lifecycleOwner = viewLifecycleOwner
             callback = object : Callback {
-                override fun addToCollection(plant: DatabaseAlbum?) {
+                override fun addToCollection(plant: Album?) {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToCollection()
@@ -54,7 +53,7 @@ class AlbumDetailFragment : Fragment() {
                     }
                 }
 
-                override fun addToWantlist(plant: DatabaseAlbum?) {
+                override fun addToWantlist(plant: Album?) {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToWantlist()
@@ -68,7 +67,12 @@ class AlbumDetailFragment : Fragment() {
             // Checks if fab is pressed and in which state it is, then load the right animation
             fab.setOnClickListener {
                 if (isFabExpanded) {
-                    fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.reverse_rotate_button))
+                    fab.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.reverse_rotate_button
+                        )
+                    )
                     fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                     fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
                     isFabExpanded = false
@@ -140,7 +144,7 @@ class AlbumDetailFragment : Fragment() {
     }
 
     interface Callback {
-        fun addToCollection(plant: DatabaseAlbum?)
-        fun addToWantlist(plant: DatabaseAlbum?)
+        fun addToCollection(plant: Album?)
+        fun addToWantlist(plant: Album?)
     }
 }

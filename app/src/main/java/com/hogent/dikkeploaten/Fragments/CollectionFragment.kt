@@ -42,7 +42,7 @@ class CollectionFragment : Fragment() {
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
         val adapter = UserAlbumAdapter(UserAlbumAdapter.OnClickListener {
-            viewModel.displayPropertyDetails(it)
+            viewModel.displayAlbumDetails(it)
         })
 
         binding.albumList.adapter = adapter
@@ -50,14 +50,14 @@ class CollectionFragment : Fragment() {
         viewModel.loadAlbumsAndUserAlbums()
         subscribeUi(adapter, binding)
 
-        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToSelectedAlbum.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(
                     ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it)
                 )
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
-                viewModel.displayPropertyDetailsComplete()
+                viewModel.displayAlbumDetailsComplete()
             }
         })
 

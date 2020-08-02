@@ -50,8 +50,8 @@
             android:label="fragment_album_info"
             tools:layout="@layout/fragment_album_info">
         <argument
-            android:name="selectedProperty"
-            app:argType="com.hogent.database.models.DatabaseAlbum" />
+            android:name="selectedAlbum"
+            app:argType="com.hogent.dikkeploaten.models.Album" />
     </fragment>
 
     <fragment
@@ -60,7 +60,7 @@
         android:label="UserAlbumDetailFragment"
         tools:layout="@layout/fragment_user_album_info">
         <argument
-            android:name="selectedProperty"
+            android:name="selectedAlbum"
             app:argType="com.hogent.database.models.AlbumAndUserAlbums" />
     </fragment>
 

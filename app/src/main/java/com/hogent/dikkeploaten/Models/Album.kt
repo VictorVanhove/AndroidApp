@@ -1,17 +1,20 @@
 package com.hogent.dikkeploaten.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * Model class for album.
  */
+@Parcelize
 data class Album(
-    var id: String = "",
-    var title: String = "",
-    var artist: String = "",
-    var thumb: String = "",
-    var description: String = "",
-    var genre: String = "",
-    var released_in: String = "",
-    var tracklist: String = "",
-    var musicians: String = "",
-    var images: ArrayList<String> = arrayListOf()
-)
+    var albumId: String,
+    var title: String,
+    var artist: String,
+    var thumb: String,
+    var description: String,
+    var genre: String,
+    var releaseYear: String,
+    var trackList: String,
+    var musicians: String
+): Parcelable

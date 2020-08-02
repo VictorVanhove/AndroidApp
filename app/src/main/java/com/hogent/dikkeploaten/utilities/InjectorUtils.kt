@@ -3,7 +3,7 @@ package com.hogent.dikkeploaten.utilities
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.hogent.database.DatabaseInjector
-import com.hogent.database.models.DatabaseAlbum
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.database.models.AlbumAndUserAlbums
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import com.hogent.dikkeploaten.repositories.UserAlbumRepository
@@ -35,7 +35,7 @@ object InjectorUtils {
 
     fun provideAlbumDetailViewModelFactory(
         context: Context,
-        album: DatabaseAlbum
+        album: Album
     ): AlbumDetailViewModelFactory {
         return AlbumDetailViewModelFactory(getUserAlbumRepository(context), album)
     }

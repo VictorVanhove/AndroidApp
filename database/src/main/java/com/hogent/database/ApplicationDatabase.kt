@@ -8,9 +8,9 @@ import androidx.room.TypeConverters
 import com.hogent.database.dao.AlbumDao
 import com.hogent.database.models.DatabaseAlbum
 import com.hogent.database.dao.UserAlbumDao
-import com.hogent.database.models.UserAlbum
+import com.hogent.database.models.DatabaseUserAlbum
 
-@Database(entities = [DatabaseAlbum::class, UserAlbum::class], version = 3, exportSchema = false)
+@Database(entities = [DatabaseAlbum::class, DatabaseUserAlbum::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 internal abstract class ApplicationDatabase : RoomDatabase() {
     

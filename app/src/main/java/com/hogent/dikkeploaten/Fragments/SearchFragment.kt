@@ -42,7 +42,7 @@ class SearchFragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = AlbumAdapter(AlbumAdapter.OnClickListener {
-            viewModel.displayPropertyDetails(it)
+            viewModel.displayAlbumDetails(it)
         })
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
@@ -51,14 +51,14 @@ class SearchFragment : Fragment() {
 
         subscribeUi(adapter)
 
-        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToSelectedAlbum.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(
                     ViewPagerFragmentDirections.actionViewPagerFragmentToAlbumDetailFragment(it)
                 )
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-                viewModel.displayPropertyDetailsComplete()
+                viewModel.displayAlbumDetailsComplete()
             }
         })
 

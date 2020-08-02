@@ -3,6 +3,7 @@ package com.hogent.dikkeploaten.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hogent.database.models.DatabaseAlbum
+import com.hogent.dikkeploaten.models.Album
 import com.hogent.dikkeploaten.repositories.UserAlbumRepository
 
 /**
@@ -10,7 +11,7 @@ import com.hogent.dikkeploaten.repositories.UserAlbumRepository
  */
 class AlbumDetailViewModelFactory(
     private val userAlbumRepository: UserAlbumRepository,
-    private val album: DatabaseAlbum
+    private val album: Album
 ) : ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")

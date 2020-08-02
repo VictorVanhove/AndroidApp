@@ -12,17 +12,16 @@ import java.util.*
     ],
     indices = [Index("album_id")]
 )
-@Parcelize
-data class UserAlbum(
+data class DatabaseUserAlbum(
     @ColumnInfo(name = "album_id") val albumId: String,
 
     @ColumnInfo(name = "album_type") val albumType: String,
 
     /**
-     * Indicates when the [Album] was bought. Used as friendly reminder
+     * Indicates when the [DatabaseAlbum] was bought. Used as friendly reminder
      */
     @ColumnInfo(name = "album_date") val albumDate: Calendar = Calendar.getInstance()
-) : Parcelable {
+) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var userAlbumId: Long = 0
