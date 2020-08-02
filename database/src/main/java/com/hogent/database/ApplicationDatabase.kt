@@ -5,13 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.hogent.database.dao.AlbumDao
+import com.hogent.database.models.DatabaseAlbum
+import com.hogent.database.dao.UserAlbumDao
+import com.hogent.database.models.UserAlbum
 
 @Database(entities = [DatabaseAlbum::class, UserAlbum::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
-abstract class ApplicationDatabase : RoomDatabase() {
+internal abstract class ApplicationDatabase : RoomDatabase() {
     
     abstract fun userAlbumDao(): UserAlbumDao
-    abstract fun albumDao(): com.hogent.database.AlbumDao
+    abstract fun albumDao(): AlbumDao
 
    companion object {
         @Volatile

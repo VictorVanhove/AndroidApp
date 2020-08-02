@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hogent.database.DatabaseAlbum
+import com.hogent.database.models.DatabaseAlbum
 import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
 
 /**
  * Adapter class for each album in recyclerView.
  */
 class AlbumAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<com.hogent.database.DatabaseAlbum, AlbumAdapter.AlbumPropertyViewHolder>(DiffCallback) {
+    ListAdapter<DatabaseAlbum, AlbumAdapter.AlbumPropertyViewHolder>(DiffCallback) {
 
     /**
      * The AlbumPropertyViewHolder constructor takes the binding variable from the associated
@@ -21,7 +21,7 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     class AlbumPropertyViewHolder(private var binding: ListItemAlbumBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(albumProperty: com.hogent.database.DatabaseAlbum) {
+        fun bind(albumProperty: DatabaseAlbum) {
             binding.album = albumProperty
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
@@ -34,12 +34,12 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
      * Allows the RecyclerView to determine which items have changed when the [List] of [DatabaseAlbum]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<com.hogent.database.DatabaseAlbum>() {
-        override fun areItemsTheSame(oldItem: com.hogent.database.DatabaseAlbum, newItem: com.hogent.database.DatabaseAlbum): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<DatabaseAlbum>() {
+        override fun areItemsTheSame(oldItem: DatabaseAlbum, newItem: DatabaseAlbum): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: com.hogent.database.DatabaseAlbum, newItem: com.hogent.database.DatabaseAlbum): Boolean {
+        override fun areContentsTheSame(oldItem: DatabaseAlbum, newItem: DatabaseAlbum): Boolean {
             return oldItem.albumId == newItem.albumId
         }
     }
@@ -94,7 +94,7 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     /**
      * Filters the albums in the recyclerView
      */
-    fun setFilter(filteredList: ArrayList<com.hogent.database.DatabaseAlbum>) {
+    fun setFilter(filteredList: ArrayList<DatabaseAlbum>) {
         //this.albums = filteredList
         notifyDataSetChanged()
     }
@@ -104,8 +104,8 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [MarsProperty]
      */
-    class OnClickListener(val clickListener: (albumProperty: com.hogent.database.DatabaseAlbum) -> Unit) {
-        fun onClick(albumProperty: com.hogent.database.DatabaseAlbum) = clickListener(albumProperty)
+    class OnClickListener(val clickListener: (albumProperty: DatabaseAlbum) -> Unit) {
+        fun onClick(albumProperty: DatabaseAlbum) = clickListener(albumProperty)
     }
 
 }

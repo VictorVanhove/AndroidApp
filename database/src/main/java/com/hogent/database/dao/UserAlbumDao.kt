@@ -1,10 +1,12 @@
-package com.hogent.database
+package com.hogent.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.hogent.database.models.AlbumAndUserAlbums
+import com.hogent.database.models.UserAlbum
 
 @Dao
-interface UserAlbumDao {
+internal interface UserAlbumDao {
 
     @Query("SELECT * FROM user_albums")
     fun getAllUserAlbums(): LiveData<List<UserAlbum>>

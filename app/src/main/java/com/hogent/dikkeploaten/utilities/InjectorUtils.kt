@@ -2,12 +2,13 @@ package com.hogent.dikkeploaten.utilities
 
 import android.content.Context
 import androidx.fragment.app.Fragment
-import com.hogent.database.AlbumAndUserAlbums
-import com.hogent.database.ApplicationDatabase
-import com.hogent.database.DatabaseAlbum
+import com.hogent.database.DatabaseInjector
+import com.hogent.database.models.DatabaseAlbum
+import com.hogent.database.models.AlbumAndUserAlbums
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import com.hogent.dikkeploaten.repositories.UserAlbumRepository
 import com.hogent.dikkeploaten.viewmodels.*
+import com.hogent.network.NetworkApiInjector
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.
@@ -15,13 +16,11 @@ import com.hogent.dikkeploaten.viewmodels.*
 object InjectorUtils {
 
     private fun getAlbumRepository(context: Context): AlbumRepository {
-        return AlbumRepository.getInstance(
-            com.hogent.database.ApplicationDatabase.getInstance(context.applicationContext).albumDao())
+        return AlbumRepository.getInstance(DatabaseInjector.provideDatabaseDataSource(context), NetworkApiInjector.provideNetworDatakSource())
     }
 
     private fun getUserAlbumRepository(context: Context): UserAlbumRepository {
-        return UserAlbumRepository.getInstance(
-            com.hogent.database.ApplicationDatabase.getInstance(context.applicationContext).userAlbumDao())
+        return UserAlbumRepository.getInstance(DatabaseInjector.provideDatabaseDataSource(context))
     }
 
     fun provideUserAlbumViewModelFactory(
@@ -36,14 +35,14 @@ object InjectorUtils {
 
     fun provideAlbumDetailViewModelFactory(
         context: Context,
-        album: com.hogent.database.DatabaseAlbum
+        album: DatabaseAlbum
     ): AlbumDetailViewModelFactory {
         return AlbumDetailViewModelFactory(getUserAlbumRepository(context), album)
     }
 
     fun provideUserAlbumDetailViewModelFactory(
         context: Context,
-        album: com.hogent.database.AlbumAndUserAlbums
+        album: AlbumAndUserAlbums
     ): UserAlbumDetailViewModelFactory {
         return UserAlbumDetailViewModelFactory(getUserAlbumRepository(context), album)
     }

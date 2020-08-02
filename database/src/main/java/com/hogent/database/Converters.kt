@@ -3,7 +3,7 @@ package com.hogent.database
 import androidx.room.TypeConverter
 import java.util.*
 
-class Converters {
+internal class Converters {
 
     @TypeConverter
     fun calendarToDatestamp(calendar: Calendar): Long {

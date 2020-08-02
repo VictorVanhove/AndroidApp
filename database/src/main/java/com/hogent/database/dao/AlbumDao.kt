@@ -1,10 +1,11 @@
-package com.hogent.database
+package com.hogent.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.hogent.database.models.DatabaseAlbum
 
 @Dao
-interface AlbumDao {
+internal interface AlbumDao {
 
     @Insert
     fun insertAlbum(album: DatabaseAlbum)

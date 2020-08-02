@@ -1,37 +1,38 @@
 package com.hogent.dikkeploaten.repositories
 
-import com.hogent.database.UserAlbum
-import com.hogent.database.UserAlbumDao
+import com.hogent.database.DatabaseDataSource
+import com.hogent.database.models.UserAlbum
 
 class UserAlbumRepository private constructor(
-    private val userAlbumDao: com.hogent.database.UserAlbumDao
+    private val databaseDataSource: DatabaseDataSource
 ) {
 
     suspend fun createUserAlbum(albumId: String, albumType: String) {
-        val userAlbum = com.hogent.database.UserAlbum(albumId, albumType)
-        userAlbumDao.insertUserAlbum(userAlbum)
+
+        databaseDataSource.createUserAlbum(albumId, albumType)
     }
 
-    suspend fun removeUserAlbum(userAlbum: com.hogent.database.UserAlbum) {
-        userAlbumDao.deleteUserAlbum(userAlbum)
+    suspend fun removeUserAlbum(userAlbum: UserAlbum) {
+        databaseDataSource.removeUserAlbum(userAlbum)
     }
 
-    suspend fun getUserAlbum(albumId: String): com.hogent.database.UserAlbum = userAlbumDao.getUserAlbum(albumId)
+    suspend fun getUserAlbum(albumId: String): UserAlbum = databaseDataSource.getUserAlbum(albumId)
 
     fun isInCollection(albumId: String) =
-        userAlbumDao.isInCollection(albumId)
+        databaseDataSource.isInCollection(albumId)
 
-    fun getCollectionUser() = userAlbumDao.getAlbumsUser("collection")
-    fun getWantlistUser() = userAlbumDao.getAlbumsUser("wantlist")
+    fun getCollectionUser() = databaseDataSource.getCollectionUser()
+
+    fun getWantlistUser() = databaseDataSource.getWantlistUser()
 
     companion object {
 
         // For Singleton instantiation
         @Volatile private var instance: UserAlbumRepository? = null
 
-        fun getInstance(userAlbumDao: com.hogent.database.UserAlbumDao) =
+        fun getInstance(databaseDataSource: DatabaseDataSource) =
             instance ?: synchronized(this) {
-                instance ?: UserAlbumRepository(userAlbumDao).also { instance = it }
+                instance ?: UserAlbumRepository(databaseDataSource).also { instance = it }
             }
     }
 }

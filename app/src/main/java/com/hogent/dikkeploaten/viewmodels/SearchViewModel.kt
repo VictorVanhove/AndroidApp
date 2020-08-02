@@ -1,7 +1,7 @@
 package com.hogent.dikkeploaten.viewmodels
 
 import androidx.lifecycle.*
-import com.hogent.database.DatabaseAlbum
+import com.hogent.database.models.DatabaseAlbum
 import com.hogent.dikkeploaten.repositories.AlbumRepository
 import kotlinx.coroutines.*
 
@@ -20,10 +20,10 @@ class SearchViewModel internal constructor(
     val albums = albumRepository.albums
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedProperty = MutableLiveData<com.hogent.database.DatabaseAlbum>()
+    private val _navigateToSelectedProperty = MutableLiveData<DatabaseAlbum>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedProperty: LiveData<com.hogent.database.DatabaseAlbum>
+    val navigateToSelectedProperty: LiveData<DatabaseAlbum>
         get() = _navigateToSelectedProperty
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -71,7 +71,7 @@ class SearchViewModel internal constructor(
      * When the property is clicked, set the [_navigateToSelectedProperty] [MutableLiveData]
      * @param marsProperty The [MarsProperty] that was clicked on.
      */
-    fun displayPropertyDetails(album: com.hogent.database.DatabaseAlbum) {
+    fun displayPropertyDetails(album: DatabaseAlbum) {
         _navigateToSelectedProperty.value = album
     }
 

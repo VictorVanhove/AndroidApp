@@ -1,4 +1,4 @@
-package com.hogent.database
+package com.hogent.database.models
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -10,12 +10,12 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class DatabaseAlbum (
     @PrimaryKey @ColumnInfo(name = "id") val albumId: String,
-    val title: String,
-    val artist: String,
-    val thumb: String,
-    val description: String,
-    val genre: String,
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "artist") val artist: String,
+    @ColumnInfo(name = "thumb") val thumb: String,
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "genre") val genre: String,
     @ColumnInfo(name = "released_in") val releaseYear: String,
     @ColumnInfo(name = "tracklist") val trackList: String,
-    val musicians: String
+    @ColumnInfo(name = "musicians") val musicians: String
 ): Parcelable
