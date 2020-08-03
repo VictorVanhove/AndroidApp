@@ -10,21 +10,18 @@ import com.hogent.dikkeploaten.databinding.ListItemUserAlbumBinding
 import com.hogent.dikkeploaten.viewmodels.AlbumAndUserAlbumsViewModel
 
 class UserAlbumAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<AlbumAndUserAlbums, UserAlbumAdapter.UserAlbumViewHolder>(DiffCallback) {
+    ListAdapter<AlbumAndUserAlbums, UserAlbumViewHolder>(DiffCallback) {
 
-    /**
-     * The MarsPropertyViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [AlbumAndUserAlbums] information.
-     */
-    class UserAlbumViewHolder(private var binding: ListItemUserAlbumBinding) : RecyclerView.ViewHolder(binding.root) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAlbumViewHolder {
+        return UserAlbumViewHolder(ListItemUserAlbumBinding.inflate(LayoutInflater.from(parent.context)))
+    }
 
-        fun bind(albums: AlbumAndUserAlbums) {
-            with(binding) {
-                viewModel = AlbumAndUserAlbumsViewModel(albums)
-                executePendingBindings()
-            }
+    override fun onBindViewHolder(holder: UserAlbumViewHolder, position: Int) {
+        val album = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(album)
         }
-
+        holder.bindData(album)
     }
 
     /**
@@ -47,17 +44,6 @@ class UserAlbumAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAlbumViewHolder {
-        return UserAlbumViewHolder(ListItemUserAlbumBinding.inflate(LayoutInflater.from(parent.context)))
-    }
-
-    override fun onBindViewHolder(holder: UserAlbumViewHolder, position: Int) {
-        val album = getItem(position)
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(album)
-        }
-        holder.bind(album)
-    }
 
     class OnClickListener(val clickListener: (album: AlbumAndUserAlbums) -> Unit) {
         fun onClick(album: AlbumAndUserAlbums) = clickListener(album)

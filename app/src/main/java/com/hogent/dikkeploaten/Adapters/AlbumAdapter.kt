@@ -12,37 +12,7 @@ import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
  * Adapter class for each album in recyclerView.
  */
 class AlbumAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<Album, AlbumAdapter.AlbumViewHolder>(DiffCallback) {
-
-    /**
-     * The AlbumPropertyViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [Album] information.
-     */
-    class AlbumViewHolder(private var binding: ListItemAlbumBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(album: Album) {
-            binding.album = album
-            // This is important, because it forces the data binding to execute immediately,
-            // which allows the RecyclerView to make the correct view size measurements
-            binding.executePendingBindings()
-        }
-
-    }
-
-    /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [Album]
-     * has been updated.
-     */
-    companion object DiffCallback : DiffUtil.ItemCallback<Album>() {
-        override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
-            return oldItem === newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
-            return oldItem.albumId == newItem.albumId
-        }
-    }
+    ListAdapter<Album, AlbumViewHolder>(DiffCallback) {
 
     /**
      * Create new [RecyclerView] item views (invoked by the layout manager)
@@ -59,8 +29,23 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
         holder.itemView.setOnClickListener {
             onClickListener.onClick(album)
         }
-        holder.bind(album)
+        holder.bindData(album)
     }
+
+    /**
+     * Allows the RecyclerView to determine which items have changed when the [List] of [Album]
+     * has been updated.
+     */
+    companion object DiffCallback : DiffUtil.ItemCallback<Album>() {
+        override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
+            return oldItem.albumId == newItem.albumId
+        }
+    }
+
 
     /**
      * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Album]
