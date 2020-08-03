@@ -2,8 +2,12 @@ package com.hogent.database
 
 import com.hogent.database.dao.AlbumDao
 import com.hogent.database.dao.UserAlbumDao
-import com.hogent.database.models.DatabaseAlbum
-import com.hogent.database.models.DatabaseUserAlbum
+import com.hogent.database.models.*
+import com.hogent.database.models.toAlbum
+import com.hogent.database.models.toDatabaseAlbum
+import com.hogent.domain.models.Album
+import com.hogent.domain.models.UserAlbum
+import com.hogent.domain.sources.DatabaseSource
 
 private const val COLLECTION_TYPE = "collection"
 private const val WANTLIST_TYPE = "wantlist"
@@ -11,37 +15,37 @@ private const val WANTLIST_TYPE = "wantlist"
 class DatabaseDataSource internal constructor(
     private val albumDao: AlbumDao,
     private val userAlbumDao: UserAlbumDao
-) {
+): DatabaseSource {
 
     //region Albums
 
-    suspend fun getAlbumList(): List<DatabaseAlbum> = albumDao.getAlbumList()
+    override suspend fun getAlbumList(): List<Album> = albumDao.getAlbumList().map { it.toAlbum() }
 
-    suspend fun getAlbumWithId(id: String): DatabaseAlbum = albumDao.getAlbumWithId(id)
+    override suspend fun getAlbumWithId(id: String): Album = albumDao.getAlbumWithId(id).toAlbum()
 
-    suspend fun insertAllAlbums(albums: List<DatabaseAlbum>) = albumDao.insertAllAlbums(albums)
+    override suspend fun insertAllAlbums(albums: List<Album>) = albumDao.insertAllAlbums(albums.map { it.toDatabaseAlbum() })
 
     //endregion
 
     //region User Albums
 
-    suspend fun createUserAlbum(albumId: String, albumType: String) {
+    override suspend fun createUserAlbum(albumId: String, albumType: String) {
         val userAlbum = DatabaseUserAlbum(albumId, albumType)
         userAlbumDao.insertUserAlbum(userAlbum)
     }
 
-    suspend fun removeUserAlbum(userAlbum: DatabaseUserAlbum) {
-        userAlbumDao.deleteUserAlbum(userAlbum)
+    override suspend fun removeUserAlbum(userAlbum: UserAlbum) {
+        userAlbumDao.deleteUserAlbum(userAlbum.albumId)
     }
 
-    suspend fun getUserAlbum(albumId: String): DatabaseUserAlbum = userAlbumDao.getUserAlbum(albumId)
+    override suspend fun getUserAlbum(albumId: String): UserAlbum = userAlbumDao.getUserAlbum(albumId).toUserAlbum()
 
-    suspend fun isInCollection(albumId: String) =
+    override suspend fun isInCollection(albumId: String) =
         userAlbumDao.isInCollection(albumId)
 
-    suspend fun getCollectionUser() = userAlbumDao.getAlbumsUser(COLLECTION_TYPE)
+    override suspend fun getCollectionUser() = userAlbumDao.getAlbumsUser(COLLECTION_TYPE).map { it.toAlbumAndUserAlbums() }
 
-    suspend fun getWantlistUser() = userAlbumDao.getAlbumsUser(WANTLIST_TYPE)
+    override suspend fun getWantlistUser() = userAlbumDao.getAlbumsUser(WANTLIST_TYPE).map { it.toAlbumAndUserAlbums() }
 
     //endregion
 }

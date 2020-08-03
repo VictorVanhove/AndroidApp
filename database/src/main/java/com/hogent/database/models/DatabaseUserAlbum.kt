@@ -2,6 +2,7 @@ package com.hogent.database.models
 
 import android.os.Parcelable
 import androidx.room.*
+import com.hogent.domain.models.UserAlbum
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -12,7 +13,7 @@ import java.util.*
     ],
     indices = [Index("album_id")]
 )
-data class DatabaseUserAlbum(
+internal data class DatabaseUserAlbum(
     @ColumnInfo(name = "album_id") val albumId: String,
 
     @ColumnInfo(name = "album_type") val albumType: String,
@@ -26,3 +27,10 @@ data class DatabaseUserAlbum(
     @ColumnInfo(name = "id")
     var userAlbumId: Long = 0
 }
+
+internal fun DatabaseUserAlbum.toUserAlbum(): UserAlbum = UserAlbum(
+    albumId = albumId,
+    albumType = albumType,
+    albumDate = albumDate,
+    userAlbumId = userAlbumId.toString()
+)

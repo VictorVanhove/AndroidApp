@@ -1,7 +1,7 @@
 package com.hogent.database.dao
 
 import androidx.room.*
-import com.hogent.database.models.AlbumAndUserAlbums
+import com.hogent.database.models.DatabaseAlbumAndUserAlbums
 import com.hogent.database.models.DatabaseUserAlbum
 
 @Dao
@@ -19,13 +19,13 @@ internal interface UserAlbumDao {
      */
     @Transaction
     @Query("SELECT * FROM album_table WHERE id IN (SELECT DISTINCT(album_id) FROM user_albums WHERE album_type = :type)")
-    suspend fun getAlbumsUser(type: String): List<AlbumAndUserAlbums>
+    suspend fun getAlbumsUser(type: String): List<DatabaseAlbumAndUserAlbums>
 
     @Insert
     suspend fun insertUserAlbum(userAlbum: DatabaseUserAlbum): Long
 
-    @Delete
-    suspend fun deleteUserAlbum(userAlbum: DatabaseUserAlbum)
+    @Query("DELETE from user_albums WHERE album_id = :albumId")
+    suspend fun deleteUserAlbum(albumId: String)
 
     @Query("SELECT * FROM user_albums WHERE album_id = :albumId")
     suspend fun getUserAlbum(albumId: String): DatabaseUserAlbum

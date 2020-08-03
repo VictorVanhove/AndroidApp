@@ -3,6 +3,7 @@ package com.hogent.database.models
 import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Relation
+import com.hogent.domain.models.AlbumAndUserAlbums
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
@@ -10,11 +11,13 @@ import kotlinx.android.parcel.RawValue
  * This class captures the relationship between an [DatabaseAlbum] and a user's [DatabaseUserAlbum], which is
  * used by Room to fetch the related entities.
  */
-@Parcelize
-data class AlbumAndUserAlbums(
+internal data class DatabaseAlbumAndUserAlbums(
     @Embedded
     val album: DatabaseAlbum,
 
     @Relation(parentColumn = "id", entityColumn = "album_id")
     val userAlbums: List<@RawValue DatabaseUserAlbum> = emptyList()
-) : Parcelable
+)
+
+internal fun DatabaseAlbumAndUserAlbums.toAlbumAndUserAlbums(): AlbumAndUserAlbums =
+    AlbumAndUserAlbums(album = album.toAlbum(), userAlbums = userAlbums.map { it.toUserAlbum() })

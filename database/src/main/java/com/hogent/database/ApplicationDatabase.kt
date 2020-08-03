@@ -9,6 +9,7 @@ import com.hogent.database.dao.AlbumDao
 import com.hogent.database.models.DatabaseAlbum
 import com.hogent.database.dao.UserAlbumDao
 import com.hogent.database.models.DatabaseUserAlbum
+import com.hogent.database.utilities.Converters
 
 @Database(entities = [DatabaseAlbum::class, DatabaseUserAlbum::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)

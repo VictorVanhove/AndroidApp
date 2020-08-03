@@ -1,6 +1,10 @@
 package com.hogent.network
 
-class NetworkDataSource internal constructor(private val service: ApiService) {
+import com.hogent.domain.models.Album
+import com.hogent.domain.sources.NetworkSource
+import com.hogent.network.models.toAlbum
 
-    suspend fun getAlbumList() = service.getAlbumList()
+class NetworkDataSource internal constructor(private val service: ApiService): NetworkSource {
+
+    override suspend fun getAlbumList() = service.getAlbumList().map { it.toAlbum() }
 }

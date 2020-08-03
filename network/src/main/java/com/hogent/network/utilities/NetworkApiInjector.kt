@@ -1,5 +1,7 @@
-package com.hogent.network;
+package com.hogent.network.utilities;
 
+import com.hogent.network.ApiService
+import com.hogent.network.NetworkDataSource
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -29,5 +31,6 @@ object NetworkApiInjector {
     private val retrofitService: ApiService by lazy { retrofit.create(
         ApiService::class.java) }
 
-    fun provideNetworDatakSource() = NetworkDataSource(retrofitService)
+    fun provideNetworDatakSource() =
+        NetworkDataSource(retrofitService)
 }

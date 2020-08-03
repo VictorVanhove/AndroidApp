@@ -1,4 +1,4 @@
-package com.hogent.database
+package com.hogent.database.utilities
 
 import androidx.room.TypeConverter
 import java.util.*
