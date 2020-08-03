@@ -11,6 +11,8 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hogent.dikkeploaten.adapters.AlbumAdapter
 import com.hogent.dikkeploaten.databinding.FragmentSearchBinding
+import com.hogent.dikkeploaten.models.toAlbum
+import com.hogent.dikkeploaten.models.toViewAlbum
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.SearchViewModel
 
@@ -42,7 +44,7 @@ class SearchFragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = AlbumAdapter(AlbumAdapter.OnClickListener {
-            viewModel.displayAlbumDetails(it)
+            viewModel.displayAlbumDetails(it.toAlbum())
         })
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
@@ -55,7 +57,7 @@ class SearchFragment : Fragment() {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(
-                    ViewPagerFragmentDirections.actionViewPagerFragmentToAlbumDetailFragment(it)
+                    ViewPagerFragmentDirections.actionViewPagerFragmentToAlbumDetailFragment(it.toViewAlbum())
                 )
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayAlbumDetailsComplete()
@@ -67,7 +69,7 @@ class SearchFragment : Fragment() {
 
     private fun subscribeUi(adapter: AlbumAdapter) {
         viewModel.albums.observe(viewLifecycleOwner) { result ->
-            adapter.submitList(result)
+            adapter.submitList(result.map { it.toViewAlbum() })
         }
     }
 

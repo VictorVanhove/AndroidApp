@@ -1,10 +1,10 @@
 package com.hogent.dikkeploaten.viewmodels
 
-import com.hogent.database.models.AlbumAndUserAlbums
+import com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AlbumAndUserAlbumsViewModel(albums: AlbumAndUserAlbums) {
+internal class AlbumAndUserAlbumsViewModel(albums: ViewAlbumAndUserAlbums) {
 
     private val album = checkNotNull(albums.album)
     private val userAlbums = albums.userAlbums[0]

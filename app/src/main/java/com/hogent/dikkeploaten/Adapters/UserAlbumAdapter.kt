@@ -4,13 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.hogent.database.models.AlbumAndUserAlbums
 import com.hogent.dikkeploaten.databinding.ListItemUserAlbumBinding
-import com.hogent.dikkeploaten.viewmodels.AlbumAndUserAlbumsViewModel
+import com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums
 
-class UserAlbumAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<AlbumAndUserAlbums, UserAlbumViewHolder>(DiffCallback) {
+internal class UserAlbumAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<ViewAlbumAndUserAlbums, UserAlbumViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserAlbumViewHolder {
         return UserAlbumViewHolder(ListItemUserAlbumBinding.inflate(LayoutInflater.from(parent.context)))
@@ -25,28 +23,28 @@ class UserAlbumAdapter(private val onClickListener: OnClickListener) :
     }
 
     /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [AlbumAndUserAlbums]
+     * Allows the RecyclerView to determine which items have changed when the [List] of [DatabaseAlbumAndUserAlbums]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<AlbumAndUserAlbums>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<ViewAlbumAndUserAlbums>() {
         override fun areItemsTheSame(
-            oldItem: AlbumAndUserAlbums,
-            newItem: AlbumAndUserAlbums
+            oldItem: ViewAlbumAndUserAlbums,
+            newItem: ViewAlbumAndUserAlbums
         ): Boolean {
             return oldItem.album.albumId == newItem.album.albumId
         }
 
         override fun areContentsTheSame(
-            oldItem: AlbumAndUserAlbums,
-            newItem: AlbumAndUserAlbums
+            oldItem: ViewAlbumAndUserAlbums,
+            newItem: ViewAlbumAndUserAlbums
         ): Boolean {
             return oldItem.album == newItem.album
         }
     }
 
 
-    class OnClickListener(val clickListener: (album: AlbumAndUserAlbums) -> Unit) {
-        fun onClick(album: AlbumAndUserAlbums) = clickListener(album)
+    class OnClickListener(val clickListener: (album: ViewAlbumAndUserAlbums) -> Unit) {
+        fun onClick(album: ViewAlbumAndUserAlbums) = clickListener(album)
     }
 
 }

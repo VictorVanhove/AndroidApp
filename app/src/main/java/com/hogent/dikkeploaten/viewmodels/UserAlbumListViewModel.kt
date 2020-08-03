@@ -3,8 +3,8 @@ package com.hogent.dikkeploaten.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hogent.database.models.AlbumAndUserAlbums
-import com.hogent.dikkeploaten.repositories.UserAlbumRepository
+import com.hogent.domain.models.AlbumAndUserAlbums
+import com.hogent.domain.repositories.UserAlbumRepository
 import kotlinx.coroutines.*
 
 class UserAlbumListViewModel internal constructor(
@@ -34,13 +34,20 @@ class UserAlbumListViewModel internal constructor(
     private var viewModelJob = Job()
 
     // the Coroutine runs using the IO dispatcher
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
     fun loadAlbumsAndUserAlbums() {
         viewModelScope.launch {
             try {
-                _albumAndUserAlbumsCollection.value = userAlbumRepository.getCollectionUser()
-                _albumAndUserAlbumsWantlist.value = userAlbumRepository.getWantlistUser()
+
+                val collection = userAlbumRepository.getCollectionUser()
+                val wantList = userAlbumRepository.getWantlistUser()
+
+                withContext(Dispatchers.Main) {
+
+                    _albumAndUserAlbumsCollection.value = collection
+                    _albumAndUserAlbumsWantlist.value = wantList
+                }
             } catch (e: Error) {
                 throw Error(e)
             }
@@ -58,7 +65,7 @@ class UserAlbumListViewModel internal constructor(
 
     /**
      * When the album is clicked, set the [_navigateToSelectedAlbum] [MutableLiveData]
-     * @param album The [AlbumAndUserAlbums] that was clicked on.
+     * @param album The [DatabaseAlbumAndUserAlbums] that was clicked on.
      */
     fun displayAlbumDetails(album: AlbumAndUserAlbums) {
         _navigateToSelectedAlbum.value = album

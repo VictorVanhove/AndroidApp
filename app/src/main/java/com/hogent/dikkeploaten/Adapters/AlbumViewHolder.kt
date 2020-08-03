@@ -1,18 +1,17 @@
 package com.hogent.dikkeploaten.adapters
 
-import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
-import com.hogent.dikkeploaten.models.Album
+import com.hogent.dikkeploaten.models.ViewAlbum
+import com.hogent.domain.models.Album
 
 /**
  * The AlbumViewHolder constructor takes the binding variable from the associated
  * GridViewItem, which nicely gives it access to the full [Album] information.
  */
 class AlbumViewHolder(private var binding: ListItemAlbumBinding) :
-    ViewHolder<Album>(binding.root) {
+    ViewHolder<ViewAlbum>(binding.root) {
 
-    override fun bindData(data: Album) {
+    override fun bindData(data: ViewAlbum) {
         binding.album = data
         // This is important, because it forces the data binding to execute immediately,
         // which allows the RecyclerView to make the correct view size measurements

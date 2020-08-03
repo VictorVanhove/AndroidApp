@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hogent.database.models.AlbumAndUserAlbums
-import com.hogent.dikkeploaten.repositories.UserAlbumRepository
+import com.hogent.domain.models.AlbumAndUserAlbums
+import com.hogent.domain.repositories.UserAlbumRepository
 import kotlinx.coroutines.launch
 
 /**

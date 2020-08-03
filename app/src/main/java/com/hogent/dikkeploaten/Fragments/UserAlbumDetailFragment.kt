@@ -17,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.databinding.FragmentUserAlbumInfoBinding
+import com.hogent.dikkeploaten.models.toAlbumAndUserAlbums
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel
 
@@ -28,7 +29,7 @@ class UserAlbumDetailFragment : Fragment() {
     private val args: UserAlbumDetailFragmentArgs by navArgs()
 
     private val userAlbumDetailViewModel: UserAlbumDetailViewModel by viewModels {
-        InjectorUtils.provideUserAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum)
+        InjectorUtils.provideUserAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum.toAlbumAndUserAlbums())
     }
 
     override fun onCreateView(

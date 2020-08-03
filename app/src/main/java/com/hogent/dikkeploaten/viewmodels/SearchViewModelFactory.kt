@@ -5,10 +5,10 @@ import androidx.lifecycle.AbstractSavedStateViewModelFactory
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import com.hogent.dikkeploaten.repositories.AlbumRepository
+import com.hogent.domain.repositories.AlbumRepository
 
 class SearchViewModelFactory(
-    private val repository: AlbumRepository,
+    private val repository: com.hogent.domain.repositories.AlbumRepository,
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {

@@ -2,15 +2,14 @@ package com.hogent.dikkeploaten.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.hogent.database.models.AlbumAndUserAlbums
-import com.hogent.dikkeploaten.repositories.UserAlbumRepository
+import com.hogent.domain.models.AlbumAndUserAlbums
 
 /**
  * Simple ViewModel factory that provides the AlbumAndUserAlbums and context to the ViewModel.
  */
 class UserAlbumDetailViewModelFactory
     (
-    private val userAlbumRepository: UserAlbumRepository,
+    private val userAlbumRepository: com.hogent.domain.repositories.UserAlbumRepository,
     private val album: AlbumAndUserAlbums
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

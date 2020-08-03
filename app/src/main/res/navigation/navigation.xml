@@ -51,7 +51,7 @@
             tools:layout="@layout/fragment_album_info">
         <argument
             android:name="selectedAlbum"
-            app:argType="com.hogent.dikkeploaten.models.Album" />
+            app:argType="com.hogent.dikkeploaten.models.ViewAlbum" />
     </fragment>
 
     <fragment
@@ -61,7 +61,7 @@
         tools:layout="@layout/fragment_user_album_info">
         <argument
             android:name="selectedAlbum"
-            app:argType="com.hogent.database.models.AlbumAndUserAlbums" />
+            app:argType="com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums" />
     </fragment>
 
 </navigation>

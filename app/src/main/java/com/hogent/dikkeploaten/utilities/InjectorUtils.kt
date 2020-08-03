@@ -2,13 +2,13 @@ package com.hogent.dikkeploaten.utilities
 
 import android.content.Context
 import androidx.fragment.app.Fragment
-import com.hogent.database.DatabaseInjector
-import com.hogent.dikkeploaten.models.Album
-import com.hogent.database.models.AlbumAndUserAlbums
-import com.hogent.dikkeploaten.repositories.AlbumRepository
-import com.hogent.dikkeploaten.repositories.UserAlbumRepository
+import com.hogent.database.utilities.DatabaseInjector
+import com.hogent.domain.models.Album
+import com.hogent.domain.repositories.AlbumRepository
 import com.hogent.dikkeploaten.viewmodels.*
-import com.hogent.network.NetworkApiInjector
+import com.hogent.domain.models.AlbumAndUserAlbums
+import com.hogent.domain.repositories.UserAlbumRepository
+import com.hogent.network.utilities.NetworkApiInjector
 
 /**
  * Static methods used to inject classes needed for various Activities and Fragments.

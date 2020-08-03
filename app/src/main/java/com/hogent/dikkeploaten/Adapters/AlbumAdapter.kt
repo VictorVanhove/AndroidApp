@@ -5,14 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hogent.dikkeploaten.models.Album
+import com.hogent.domain.models.Album
 import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
+import com.hogent.dikkeploaten.models.ViewAlbum
+import com.hogent.dikkeploaten.models.toViewAlbum
 
 /**
  * Adapter class for each album in recyclerView.
  */
 class AlbumAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<Album, AlbumViewHolder>(DiffCallback) {
+    ListAdapter<ViewAlbum, AlbumViewHolder>(DiffCallback) {
 
     /**
      * Create new [RecyclerView] item views (invoked by the layout manager)
@@ -36,12 +38,12 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
      * Allows the RecyclerView to determine which items have changed when the [List] of [Album]
      * has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<Album>() {
-        override fun areItemsTheSame(oldItem: Album, newItem: Album): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<ViewAlbum>() {
+        override fun areItemsTheSame(oldItem: ViewAlbum, newItem: ViewAlbum): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Album, newItem: Album): Boolean {
+        override fun areContentsTheSame(oldItem: ViewAlbum, newItem: ViewAlbum): Boolean {
             return oldItem.albumId == newItem.albumId
         }
     }
@@ -52,8 +54,8 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
      * associated with the current item to the [onClick] function.
      * @param clickListener lambda that will be called with the current [Album]
      */
-    class OnClickListener(val clickListener: (album: Album) -> Unit) {
-        fun onClick(album: Album) = clickListener(album)
+    class OnClickListener(val clickListener: (album: ViewAlbum) -> Unit) {
+        fun onClick(album: ViewAlbum) = clickListener(album)
     }
 
 }

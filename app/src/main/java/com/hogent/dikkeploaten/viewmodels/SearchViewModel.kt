@@ -1,14 +1,16 @@
 package com.hogent.dikkeploaten.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
-import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.repositories.AlbumRepository
+import com.hogent.domain.models.Album
+import com.hogent.domain.repositories.AlbumRepository
 import kotlinx.coroutines.*
 
 enum class ApiStatus { LOADING, ERROR, DONE }
 
 class SearchViewModel internal constructor(
-    val albumRepository: AlbumRepository) : ViewModel() {
+    val albumRepository: AlbumRepository
+) : ViewModel() {
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ApiStatus>()
@@ -17,24 +19,24 @@ class SearchViewModel internal constructor(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _albums = MutableLiveData<List<Album>>()
+    private val _albums = MutableLiveData<List<com.hogent.domain.models.Album>>()
 
     // The external immutable LiveData for the request status
-    val albums: LiveData<List<Album>>
+    val albums: LiveData<List<com.hogent.domain.models.Album>>
         get() = _albums
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedAlbum = MutableLiveData<Album>()
+    private val _navigateToSelectedAlbum = MutableLiveData<com.hogent.domain.models.Album>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedAlbum: LiveData<Album>
+    val navigateToSelectedAlbum: LiveData<com.hogent.domain.models.Album>
         get() = _navigateToSelectedAlbum
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
     // the Coroutine runs using the Main (UI) dispatcher
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
     /**
      * Call loadAlbumsFromNetwork() on init so we can display status immediately.
@@ -51,16 +53,36 @@ class SearchViewModel internal constructor(
     private fun loadAlbumsFromNetwork()
     {
         viewModelScope.launch {
+
+            setStatus(ApiStatus.LOADING)
+
             try {
-                _status.value = ApiStatus.LOADING
+
                 albumRepository.updateAlbums()
 
-                _albums.value = albumRepository.getAllAlbums()
+                val albums = albumRepository.getAllAlbums()
+
+                setAlbums(albums)
             } catch (e: Error) {
-                _status.value = ApiStatus.ERROR
+
+                Log.e("SearchViewModel", "Error when loading albums", e.cause)
+                setStatus(ApiStatus.ERROR)
             } finally {
-                _status.value = ApiStatus.DONE
+
+                setStatus(ApiStatus.DONE)
             }
+        }
+    }
+
+    private suspend fun setStatus(status: ApiStatus) {
+        withContext(Dispatchers.Main) {
+            _status.value = status
+        }
+    }
+
+    private suspend fun setAlbums(albums: List<com.hogent.domain.models.Album>) {
+        withContext(Dispatchers.Main) {
+            _albums.value = albums
         }
     }
 
@@ -69,15 +91,15 @@ class SearchViewModel internal constructor(
      * Retrofit service to stop.
      */
     override fun onCleared() {
-        super.onCleared()
         viewModelJob.cancel()
+        super.onCleared()
     }
 
     /**
      * When the album is clicked, set the [_navigateToSelectedAlbum] [MutableLiveData]
      * @param album The [Album] that was clicked on.
      */
-    fun displayAlbumDetails(album: Album) {
+    fun displayAlbumDetails(album: com.hogent.domain.models.Album) {
         _navigateToSelectedAlbum.value = album
     }
 

@@ -17,7 +17,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
-import com.hogent.dikkeploaten.models.Album
+import com.hogent.dikkeploaten.models.toAlbum
+import com.hogent.domain.models.Album
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
 
@@ -30,7 +31,7 @@ class AlbumDetailFragment : Fragment() {
     private val args: AlbumDetailFragmentArgs by navArgs()
 
     private val albumDetailViewModel: AlbumDetailViewModel by viewModels {
-        InjectorUtils.provideAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum)
+        InjectorUtils.provideAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum.toAlbum())
     }
 
     override fun onCreateView(
@@ -43,7 +44,7 @@ class AlbumDetailFragment : Fragment() {
             viewModel = albumDetailViewModel
             lifecycleOwner = viewLifecycleOwner
             callback = object : Callback {
-                override fun addToCollection(plant: Album?) {
+                override fun addToCollection(plant: com.hogent.domain.models.Album?) {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToCollection()
@@ -53,7 +54,7 @@ class AlbumDetailFragment : Fragment() {
                     }
                 }
 
-                override fun addToWantlist(plant: Album?) {
+                override fun addToWantlist(plant: com.hogent.domain.models.Album?) {
                     plant?.let {
                         hideAppBarFab(fab)
                         albumDetailViewModel.addAlbumToWantlist()
@@ -144,7 +145,7 @@ class AlbumDetailFragment : Fragment() {
     }
 
     interface Callback {
-        fun addToCollection(plant: Album?)
-        fun addToWantlist(plant: Album?)
+        fun addToCollection(plant: com.hogent.domain.models.Album?)
+        fun addToWantlist(plant: com.hogent.domain.models.Album?)
     }
 }

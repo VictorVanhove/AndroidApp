@@ -11,6 +11,8 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.hogent.dikkeploaten.adapters.UserAlbumAdapter
 import com.hogent.dikkeploaten.databinding.FragmentWantlistBinding
+import com.hogent.dikkeploaten.models.toAlbumAndUserAlbums
+import com.hogent.dikkeploaten.models.toViewAlbumAndUserAlbums
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel
 
@@ -42,7 +44,7 @@ class WantlistFragment : Fragment() {
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
         val adapter = UserAlbumAdapter(UserAlbumAdapter.OnClickListener {
-            viewModel.displayAlbumDetails(it)
+            viewModel.displayAlbumDetails(it.toAlbumAndUserAlbums())
         })
 
         binding.albumList.adapter = adapter
@@ -54,7 +56,7 @@ class WantlistFragment : Fragment() {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(
-                    ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it)
+                    ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it.toViewAlbumAndUserAlbums())
                 )
                 // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
                 viewModel.displayAlbumDetailsComplete()
@@ -67,7 +69,7 @@ class WantlistFragment : Fragment() {
     private fun subscribeUi(adapter: UserAlbumAdapter, binding: FragmentWantlistBinding) {
         viewModel.albumAndUserAlbumsWantlist.observe(viewLifecycleOwner) { result ->
             binding.hasAlbums = !result.isNullOrEmpty()
-            adapter.submitList(result)
+            adapter.submitList(result.map { it.toViewAlbumAndUserAlbums() })
         }
     }
 
