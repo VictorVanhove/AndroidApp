@@ -19,17 +19,17 @@ class SearchViewModel internal constructor(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _albums = MutableLiveData<List<com.hogent.domain.models.Album>>()
+    private val _albums = MutableLiveData<List<Album>>()
 
     // The external immutable LiveData for the request status
-    val albums: LiveData<List<com.hogent.domain.models.Album>>
+    val albums: LiveData<List<Album>>
         get() = _albums
 
     // Internally, we use a MutableLiveData to handle navigation to the selected property
-    private val _navigateToSelectedAlbum = MutableLiveData<com.hogent.domain.models.Album>()
+    private val _navigateToSelectedAlbum = MutableLiveData<Album>()
 
     // The external immutable LiveData for the navigation property
-    val navigateToSelectedAlbum: LiveData<com.hogent.domain.models.Album>
+    val navigateToSelectedAlbum: LiveData<Album>
         get() = _navigateToSelectedAlbum
 
     // Create a Coroutine scope using a job to be able to cancel when needed
@@ -80,7 +80,7 @@ class SearchViewModel internal constructor(
         }
     }
 
-    private suspend fun setAlbums(albums: List<com.hogent.domain.models.Album>) {
+    private suspend fun setAlbums(albums: List<Album>) {
         withContext(Dispatchers.Main) {
             _albums.value = albums
         }
@@ -99,7 +99,7 @@ class SearchViewModel internal constructor(
      * When the album is clicked, set the [_navigateToSelectedAlbum] [MutableLiveData]
      * @param album The [Album] that was clicked on.
      */
-    fun displayAlbumDetails(album: com.hogent.domain.models.Album) {
+    fun displayAlbumDetails(album: Album) {
         _navigateToSelectedAlbum.value = album
     }
 

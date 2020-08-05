@@ -2,6 +2,7 @@ package com.hogent.dikkeploaten
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -41,8 +42,7 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .load(imgUri)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.loading_animation)
-                .error(R.drawable.ic_broken_image))
+                .placeholder(R.drawable.loading_animation))
             .into(imgView)
     }
 }
@@ -53,8 +53,8 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
  * displays a broken image to reflect the connection error.  When the request is finished, it
  * hides the image view.
  */
-@BindingAdapter("apiStatus")
-fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {
+@BindingAdapter("statusForImage")
+fun bindStatusForImage(statusImageView: ImageView, status: ApiStatus?) {
     when (status) {
         ApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
@@ -65,7 +65,16 @@ fun bindStatus(statusImageView: ImageView, status: ApiStatus?) {
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
         ApiStatus.DONE -> {
-            statusImageView.visibility = View.GONE
+            statusImageView.visibility = View.VISIBLE
         }
+    }
+}
+
+@BindingAdapter("statusForProgressBar")
+fun bindStatusForProgressBar(progressBar: ProgressBar, status: ApiStatus?) {
+    progressBar.visibility = if (status == ApiStatus.LOADING) {
+        View.VISIBLE
+    } else {
+        View.INVISIBLE
     }
 }
