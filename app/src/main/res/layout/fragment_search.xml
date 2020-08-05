@@ -5,13 +5,14 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable name="isLoadingAlbums" type="boolean" />
         <variable name="viewModel" type="com.hogent.dikkeploaten.viewmodels.SearchViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/album_list"
@@ -33,23 +34,39 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/album_list"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            app:statusForButton="@{viewModel.status}"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3">
 
         <ImageView
             android:id="@+id/status_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:indeterminate="true"
-            app:statusForImage="@{viewModel.status}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/album_list"
-            app:layout_constraintVertical_bias="0.4" />
+            android:layout_marginBottom="100dp"
+            app:srcCompat="@drawable/ic_connection_error"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/refresh_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retry"
+            android:textColor="?attr/colorAccent"
+            app:backgroundTint="?attr/colorSurface" />
+
+    </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

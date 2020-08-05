@@ -50,7 +50,7 @@ class SearchViewModel internal constructor(
      * [Album] [List] and [ApiStatus] [LiveData]. The Retrofit service returns a
      * coroutine Deferred, which we await to get the result of the transaction.
      */
-    private fun loadAlbumsFromNetwork()
+    fun loadAlbumsFromNetwork()
     {
         viewModelScope.launch {
 

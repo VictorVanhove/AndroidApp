@@ -78,3 +78,15 @@ fun bindStatusForProgressBar(progressBar: ProgressBar, status: ApiStatus?) {
         View.INVISIBLE
     }
 }
+
+@BindingAdapter("statusForButton")
+fun bindStatusForButton(view: View, status: ApiStatus?) {
+    if (status == ApiStatus.ERROR) {
+        view.visibility = View.VISIBLE
+    }
+    if (status == ApiStatus.LOADING) {
+        view.visibility = View.GONE
+    }
+}
+
+
