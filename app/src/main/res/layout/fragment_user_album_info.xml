@@ -5,7 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="isInCollection" type="boolean" />
+
+        <variable
+            name="isInCollection"
+            type="boolean" />
 
         <variable
             name="viewModel"
@@ -19,7 +22,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
+        android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
         tools:context="com.hogent.dikkeploaten.activities.MainActivity"
         tools:ignore="MergeRootFrame">
@@ -29,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/album_detail_app_bar_height"
             android:animateLayoutChanges="true"
-            android:background="#FFFFFF"
+            android:background="?attr/colorOnSurface"
             android:fitsSystemWindows="true"
             android:stateListAnimator="@animator/show_toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -41,18 +44,18 @@
                 android:fitsSystemWindows="true"
                 app:collapsedTitleGravity="center"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.DikkePloaten.Toolbar.Text"
-                app:contentScrim="#FFFFFF"
+                app:contentScrim="?attr/colorOnSurface"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:statusBarScrim="#FFFFFF"
+                app:statusBarScrim="?attr/colorOnSurface"
                 app:title="@{viewModel.selectedAlbum.album.title}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar">
 
                 <ImageView
-                    android:id="@+id/detail_image"
+                    android:id="@+id/user_album_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/album_detail_app_bar_height"
-                    android:contentDescription="Image of album"
+                    android:contentDescription="Image of user album"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.selectedAlbum.album.thumb}"
@@ -68,14 +71,14 @@
                     app:contentInsetStartWithNavigation="0dp"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="@drawable/ic_go_back"
-                    app:titleTextColor="#FFFFFF" />
+                    app:titleTextColor="@color/tintColor" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/album_detail_scrollview"
+            android:id="@+id/user_album_detail_scrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
@@ -84,13 +87,13 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginBottom="@dimen/margin_normal"
                 android:layout_marginLeft="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_small">
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_normal">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/album_head"
+                    android:id="@+id/cv_user_album_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_small"
@@ -106,47 +109,44 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="@dimen/margin_normal"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_normal">
 
                             <TextView
-                                android:id="@+id/album_detail_name"
+                                android:id="@+id/user_album_title"
+                                style="@style/Widget.DikkePloaten.TextView.AlbumDetailHead.Title.Text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
                                 android:text="@{viewModel.selectedAlbum.album.title}"
-                                android:textColor="@color/primaryDarkColor"
-                                android:textSize="24sp"
-                                android:textStyle="bold"
                                 tools:text="@string/placeholder_title" />
 
                             <TextView
-                                android:id="@+id/album_detail_artist"
+                                android:id="@+id/user_album_artist"
+                                style="@style/Widget.DikkePloaten.TextView.AlbumDetailHead.Artist.Text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
                                 android:text="@{viewModel.selectedAlbum.album.artist}"
-                                android:textSize="18sp"
-                                android:textColor="@color/secondaryDarkColor"
                                 tools:text="@string/placeholder_artist" />
 
                         </LinearLayout>
 
                         <View
+                            style="@style/Widget.DikkePloaten.View.AlbumDetailHead.Divider"
                             android:layout_width="match_parent"
-                            android:layout_height="1px"
-                            android:background="@color/dividerColor" />
+                            android:layout_height="@dimen/album_detail_head_divider_height" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="@dimen/margin_normal"
                             android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:padding="@dimen/margin_normal">
 
                             <TextView
-                                android:id="@+id/album_detail_description"
+                                android:id="@+id/user_album_description"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center_horizontal"
@@ -160,74 +160,74 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/album_intro"
+                    android:id="@+id/cv_user_album_intro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/album_head">
+                    app:layout_constraintTop_toBottomOf="@id/cv_user_album_head">
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="2"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
                         android:padding="@dimen/margin_normal"
-                        android:baselineAligned="false">
+                        android:weightSum="2">
 
                         <LinearLayout
-                            android:orientation="vertical"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:layout_weight="1">
+                            android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/lbl_genre_user_album"
+                                style="@style/Widget.DikkePloaten.TextView.AlbumDetailIntro.Header.Text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="@string/genre"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
+                                android:text="@string/genre" />
 
                             <TextView
+                                android:id="@+id/genre_user_album"
+                                style="@style/Widget.DikkePloaten.TextView.AlbumDetailIntro.Text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/genre_album"
                                 android:gravity="center"
-                                android:textAllCaps="false"
-                                android:textColor="@color/primaryDarkColor"
                                 android:text="@{viewModel.selectedAlbum.album.genre}"
-                                tools:text="@string/genre"/>
+                                tools:text="@string/genre" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:orientation="vertical"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:layout_weight="1">
+                            android:orientation="vertical">
 
                             <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/released"
-                                android:gravity="center"
-                                android:textSize="16sp"
-                                android:textStyle="bold" />
-
-                            <TextView
+                                android:id="@+id/lbl_release_year_user_album"
+                                style="@style/Widget.DikkePloaten.TextView.AlbumDetailIntro.Header.Text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:textColor="@color/primaryDarkColor"
+                                android:text="@string/released" />
+
+                            <TextView
+                                android:id="@+id/release_year_user_album"
+                                style="@style/Widget.DikkePloaten.TextView.AlbumDetailIntro.Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:text="@{viewModel.selectedAlbum.album.releaseYear}"
-                                tools:text="@string/released"/>
+                                tools:text="@string/released" />
 
                         </LinearLayout>
 
@@ -236,33 +236,33 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/album_trackList"
+                    android:id="@+id/cv_user_album_trackList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/album_intro">
+                    app:layout_constraintTop_toBottomOf="@id/cv_user_album_intro">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:padding="@dimen/margin_normal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_normal">
 
                         <TextView
+                            android:id="@+id/lbl_user_album_trackList"
+                            style="@style/Widget.DikkePloaten.TextView.AlbumDetail.Header.Text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/trackList"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:text="@string/trackList" />
 
                         <TextView
-                            android:id="@+id/album_detail_trackList"
+                            android:id="@+id/user_album_trackList"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
@@ -274,37 +274,38 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/album_musicians"
+                    android:id="@+id/cv_user_album_musicians"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    android:layout_marginBottom="@dimen/margin_small"
                     android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/album_trackList">
+                    app:layout_constraintTop_toBottomOf="@id/cv_user_album_trackList">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:padding="@dimen/margin_normal"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="@dimen/margin_normal">
 
                         <TextView
+                            android:id="@+id/lbl_user_album_musicians"
+                            style="@style/Widget.DikkePloaten.TextView.AlbumDetail.Header.Text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/members"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:text="@string/members" />
 
                         <TextView
+                            android:id="@+id/user_album_musicians"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/margin_small"
                             android:text="@{viewModel.selectedAlbum.album.musicians}"
-                            tools:text="@string/placeholder_text"/>
+                            tools:text="@string/placeholder_text" />
 
                     </LinearLayout>
 
@@ -315,15 +316,13 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab3"
-            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:id="@+id/fab_remove_user_album"
+            style="@style/Widget.DikkePloaten.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
-            android:onClick="@{() -> callback.removeUserAlbumFromCollection()}"
             android:clickable="true"
-            app:rippleColor="@color/secondaryColor"
-            app:tint="@color/tintColor"
+            android:onClick="@{() -> callback.removeUserAlbumFromCollection()}"
             app:isGone="@{!isInCollection}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"

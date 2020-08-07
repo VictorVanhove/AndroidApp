@@ -22,7 +22,7 @@ class ViewPagerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentViewPagerBinding.inflate(inflater, container, false)
-        val tabLayout = binding.tabs
+        val tabLayout = binding.tabsMenu
         val viewPager = binding.viewPager
 
         viewPager.adapter = ViewPagerAdapter(this)

@@ -15,7 +15,6 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.databinding.FragmentUserAlbumInfoBinding
 import com.hogent.dikkeploaten.models.toAlbumAndUserAlbums
 import com.hogent.dikkeploaten.utilities.InjectorUtils
@@ -29,7 +28,10 @@ class UserAlbumDetailFragment : Fragment() {
     private val args: UserAlbumDetailFragmentArgs by navArgs()
 
     private val userAlbumDetailViewModel: UserAlbumDetailViewModel by viewModels {
-        InjectorUtils.provideUserAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum.toAlbumAndUserAlbums())
+        InjectorUtils.provideUserAlbumDetailViewModelFactory(
+            requireActivity(),
+            args.selectedAlbum.toAlbumAndUserAlbums()
+        )
     }
 
     override fun onCreateView(
@@ -43,17 +45,17 @@ class UserAlbumDetailFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             callback = object : Callback {
                 override fun removeUserAlbumFromCollection() {
-                        hideAppBarFab(fab3)
-                        userAlbumDetailViewModel.removeUserAlbumFromCollection()
-                        Snackbar.make(root, "Removed album from collection", Snackbar.LENGTH_LONG)
-                            .show()
+                    hideAppBarFab(fabRemoveUserAlbum)
+                    userAlbumDetailViewModel.removeUserAlbumFromCollection()
+                    Snackbar.make(root, "Removed album from collection", Snackbar.LENGTH_LONG)
+                        .show()
                 }
             }
 
             var isToolbarShown = false
 
             // scroll change listener begins at Y = 0 when image is fully collapsed
-            albumDetailScrollview.setOnScrollChangeListener(
+            userAlbumDetailScrollview.setOnScrollChangeListener(
                 NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
 
                     // User scrolled past image to height of toolbar and the title text is

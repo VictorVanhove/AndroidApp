@@ -10,12 +10,10 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_extra_small">4dp</dimen>
 
-    <dimen name="album_item_image_height">95dp</dimen>
-
     <dimen name="card_side_margin">12dp</dimen>
     <dimen name="card_bottom_margin">26dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
-    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
 
     <!-- elevation for Album Detail toolbar - used to convert to pixels when hiding/showing -->
     <dimen name="toolbar_elevation">5dp</dimen>
@@ -25,4 +23,12 @@
 
     <!-- minimum height of album detail page so that the collapsing toolbar can be shown on every page -->
     <dimen name="album_description_min_height">555dp</dimen>
+
+    <dimen name="album_item_thumb_width">95dp</dimen>
+
+    <dimen name="album_item_thumb_height">95dp</dimen>
+
+    <dimen name="album_detail_head_divider_height">1dp</dimen>
+
+    <dimen name="user_album_item_height">150dp</dimen>
 </resources>

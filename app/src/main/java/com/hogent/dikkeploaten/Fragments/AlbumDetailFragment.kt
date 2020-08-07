@@ -18,9 +18,9 @@ import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
 import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.models.toAlbum
-import com.hogent.domain.models.Album
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
+import kotlinx.android.synthetic.main.fragment_album_info.*
 
 /**
  * Fragment class for information page of each album.
@@ -31,7 +31,10 @@ class AlbumDetailFragment : Fragment() {
     private val args: AlbumDetailFragmentArgs by navArgs()
 
     private val albumDetailViewModel: AlbumDetailViewModel by viewModels {
-        InjectorUtils.provideAlbumDetailViewModelFactory(requireActivity(), args.selectedAlbum.toAlbum())
+        InjectorUtils.provideAlbumDetailViewModelFactory(
+            requireActivity(),
+            args.selectedAlbum.toAlbum()
+        )
     }
 
     override fun onCreateView(
@@ -46,7 +49,7 @@ class AlbumDetailFragment : Fragment() {
             callback = object : Callback {
                 override fun addToCollection(plant: com.hogent.domain.models.Album?) {
                     plant?.let {
-                        hideAppBarFab(fab)
+                        hideAppBarFab(fabDialAdd)
                         albumDetailViewModel.addAlbumToCollection()
                         albumDetailViewModel.isInCollection()
                         Snackbar.make(root, "Added album to collection", Snackbar.LENGTH_LONG)
@@ -56,7 +59,7 @@ class AlbumDetailFragment : Fragment() {
 
                 override fun addToWantlist(plant: com.hogent.domain.models.Album?) {
                     plant?.let {
-                        hideAppBarFab(fab)
+                        hideAppBarFab(fabDialAdd)
                         albumDetailViewModel.addAlbumToWantlist()
                         albumDetailViewModel.isInCollection()
                         Snackbar.make(root, "Added album to wantlist", Snackbar.LENGTH_LONG)
@@ -66,22 +69,47 @@ class AlbumDetailFragment : Fragment() {
             }
 
             // Checks if fab is pressed and in which state it is, then load the right animation
-            fab.setOnClickListener {
+            fabDialAdd.setOnClickListener {
                 if (isFabExpanded) {
-                    fab.startAnimation(
+                    fabDialAdd.startAnimation(
                         AnimationUtils.loadAnimation(
                             context,
                             R.anim.reverse_rotate_button
                         )
                     )
-                    fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
-                    fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                    fabAddToCollection.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_out
+                        )
+                    )
+                    fabAddToWantList.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_out
+                        )
+                    )
                     isFabExpanded = false
                 } else {
-                    dial.visibility = View.VISIBLE
-                    fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotate_button))
-                    fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
-                    fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_in))
+                    dialChildFabs.visibility = View.VISIBLE
+                    fabDialAdd.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.rotate_button
+                        )
+                    )
+                    fabAddToCollection.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_in
+                        )
+                    )
+                    fabAddToWantList.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_in
+                        )
+                    )
                     isFabExpanded = true
                 }
             }
@@ -94,8 +122,18 @@ class AlbumDetailFragment : Fragment() {
 
                     // Makes sure that the option fabs (if expanded) are removed as well when view gets scrolled
                     if (isFabExpanded) {
-                        fab1.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
-                        fab2.startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out))
+                        fabAddToCollection.startAnimation(
+                            AnimationUtils.loadAnimation(
+                                context,
+                                R.anim.fade_out
+                            )
+                        )
+                        fabAddToWantList.startAnimation(
+                            AnimationUtils.loadAnimation(
+                                context,
+                                R.anim.fade_out
+                            )
+                        )
                         isFabExpanded = false
                     }
 

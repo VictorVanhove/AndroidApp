@@ -4,9 +4,9 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorOnPrimary">@color/secondaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorOnSurface">@color/secondaryDarkColor</item>
+        <item name="colorOnSurface">@color/tintColor</item>
         <item name="colorAccent">@color/primaryLightColor</item>
-        <item name="colorSurface">@color/tintColor</item>
+        <item name="colorSurface">@color/backgroundColor</item>
         <item name="colorSecondary">@color/secondaryDarkColor</item>
         <item name="android:colorBackground">@color/backgroundColor</item>
         <item name="android:fontFamily">@font/oswald</item>
@@ -17,8 +17,74 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="TextAppearance.DikkePloaten.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5" >
+    <style name="Widget.DikkePloaten.TextView.AlbumDetailHead.Title.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumDetailHead.Artist.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/secondaryDarkColor</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.View.AlbumDetailHead.Divider" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/dividerColor</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumDetailIntro.Header.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumDetail.Header.Text" parent="Widget.DikkePloaten.TextView.AlbumDetailIntro.Header.Text"/>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumDetailIntro.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/primaryDarkColor</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumItem.Title.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/oswald</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumItem.Artist.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/secondaryDarkColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/oswald</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumItem.DateAdded.Text" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TextView.AlbumItem.LblDateAdded.Text" parent="Widget.DikkePloaten.TextView.AlbumItem.DateAdded.Text">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="TextAppearance.DikkePloaten.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:textColor">@color/primaryTextColor</item>
+    </style>
+
+
+    <style name="Widget.DikkePloaten.FloatingActionButton" parent="@style/Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">@color/tintColor</item>
+        <item name="rippleColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">?attr/colorSurface</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.DikkePloaten.TabLayout" parent="Widget.MaterialComponents.TabLayout.Colored">
+        <item name="android:background">?attr/colorAccent</item>
+        <item name="tabTextColor">?attr/colorPrimaryDark</item>
     </style>
 
 </resources>

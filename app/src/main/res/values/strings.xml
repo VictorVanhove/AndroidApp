@@ -39,18 +39,26 @@
         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
         nisi ut aliquip ex ea commodo consequat.
     </string>
+    <string name="placeholder_date_added">Aug 5, 2020</string>
+
+
     <string name="genre">Genre</string>
     <string name="released">Released</string>
     <string name="trackList">Tracklist</string>
     <string name="members">Leden</string>
     <string name="date_album_added">Toegevoegd op:</string>
 
-    <string name="emptyMessage">Je hebt nog geen albums toegevoegd.\nGa naar de zoekfunctie en voeg albums toe!</string>
+    <string name="message_empty_collection">Je hebt nog geen albums toegevoegd aan jouw collectie.\nGa naar de zoekfunctie en voeg albums toe!</string>
+    <string name="message_empty_wantlist">Je hebt nog geen albums toegevoegd aan jouw wantlist.\nGa naar de zoekfunctie en voeg albums toe!</string>
+
+    <string name="button_reload">Probeer opnieuw</string>
 
     <string name="inCollection">Collectie:</string>
     <string name="inWantlist">Wantlist:</string>
 
-    <string name="imageAlbumDescription">Image of the album</string>
+    <string name="image_album_description">Image of the album</string>
+    <string name="image_user_album_description">Image of the user album</string>
+
     <string name="imageProfileDescription">Image of the databaseUser</string>
     <string name="imageNotificationsDescription">Placeholder image for tab notifications</string>
     <string name="imageStatusDescription">Image of the specific status of the album</string>
