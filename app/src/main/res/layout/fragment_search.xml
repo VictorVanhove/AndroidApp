@@ -63,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Retry"
-            android:textColor="?attr/colorAccent"
-            app:backgroundTint="?attr/colorSurface" />
+            android:textColor="?attr/colorSurface"
+            app:backgroundTint="?attr/colorPrimary" />
 
     </LinearLayout>
 

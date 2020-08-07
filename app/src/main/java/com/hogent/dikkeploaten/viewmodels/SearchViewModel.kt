@@ -63,13 +63,12 @@ class SearchViewModel internal constructor(
                 val albums = albumRepository.getAllAlbums()
 
                 setAlbums(albums)
+
+                setStatus(ApiStatus.DONE)
             } catch (e: Error) {
 
                 Log.e("SearchViewModel", "Error when loading albums", e.cause)
                 setStatus(ApiStatus.ERROR)
-            } finally {
-
-                setStatus(ApiStatus.DONE)
             }
         }
     }
