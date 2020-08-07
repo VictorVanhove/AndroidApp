@@ -7,10 +7,6 @@
     <data>
 
         <variable
-            name="isInCollection"
-            type="boolean" />
-
-        <variable
             name="viewModel"
             type="com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel" />
 
@@ -333,8 +329,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
             android:clickable="true"
-            android:onClick="@{() -> callback.removeUserAlbumFromCollection()}"
-            app:isGone="@{!isInCollection}"
+            android:onClick="@{() -> callback.removeUserAlbumFromCollection(viewModel.selectedAlbum)}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"
             app:srcCompat="@drawable/ic_delete_white_24dp" />

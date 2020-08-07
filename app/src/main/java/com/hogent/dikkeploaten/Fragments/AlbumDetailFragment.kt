@@ -20,7 +20,7 @@ import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
 import com.hogent.dikkeploaten.models.toAlbum
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
-import kotlinx.android.synthetic.main.fragment_album_info.*
+import com.hogent.domain.models.Album
 
 /**
  * Fragment class for information page of each album.
@@ -47,22 +47,28 @@ class AlbumDetailFragment : Fragment() {
             viewModel = albumDetailViewModel
             lifecycleOwner = viewLifecycleOwner
             callback = object : Callback {
-                override fun addToCollection(plant: com.hogent.domain.models.Album?) {
-                    plant?.let {
+                override fun addToCollection(album: Album?) {
+                    album.let {
                         hideAppBarFab(fabDialAdd)
                         albumDetailViewModel.addAlbumToCollection()
-                        albumDetailViewModel.isInCollection()
-                        Snackbar.make(root, "Added album to collection", Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            root,
+                            "\"${album!!.title}\" is toegevoegd aan je collectie",
+                            Snackbar.LENGTH_LONG
+                        )
                             .show()
                     }
                 }
 
-                override fun addToWantlist(plant: com.hogent.domain.models.Album?) {
-                    plant?.let {
+                override fun addToWantlist(album: Album?) {
+                    album.let {
                         hideAppBarFab(fabDialAdd)
                         albumDetailViewModel.addAlbumToWantlist()
-                        albumDetailViewModel.isInCollection()
-                        Snackbar.make(root, "Added album to wantlist", Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            root,
+                            "\"${album!!.title}\" is toegevoegd aan je wantlist",
+                            Snackbar.LENGTH_LONG
+                        )
                             .show()
                     }
                 }
@@ -176,14 +182,14 @@ class AlbumDetailFragment : Fragment() {
         fab.hide()
     }
 
-    fun isInCollection(binding: FragmentAlbumInfoBinding) {
+    private fun isInCollection(binding: FragmentAlbumInfoBinding) {
         albumDetailViewModel.inCollection.observe(viewLifecycleOwner) {
             binding.isInCollection = it
         }
     }
 
     interface Callback {
-        fun addToCollection(plant: com.hogent.domain.models.Album?)
-        fun addToWantlist(plant: com.hogent.domain.models.Album?)
+        fun addToCollection(album: Album?)
+        fun addToWantlist(album: Album?)
     }
 }

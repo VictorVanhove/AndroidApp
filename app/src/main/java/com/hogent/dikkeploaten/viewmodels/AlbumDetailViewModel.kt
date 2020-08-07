@@ -36,7 +36,7 @@ class AlbumDetailViewModel(
         isInCollection()
     }
 
-    fun isInCollection() {
+    private fun isInCollection() {
         viewModelScope.launch {
             _inCollection.value = userAlbumRepository.isInCollection(album.albumId)
         }
@@ -44,12 +44,14 @@ class AlbumDetailViewModel(
 
     fun addAlbumToCollection() {
         viewModelScope.launch {
+            _inCollection.value =  true
             userAlbumRepository.createUserAlbum(album.albumId, "collection")
         }
     }
 
     fun addAlbumToWantlist() {
         viewModelScope.launch {
+            _inCollection.value =  true
             userAlbumRepository.createUserAlbum(album.albumId, "wantlist")
         }
     }

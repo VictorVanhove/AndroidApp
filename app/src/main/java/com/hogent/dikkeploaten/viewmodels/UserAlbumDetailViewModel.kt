@@ -32,14 +32,6 @@ class UserAlbumDetailViewModel(
     init {
         // Initialize the _selectedAlbum MutableLiveData
         _selectedAlbum.value = albumProperty
-        // Update de fab buttons
-        isInCollection()
-    }
-
-    fun isInCollection() {
-        viewModelScope.launch {
-            _inCollection.value = userAlbumRepository.isInCollection(albumProperty.album.albumId)
-        }
     }
 
     fun removeUserAlbumFromCollection() {
