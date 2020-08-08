@@ -86,9 +86,8 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0-rc01'
+    implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
+    implementation "androidx.cardview:cardview:$version_cardview"
 
     implementation "com.google.android.material:material:$version_material"
     implementation 'androidx.viewpager2:viewpager2:1.0.0'

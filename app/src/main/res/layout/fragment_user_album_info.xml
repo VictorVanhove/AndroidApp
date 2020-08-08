@@ -18,7 +18,6 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
         tools:context="com.hogent.dikkeploaten.activities.MainActivity"
         tools:ignore="MergeRootFrame">
@@ -28,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/album_detail_app_bar_height"
             android:animateLayoutChanges="true"
-            android:background="?attr/colorOnSurface"
+            android:background="?attr/colorSurface"
             android:fitsSystemWindows="true"
             android:stateListAnimator="@animator/show_toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -40,9 +39,9 @@
                 android:fitsSystemWindows="true"
                 app:collapsedTitleGravity="center"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.DikkePloaten.Toolbar.Text"
-                app:contentScrim="?attr/colorOnSurface"
+                app:contentScrim="?attr/colorSurface"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:statusBarScrim="?attr/colorOnSurface"
+                app:statusBarScrim="?attr/colorSurface"
                 app:title="@{viewModel.selectedAlbum.album.title}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar">
@@ -51,7 +50,7 @@
                     android:id="@+id/user_album_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/album_detail_app_bar_height"
-                    android:contentDescription="Image of user album"
+                    android:contentDescription="@string/image_user_album_description"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{viewModel.selectedAlbum.album.thumb}"
@@ -318,6 +317,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
             android:clickable="true"
+            android:focusable="true"
             android:onClick="@{() -> callback.removeUserAlbumFromCollection(viewModel.selectedAlbum)}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|right"

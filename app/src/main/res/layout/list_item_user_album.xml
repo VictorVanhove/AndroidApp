@@ -20,6 +20,7 @@
         android:layout_marginEnd="@dimen/card_side_margin"
         android:layout_marginBottom="@dimen/card_bottom_margin"
         android:clickable="true"
+        android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/card_corner_radius"
         app:cardElevation="@dimen/card_elevation"
@@ -35,6 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/user_album_item_height"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/image_user_album_description"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{viewModel.albumThumb}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="right"
+                    android:gravity="end"
                     android:text="@string/date_album_added" />
 
                 <TextView
