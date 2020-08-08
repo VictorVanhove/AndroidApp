@@ -11,6 +11,9 @@ import kotlinx.coroutines.launch
 /**
  *  The [ViewModel] associated with the [AlbumDetailFragment], containing information about the selected
  *  [Album].
+ *
+ *  @property userAlbumRepository the repository that will handle the adding of the albums
+ *  @property album the selected album
  */
 class AlbumDetailViewModel(
     private val userAlbumRepository: UserAlbumRepository,

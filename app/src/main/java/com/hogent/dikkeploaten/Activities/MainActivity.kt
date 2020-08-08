@@ -13,7 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
- * Activity class for the main part of the app.
+ * This [AppCompatActivity] is the main activity of the app.
  */
 class MainActivity : AppCompatActivity() {
 

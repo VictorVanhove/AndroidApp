@@ -12,7 +12,7 @@ import com.hogent.database.models.DatabaseUserAlbum
 import com.hogent.database.utilities.Converters
 
 /**
- * The Room database for this app.
+ * This class represents the local [RoomDatabase] of the app.
  */
 @Database(
     entities = [DatabaseAlbum::class, DatabaseUserAlbum::class],

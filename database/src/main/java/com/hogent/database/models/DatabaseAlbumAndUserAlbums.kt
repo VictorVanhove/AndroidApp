@@ -6,8 +6,11 @@ import com.hogent.domain.models.AlbumAndUserAlbums
 import kotlinx.android.parcel.RawValue
 
 /**
- * This class captures the relationship between an [DatabaseAlbum] and a user's [DatabaseUserAlbum], which is
- * used by Room to fetch the related entities.
+ * This class captures the relationship between an [DatabaseAlbum] and a user's [DatabaseUserAlbum],
+ * which is used by Room to fetch the related entities.
+ *
+ * @property album the related album
+ * @property userAlbums the related list with their user albums
  */
 internal data class DatabaseAlbumAndUserAlbums(
     @Embedded

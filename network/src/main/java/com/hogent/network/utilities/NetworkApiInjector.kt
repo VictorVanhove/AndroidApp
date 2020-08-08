@@ -9,6 +9,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 private const val BASE_URL = "https://dikke-ploaten-backend.herokuapp.com/api/"
 
+/**
+ * This class injects the network API, necessary for [Retrofit] calls and init [Moshi] objects.
+ */
 object NetworkApiInjector {
 
     /**
@@ -31,6 +34,6 @@ object NetworkApiInjector {
     private val retrofitService: ApiService by lazy { retrofit.create(
         ApiService::class.java) }
 
-    fun provideNetworDatakSource() =
+    fun provideNetworkDataSource() =
         NetworkDataSource(retrofitService)
 }

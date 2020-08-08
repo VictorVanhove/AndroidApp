@@ -11,6 +11,7 @@ import com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present
  * a [List] [UserAlbum], including computing diffs between lists.
+ *
  * @param onClickListener a lambda that handles the clicked [UserAlbum].
  */
 internal class UserAlbumAdapter(private val onClickListener: OnClickListener) :

@@ -11,7 +11,9 @@ import kotlinx.coroutines.*
 enum class ApiStatus { LOADING, ERROR, DONE }
 
 /**
- * The ViewModel for [SearchFragment].
+ * The [ViewModel] associated with the [SearchFragment], containing a list of albums.
+ *
+ * @property albumRepository the repository that will process and import all the albums
  */
 class SearchViewModel internal constructor(
     val albumRepository: AlbumRepository

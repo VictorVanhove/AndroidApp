@@ -11,10 +11,13 @@ import kotlinx.coroutines.launch
 /**
  *  The [ViewModel] associated with the [UserAlbumDetailFragment], containing information about the selected
  *  [UserAlbum].
+ *
+ *  @property userAlbumRepository the repository that will handle the removing of the albums
+ *  @property userAlbum the selected user album
  */
 class UserAlbumDetailViewModel(
     private val userAlbumRepository: UserAlbumRepository,
-    private val albumProperty: AlbumAndUserAlbums
+    private val userAlbum: AlbumAndUserAlbums
 ) : ViewModel() {
 
     // The internal MutableLiveData that stores the data of the selected user album
@@ -26,7 +29,7 @@ class UserAlbumDetailViewModel(
 
     init {
         // Initialize the _selectedUserAlbum MutableLiveData
-        _selectedUserAlbum.value = albumProperty
+        _selectedUserAlbum.value = userAlbum
     }
 
     /**
@@ -34,7 +37,7 @@ class UserAlbumDetailViewModel(
      */
     fun removeUserAlbumFromCollection() {
         viewModelScope.launch {
-            val userAlbum = userAlbumRepository.getUserAlbum(albumProperty.album.albumId)
+            val userAlbum = userAlbumRepository.getUserAlbum(userAlbum.album.albumId)
             userAlbumRepository.removeUserAlbum(userAlbum)
         }
     }

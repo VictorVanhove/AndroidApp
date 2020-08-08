@@ -13,7 +13,8 @@ const val WANTLIST_PAGE_INDEX = 2
 /**
  * This class implements a [ViewPager] [FragmentStateAdapter] which presents
  * the different fragments of the application.
- * @param fragment The [Fragment] that gets loaded in.
+ *
+ * @param fragment The [Fragment] that gets loaded
  */
 class ViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 

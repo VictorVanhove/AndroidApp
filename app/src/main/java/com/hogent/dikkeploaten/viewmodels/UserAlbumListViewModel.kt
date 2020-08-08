@@ -9,6 +9,8 @@ import kotlinx.coroutines.*
 
 /**
  * The ViewModel used in [CollectionFragment] and [WantlistFragment].
+ *
+ * @param userAlbumRepository the repository that will process and import all the user albums
  */
 class UserAlbumListViewModel internal constructor(
     val userAlbumRepository: UserAlbumRepository

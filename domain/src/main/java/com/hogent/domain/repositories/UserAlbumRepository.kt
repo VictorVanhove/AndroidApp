@@ -4,7 +4,7 @@ import com.hogent.domain.models.UserAlbum
 import com.hogent.domain.sources.DatabaseSource
 
 /**
- * The Repository module for the [UserAlbum] class, handles data operations.
+ * The Repository module for the [UserAlbum] class, handles user album data operations.
  */
 class UserAlbumRepository private constructor(
     private val databaseDataSource: DatabaseSource

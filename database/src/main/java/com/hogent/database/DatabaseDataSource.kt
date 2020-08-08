@@ -12,6 +12,12 @@ import com.hogent.domain.sources.DatabaseSource
 private const val COLLECTION_TYPE = "collection"
 private const val WANTLIST_TYPE = "wantlist"
 
+/**
+ * This class manages the data transfer between domain and database.
+ *
+ * @property albumDao data access object for album
+ * @property userAlbumDao data access object for user album
+ */
 class DatabaseDataSource internal constructor(
     private val albumDao: AlbumDao,
     private val userAlbumDao: UserAlbumDao

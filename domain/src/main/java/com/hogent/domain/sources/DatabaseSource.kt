@@ -4,6 +4,9 @@ import com.hogent.domain.models.Album
 import com.hogent.domain.models.AlbumAndUserAlbums
 import com.hogent.domain.models.UserAlbum
 
+/**
+ * This interface contains all database operations, used in view module.
+ */
 interface DatabaseSource {
 
     suspend fun getAlbumList(): List<Album>

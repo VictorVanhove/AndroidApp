@@ -11,12 +11,12 @@ import com.hogent.domain.repositories.UserAlbumRepository
 import com.hogent.network.utilities.NetworkApiInjector
 
 /**
- * Static methods used to inject classes needed for various Activities and Fragments.
+ * Injection class, where static methods get used to inject classes needed for various Activities and Fragments.
  */
 object InjectorUtils {
 
     private fun getAlbumRepository(context: Context): AlbumRepository {
-        return AlbumRepository.getInstance(DatabaseInjector.provideDatabaseDataSource(context), NetworkApiInjector.provideNetworDatakSource())
+        return AlbumRepository.getInstance(DatabaseInjector.provideDatabaseDataSource(context), NetworkApiInjector.provideNetworkDataSource())
     }
 
     private fun getUserAlbumRepository(context: Context): UserAlbumRepository {

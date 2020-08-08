@@ -4,12 +4,15 @@ import androidx.room.*
 import com.hogent.domain.models.UserAlbum
 import java.util.*
 
+
 /**
- * [DatabaseUserAlbum] gets used when a user adds a [DatabaseAlbum] to their collection or wantlist, with useful metadata.
- * Property [albumType] is used to determine the location of the album, whereas [albumDate] is used as a notification when the album is added.
+ * This class represents the persistent version of an [UserAlbum], used when a user adds a
+ * [Album] to their collection or wantlist, with useful metadata.
+ * @property userAlbumId the album id of this user album
  *
- * Declaring the column info allows for the renaming of variables without implementing a
- * database migration, as the column name would not change.
+ * @property albumId the id of the original album
+ * @property albumType the location where the user album belongs to, can be collection or wantlist
+ * @property albumDate the date when the user album is added
  */
 @Entity(
     tableName = "user_albums",

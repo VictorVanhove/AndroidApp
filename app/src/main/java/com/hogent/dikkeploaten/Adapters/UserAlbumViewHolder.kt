@@ -5,7 +5,7 @@ import com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums
 import com.hogent.dikkeploaten.viewmodels.AlbumAndUserAlbumsViewModel
 
 /**
- * The UserAlbumViewHolder constructor takes the binding variable from the associated
+ * The ViewHolder of [UserAlbumAdapter], it takes the binding variable from the associated
  * GridViewItem, which nicely gives it access to the full [ViewAlbumAndUserAlbums] information.
  */
 internal class UserAlbumViewHolder(private var binding: ListItemUserAlbumBinding) :

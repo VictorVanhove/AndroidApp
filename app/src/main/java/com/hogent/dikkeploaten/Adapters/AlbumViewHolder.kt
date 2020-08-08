@@ -4,7 +4,7 @@ import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
 import com.hogent.dikkeploaten.models.ViewAlbum
 
 /**
- * The AlbumViewHolder constructor takes the binding variable from the associated
+ * The ViewHolder of [AlbumAdapter], it takes the binding variable from the associated
  * GridViewItem, which nicely gives it access to the full [ViewAlbum] information.
  */
 class AlbumViewHolder(private var binding: ListItemAlbumBinding) :

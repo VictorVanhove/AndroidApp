@@ -12,6 +12,7 @@ import com.hogent.domain.models.Album
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present
  * a [List] [Album], including computing diffs between lists.
+ *
  * @param onClickListener a lambda that handles the clicked [Album].
  */
 class AlbumAdapter(private val onClickListener: OnClickListener) :
