@@ -3,6 +3,9 @@ package com.hogent.domain.repositories
 import com.hogent.domain.models.UserAlbum
 import com.hogent.domain.sources.DatabaseSource
 
+/**
+ * The Repository module for the [UserAlbum] class, handles data operations.
+ */
 class UserAlbumRepository private constructor(
     private val databaseDataSource: DatabaseSource
 ) {
@@ -34,11 +37,11 @@ class UserAlbumRepository private constructor(
         fun getInstance(databaseDataSource: DatabaseSource) =
             instance
                 ?: synchronized(this) {
-                instance
-                    ?: UserAlbumRepository(
-                        databaseDataSource
-                    )
-                        .also { instance = it }
-            }
+                    instance
+                        ?: UserAlbumRepository(
+                            databaseDataSource
+                        )
+                            .also { instance = it }
+                }
     }
 }

@@ -17,7 +17,7 @@ import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel
 
 /**
- * Fragment class for the 'Collection' tab.
+ * This [Fragment] represents the collection page with their corresponding list of [UserAlbum]s.
  */
 class CollectionFragment : Fragment() {
 
@@ -52,7 +52,7 @@ class CollectionFragment : Fragment() {
         viewModel.loadAlbumsAndUserAlbums()
         subscribeUi(adapter, binding)
 
-        viewModel.navigateToSelectedAlbum.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToSelectedUserAlbum.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(

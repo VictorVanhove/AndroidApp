@@ -15,9 +15,10 @@ import com.hogent.dikkeploaten.models.toAlbumAndUserAlbums
 import com.hogent.dikkeploaten.models.toViewAlbumAndUserAlbums
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel
+import com.hogent.domain.models.Album
 
 /**
- * Fragment class for the 'Wantlist' tab.
+ * This [Fragment] represents the wantlist page with their corresponding list of [UserAlbum]s.
  */
 class WantlistFragment : Fragment() {
 
@@ -52,7 +53,7 @@ class WantlistFragment : Fragment() {
         viewModel.loadAlbumsAndUserAlbums()
         subscribeUi(adapter, binding)
 
-        viewModel.navigateToSelectedAlbum.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToSelectedUserAlbum.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController().navigate(

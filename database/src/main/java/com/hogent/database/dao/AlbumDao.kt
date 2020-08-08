@@ -3,6 +3,9 @@ package com.hogent.database.dao
 import androidx.room.*
 import com.hogent.database.models.DatabaseAlbum
 
+/**
+ * The Data Access Object for the [DatabaseAlbum] class.
+ */
 @Dao
 internal interface AlbumDao {
 

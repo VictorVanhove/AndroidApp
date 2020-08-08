@@ -4,6 +4,9 @@ import com.hogent.domain.models.Album
 import com.hogent.domain.sources.DatabaseSource
 import com.hogent.domain.sources.NetworkSource
 
+/**
+ * The Repository module for the [Album] class, handles data operations.
+ */
 class AlbumRepository private constructor(
     private val databaseDataSource: DatabaseSource,
     private val networkDataSource: NetworkSource

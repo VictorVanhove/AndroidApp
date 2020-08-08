@@ -4,6 +4,9 @@ import androidx.room.*
 import com.hogent.database.models.DatabaseAlbumAndUserAlbums
 import com.hogent.database.models.DatabaseUserAlbum
 
+/**
+ * The Data Access Object for the [DatabaseUserAlbum] class.
+ */
 @Dao
 internal interface UserAlbumDao {
 

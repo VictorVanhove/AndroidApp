@@ -5,14 +5,15 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.hogent.dikkeploaten.adapters.AlbumAdapter
-import com.hogent.dikkeploaten.models.ViewAlbum
 import com.hogent.dikkeploaten.viewmodels.ApiStatus
 
-
+/**
+ * When the included condition is true, hide the [View], otherwise show it.
+ * @param view The specific [View].
+ * @param isGone The [Boolean] which returns the condition of the current [View].
+ */
 @BindingAdapter("isGone")
 fun bindIsGone(view: View, isGone: Boolean) {
     view.visibility = if (isGone) {
@@ -23,16 +24,9 @@ fun bindIsGone(view: View, isGone: Boolean) {
 }
 
 /**
- * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
- */
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<ViewAlbum>?) {
-    val adapter = recyclerView.adapter as AlbumAdapter
-    adapter.submitList(data)
-}
-
-/**
  * Uses the Glide library to load an image by URL into an [ImageView]
+ * @param imgView The [ImageView] in which the image gets loaded.
+ * @param imgUrl The [String] URL of the image.
  */
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -42,50 +36,41 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .load(imgUri)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.loading_animation))
+                    .placeholder(R.drawable.loading_animation)
+            )
             .into(imgView)
     }
 }
 
 /**
- * This binding adapter displays the [MarsApiStatus] of the network request in an image view.  When
- * the request is loading, it displays a loading_animation.  If the request has an error, it
- * displays a broken image to reflect the connection error.  When the request is finished, it
- * hides the image view.
+ * This binding adapter returns the [ApiStatus] of the network request for the [ProgressBar].
+ * When the request is loading, the [ProgressBar] is set visible. When the request gets error
+ * or is finished, the [ProgressBar] is * set to invisible.
+ * @param progressBar The [ProgressBar] when albums are loading.
+ * @param status The [ApiStatus] of the network request.
  */
-@BindingAdapter("statusForImage")
-fun bindStatusForImage(statusImageView: ImageView, status: ApiStatus?) {
-    when (status) {
-        ApiStatus.LOADING -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.loading_animation)
-        }
-        ApiStatus.ERROR -> {
-            statusImageView.visibility = View.VISIBLE
-            statusImageView.setImageResource(R.drawable.ic_connection_error)
-        }
-        ApiStatus.DONE -> {
-            statusImageView.visibility = View.VISIBLE
-        }
-    }
-}
-
 @BindingAdapter("statusForProgressBar")
 fun bindStatusForProgressBar(progressBar: ProgressBar, status: ApiStatus?) {
     progressBar.visibility = if (status == ApiStatus.LOADING) {
         View.VISIBLE
     } else {
-        View.INVISIBLE
+        View.GONE
     }
 }
 
+/**
+ * This binding adapter returns the [ApiStatus] of the network request for the [View].
+ * When the request gets an error, the [View] is getting showed. When the request is still
+ * loading or finished (thus no error), the [View] must be invisible.
+ * @param view The specific [View].
+ * @param status The [ApiStatus] of the network request.
+ */
 @BindingAdapter("statusForButton")
 fun bindStatusForButton(view: View, status: ApiStatus?) {
-    if (status == ApiStatus.ERROR) {
-        view.visibility = View.VISIBLE
-    }
-    if (status == ApiStatus.LOADING) {
-        view.visibility = View.GONE
+    view.visibility = if (status == ApiStatus.ERROR) {
+        View.VISIBLE
+    } else {
+        View.GONE
     }
 }
 

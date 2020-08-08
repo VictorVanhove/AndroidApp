@@ -17,23 +17,21 @@ class UserAlbumDetailViewModel(
     private val albumProperty: AlbumAndUserAlbums
 ) : ViewModel() {
 
-    private val _selectedAlbum = MutableLiveData<AlbumAndUserAlbums>()
+    // The internal MutableLiveData that stores the data of the selected user album
+    private val _selectedUserAlbum = MutableLiveData<AlbumAndUserAlbums>()
 
-    // The external LiveData for the SelectedAlbum
-    val selectedAlbum: LiveData<AlbumAndUserAlbums>
-        get() = _selectedAlbum
-
-    private val _inCollection = MutableLiveData<Boolean>()
-
-    // The external immutable LiveData for the request status
-    val inCollection: LiveData<Boolean>
-        get() = _inCollection
+    // The external LiveData for the selected user album
+    val selectedUserAlbum: LiveData<AlbumAndUserAlbums>
+        get() = _selectedUserAlbum
 
     init {
-        // Initialize the _selectedAlbum MutableLiveData
-        _selectedAlbum.value = albumProperty
+        // Initialize the _selectedUserAlbum MutableLiveData
+        _selectedUserAlbum.value = albumProperty
     }
 
+    /**
+     * Removes the user album from the user's collection or wantlist.
+     */
     fun removeUserAlbumFromCollection() {
         viewModelScope.launch {
             val userAlbum = userAlbumRepository.getUserAlbum(albumProperty.album.albumId)

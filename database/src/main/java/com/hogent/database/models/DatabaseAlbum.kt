@@ -1,14 +1,12 @@
 package com.hogent.database.models
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.hogent.domain.models.Album
-import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "album_table")
-internal data class DatabaseAlbum (
+internal data class DatabaseAlbum(
     @PrimaryKey @ColumnInfo(name = "id") val albumId: String,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "artist") val artist: String,

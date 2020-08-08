@@ -5,15 +5,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.hogent.domain.repositories.UserAlbumRepository
 
 /**
- * Factory for creating a [GardenPlantingListViewModel] with a constructor that takes a
- * [GardenPlantingRepository].
+ * Factory for creating a [UserAlbumListViewModel] with a constructor that takes a
+ * [UserAlbumRepository].
  */
 class UserAlbumListViewModelFactory(
-    private val repository: com.hogent.domain.repositories.UserAlbumRepository
+    private val userAlbumRepository: UserAlbumRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return UserAlbumListViewModel(repository) as T
+        return UserAlbumListViewModel(userAlbumRepository) as T
     }
 }

@@ -1,10 +1,8 @@
 package com.hogent.database.models
 
-import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Relation
 import com.hogent.domain.models.AlbumAndUserAlbums
-import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 /**

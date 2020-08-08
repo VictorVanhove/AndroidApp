@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.hogent.domain.models.Album
 import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
 import com.hogent.dikkeploaten.models.ViewAlbum
-import com.hogent.dikkeploaten.models.toViewAlbum
+import com.hogent.domain.models.Album
 
 /**
- * Adapter class for each album in recyclerView.
+ * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present
+ * a [List] [Album], including computing diffs between lists.
+ * @param onClickListener a lambda that handles the clicked [Album].
  */
 class AlbumAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<ViewAlbum, AlbumViewHolder>(DiffCallback) {
@@ -24,7 +25,7 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     }
 
     /**
-     * Binds each album in the ArrayList to a view.
+     * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         val album = getItem(position)
@@ -52,7 +53,7 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     /**
      * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Album]
      * associated with the current item to the [onClick] function.
-     * @param clickListener lambda that will be called with the current [Album]
+     * @param clickListener lambda that will be called with the current [Album].
      */
     class OnClickListener(val clickListener: (album: ViewAlbum) -> Unit) {
         fun onClick(album: ViewAlbum) = clickListener(album)

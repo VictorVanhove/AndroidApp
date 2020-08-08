@@ -17,7 +17,7 @@ import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.SearchViewModel
 
 /**
- * Fragment class for the 'Search' tab.
+ * This [Fragment] represents the search page with a list of all [Album]s.
  */
 class SearchFragment : Fragment() {
 

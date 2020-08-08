@@ -23,7 +23,7 @@ import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
 import com.hogent.domain.models.Album
 
 /**
- * Fragment class for information page of each album.
+ * This [Fragment] represents the detail page of a selected [Album].
  */
 class AlbumDetailFragment : Fragment() {
 

@@ -6,19 +6,26 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.hogent.database.dao.AlbumDao
-import com.hogent.database.models.DatabaseAlbum
 import com.hogent.database.dao.UserAlbumDao
+import com.hogent.database.models.DatabaseAlbum
 import com.hogent.database.models.DatabaseUserAlbum
 import com.hogent.database.utilities.Converters
 
-@Database(entities = [DatabaseAlbum::class, DatabaseUserAlbum::class], version = 3, exportSchema = false)
+/**
+ * The Room database for this app.
+ */
+@Database(
+    entities = [DatabaseAlbum::class, DatabaseUserAlbum::class],
+    version = 3,
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 internal abstract class ApplicationDatabase : RoomDatabase() {
-    
+
     abstract fun userAlbumDao(): UserAlbumDao
     abstract fun albumDao(): AlbumDao
 
-   companion object {
+    companion object {
         @Volatile
         private var INSTANCE: ApplicationDatabase? = null
 
@@ -31,7 +38,8 @@ internal abstract class ApplicationDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         ApplicationDatabase::class.java,
-                        "application_database")
+                        "application_database"
+                    )
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance

@@ -13,7 +13,11 @@ import com.hogent.dikkeploaten.adapters.COLLECTION_PAGE_INDEX
 import com.hogent.dikkeploaten.adapters.SEARCH_PAGE_INDEX
 import com.hogent.dikkeploaten.adapters.WANTLIST_PAGE_INDEX
 import com.hogent.dikkeploaten.databinding.FragmentViewPagerBinding
+import com.hogent.domain.models.Album
 
+/**
+ * This [Fragment] represents the view pager page in which the [Fragment]s getting loaded.
+ */
 class ViewPagerFragment : Fragment() {
 
     override fun onCreateView(

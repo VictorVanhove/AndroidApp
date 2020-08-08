@@ -7,8 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
 import com.hogent.domain.repositories.AlbumRepository
 
+/**
+ * Factory for creating a [SearchViewModel] with a constructor that takes a [AlbumRepository].
+ */
 class SearchViewModelFactory(
-    private val repository: com.hogent.domain.repositories.AlbumRepository,
+    private val albumRepository: AlbumRepository,
     owner: SavedStateRegistryOwner,
     defaultArgs: Bundle? = null
 ) : AbstractSavedStateViewModelFactory(owner, defaultArgs) {
@@ -19,7 +22,7 @@ class SearchViewModelFactory(
         modelClass: Class<T>,
         handle: SavedStateHandle
     ): T {
-        return SearchViewModel(repository) as T
+        return SearchViewModel(albumRepository) as T
     }
 
 }

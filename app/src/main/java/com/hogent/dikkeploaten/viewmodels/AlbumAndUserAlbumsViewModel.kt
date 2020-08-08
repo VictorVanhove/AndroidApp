@@ -4,6 +4,9 @@ import com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * The ViewModel used in [UserAlbumAdapter] for binding the property to the view.
+ */
 internal class AlbumAndUserAlbumsViewModel(albums: ViewAlbumAndUserAlbums) {
 
     private val album = checkNotNull(albums.album)
@@ -16,8 +19,6 @@ internal class AlbumAndUserAlbumsViewModel(albums: ViewAlbumAndUserAlbums) {
     val albumArtist
         get() = album.artist
     val albumDateString: String = dateFormat.format(userAlbums.albumDate.time)
-    val albumId
-        get() = album.albumId
 
     companion object {
         private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.US)

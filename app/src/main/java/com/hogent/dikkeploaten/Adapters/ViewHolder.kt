@@ -5,7 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 
 /**
- * Base class every ViewHolder in the app should extend
+ * Base class every ViewHolder in the app should extend.
+ * @param T the type of the given member.
+ * @property itemView the given [View].
  */
 abstract class ViewHolder<in T>(itemView: View) : RecyclerView.ViewHolder(itemView),
     LayoutContainer {

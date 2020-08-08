@@ -21,7 +21,7 @@ import com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel
 import com.hogent.domain.models.AlbumAndUserAlbums
 
 /**
- * Fragment class for information page of each album.
+ * This [Fragment] represents the detail page of a selected [UserAlbum].
  */
 class UserAlbumDetailFragment : Fragment() {
 
