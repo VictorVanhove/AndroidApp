@@ -32,11 +32,6 @@ dependencies {
     implementation project(path: ':domain')
 
     implementation "androidx.core:core-ktx:$version_core_ktx"
-    implementation "androidx.appcompat:appcompat:$version_appcompat"
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // Room and Lifecycle dependencies
     implementation "androidx.room:room-runtime:$version_room"
@@ -44,6 +39,11 @@ dependencies {
     kapt "androidx.room:room-compiler:$version_room"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
+    testImplementation 'junit:junit:4.12'
+    testImplementation "io.mockk:mockk:$version_mockk"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_coroutine"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
 apply plugin: 'org.jetbrains.dokka'
