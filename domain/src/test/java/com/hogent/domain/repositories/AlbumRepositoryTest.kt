@@ -1,19 +1,14 @@
 package com.hogent.domain.repositories
 
-import com.hogent.domain.models.Album
 import com.hogent.domain.sources.DatabaseSource
 import com.hogent.domain.sources.NetworkSource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.impl.annotations.MockK
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class AlbumRepositoryTest {
 
@@ -30,7 +25,7 @@ class AlbumRepositoryTest {
 
         MockKAnnotations.init(this)
 
-        albumRepository = AlbumRepository.getInstance(dbSource, networkSource)
+        albumRepository = AlbumRepository(dbSource, networkSource)
     }
 
     @Test
@@ -41,10 +36,21 @@ class AlbumRepositoryTest {
             albumRepository.getAllAlbums()
         }
 
-        coVerify { dbSource.getAlbumList() }
+        coVerify(exactly = 1) {
+            dbSource.getAlbumList()
+        }
     }
 
     @Test
     fun updateAlbums() {
+        coEvery { networkSource.getAlbumList() } returns listOf()
+
+        runBlocking {
+
+            albumRepository.updateAlbums()
+        }
+
+        coVerify(exactly = 1) { networkSource.getAlbumList() }
+        coVerify(exactly = 1) { dbSource.insertAllAlbums(any()) }
     }
 }

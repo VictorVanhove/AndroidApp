@@ -7,7 +7,7 @@ import com.hogent.domain.sources.NetworkSource
 /**
  * The Repository module for the [Album] class, handles album data operations.
  */
-class AlbumRepository private constructor(
+class AlbumRepository internal constructor(
     private val databaseDataSource: DatabaseSource,
     private val networkDataSource: NetworkSource
 ) {

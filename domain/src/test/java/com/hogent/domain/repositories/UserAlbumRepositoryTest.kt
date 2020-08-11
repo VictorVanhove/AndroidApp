@@ -1,14 +1,16 @@
 package com.hogent.domain.repositories
 
+import com.hogent.domain.models.UserAlbum
 import com.hogent.domain.sources.DatabaseSource
 import com.hogent.domain.sources.NetworkSource
 import io.mockk.MockKAnnotations
-import io.mockk.impl.annotations.MockK
+import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
+import java.util.*
 
 class UserAlbumRepositoryTest {
 
@@ -25,6 +27,26 @@ class UserAlbumRepositoryTest {
 
         MockKAnnotations.init(this)
 
-        userAlbumRepository = UserAlbumRepository.getInstance(dbSource)
+        userAlbumRepository = UserAlbumRepository(dbSource)
+    }
+
+    @Test
+    fun getUserAlbumResultSuccess() {
+
+        coEvery { dbSource.getUserAlbum(any()) } returns UserAlbum(
+            "123",
+            "456",
+            "collection",
+            Calendar.getInstance()
+        )
+
+        runBlocking {
+
+            userAlbumRepository.getUserAlbum("0")
+        }
+
+        coVerify(exactly = 1) {
+            dbSource.getUserAlbum(any())
+        }
     }
 }

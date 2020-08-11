@@ -6,7 +6,7 @@ import com.hogent.domain.sources.DatabaseSource
 /**
  * The Repository module for the [UserAlbum] class, handles user album data operations.
  */
-class UserAlbumRepository private constructor(
+class UserAlbumRepository internal constructor(
     private val databaseDataSource: DatabaseSource
 ) {
 
