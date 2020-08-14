@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>DatabaseSource - domain</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">domain</a>&nbsp;/&nbsp;<a href="../index.html">com.hogent.domain.sources</a>&nbsp;/&nbsp;<a href="./index.html">DatabaseSource</a><br/>
+<br/>
+<h1>DatabaseSource</h1>
+<code><span class="keyword">interface </span><span class="identifier">DatabaseSource</span></code>
+<p>This interface contains all database operations, used in view module.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="create-user-album.html">createUserAlbum</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">createUserAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$createUserAlbum(kotlin.String, kotlin.String)/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$createUserAlbum(kotlin.String, kotlin.String)/albumType">albumType</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-album-list.html">getAlbumList</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getAlbumList</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.domain.models/-album/index.html"><span class="identifier">Album</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-album-with-id.html">getAlbumWithId</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getAlbumWithId</span><span class="symbol">(</span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$getAlbumWithId(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.hogent.domain.models/-album/index.html"><span class="identifier">Album</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-collection-user.html">getCollectionUser</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getCollectionUser</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.domain.models/-album-and-user-albums/index.html"><span class="identifier">AlbumAndUserAlbums</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-user-album.html">getUserAlbum</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getUserAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$getUserAlbum(kotlin.String)/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.hogent.domain.models/-user-album/index.html"><span class="identifier">UserAlbum</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-wantlist-user.html">getWantlistUser</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">getWantlistUser</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.domain.models/-album-and-user-albums/index.html"><span class="identifier">AlbumAndUserAlbums</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="insert-all-albums.html">insertAllAlbums</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">insertAllAlbums</span><span class="symbol">(</span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$insertAllAlbums(kotlin.collections.List((com.hogent.domain.models.Album)))/albums">albums</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.domain.models/-album/index.html"><span class="identifier">Album</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-in-collection.html">isInCollection</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">isInCollection</span><span class="symbol">(</span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$isInCollection(kotlin.String)/albumId">albumId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="remove-user-album.html">removeUserAlbum</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">suspend</span> <span class="keyword">fun </span><span class="identifier">removeUserAlbum</span><span class="symbol">(</span><span class="identifier" id="com.hogent.domain.sources.DatabaseSource$removeUserAlbum(com.hogent.domain.models.UserAlbum)/userAlbum">userAlbum</span><span class="symbol">:</span>&nbsp;<a href="../../com.hogent.domain.models/-user-album/index.html"><span class="identifier">UserAlbum</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

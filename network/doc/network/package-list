@@ -1,0 +1,5 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+com.hogent.network
+com.hogent.network.utilities

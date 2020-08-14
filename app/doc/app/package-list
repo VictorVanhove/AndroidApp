@@ -1,0 +1,10 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+com.hogent.dikkeploaten
+com.hogent.dikkeploaten.activities
+com.hogent.dikkeploaten.adapters
+com.hogent.dikkeploaten.fragments
+com.hogent.dikkeploaten.models
+com.hogent.dikkeploaten.utilities
+com.hogent.dikkeploaten.viewmodels

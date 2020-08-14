@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>SearchViewModel - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.hogent.dikkeploaten.viewmodels</a>&nbsp;/&nbsp;<a href="./index.html">SearchViewModel</a><br/>
+<br/>
+<h1>SearchViewModel</h1>
+<code><span class="keyword">class </span><span class="identifier">SearchViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ViewModel</span></code>
+<p>The <a href="#">ViewModel</a> associated with the <a href="#">SearchFragment</a>, containing a list of albums.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="album-repository.html">albumRepository</a></h4>
+</td>
+<td>
+<p>the repository that will process and import all the albums</p>
+<code><span class="keyword">val </span><span class="identifier">albumRepository</span><span class="symbol">: </span><span class="identifier">AlbumRepository</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="albums.html">albums</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">albums</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Album</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="navigate-to-selected-album.html">navigateToSelectedAlbum</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">navigateToSelectedAlbum</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><span class="identifier">Album</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="status.html">status</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">status</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><a href="../-api-status/index.html"><span class="identifier">ApiStatus</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="display-album-details.html">displayAlbumDetails</a></h4>
+</td>
+<td>
+<p>When the album is clicked, set the <a href="#">_navigateToSelectedAlbum</a></p>
+<code><span class="keyword">fun </span><span class="identifier">displayAlbumDetails</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.viewmodels.SearchViewModel$displayAlbumDetails(com.hogent.domain.models.Album)/album">album</span><span class="symbol">:</span>&nbsp;<span class="identifier">Album</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="display-album-details-complete.html">displayAlbumDetailsComplete</a></h4>
+</td>
+<td>
+<p>After the navigation has taken place, make sure navigateToSelectedAlbum is set to null.</p>
+<code><span class="keyword">fun </span><span class="identifier">displayAlbumDetailsComplete</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="load-albums-from-network.html">loadAlbumsFromNetwork</a></h4>
+</td>
+<td>
+<p>Gets album information from the API Retrofit service and updates the
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">Album</a> and <a href="#">ApiStatus</a>. The Retrofit service returns a
+coroutine suspend function, which we then pass on to update the albums.</p>
+<code><span class="keyword">fun </span><span class="identifier">loadAlbumsFromNetwork</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-cleared.html">onCleared</a></h4>
+</td>
+<td>
+<p>When the <a href="#">ViewModel</a> is finished, we cancel our coroutine <a href="#">viewModelJob</a>, which tells the
+Retrofit service to stop.</p>
+<code><span class="keyword">fun </span><span class="identifier">onCleared</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

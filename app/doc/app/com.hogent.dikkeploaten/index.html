@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.hogent.dikkeploaten - app</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">app</a>&nbsp;/&nbsp;<a href="./index.html">com.hogent.dikkeploaten</a><br/>
+<br/>
+<h2>Package com.hogent.dikkeploaten</h2>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="bind-image.html">bindImage</a></h4>
+</td>
+<td>
+<p>Uses the Glide library to load an image by URL into an <a href="https://developer.android.com/reference/android/widget/ImageView.html">ImageView</a></p>
+<code><span class="keyword">fun </span><span class="identifier">bindImage</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten$bindImage(android.widget.ImageView, kotlin.String)/imgView">imgView</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/widget/ImageView.html"><span class="identifier">ImageView</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten$bindImage(android.widget.ImageView, kotlin.String)/imgUrl">imgUrl</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="bind-is-gone.html">bindIsGone</a></h4>
+</td>
+<td>
+<p>When the included condition is true, hide the <a href="https://developer.android.com/reference/android/view/View.html">View</a>, otherwise show it.</p>
+<code><span class="keyword">fun </span><span class="identifier">bindIsGone</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten$bindIsGone(android.view.View, kotlin.Boolean)/view">view</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten$bindIsGone(android.view.View, kotlin.Boolean)/isGone">isGone</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="bind-status-for-button.html">bindStatusForButton</a></h4>
+</td>
+<td>
+<p>This binding adapter returns the <a href="../com.hogent.dikkeploaten.viewmodels/-api-status/index.html">ApiStatus</a> of the network request for the <a href="https://developer.android.com/reference/android/view/View.html">View</a>.
+When the request gets an error, the <a href="https://developer.android.com/reference/android/view/View.html">View</a> is getting showed. When the request is still
+loading or finished (thus no error), the <a href="https://developer.android.com/reference/android/view/View.html">View</a> must be invisible.</p>
+<code><span class="keyword">fun </span><span class="identifier">bindStatusForButton</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten$bindStatusForButton(android.view.View, com.hogent.dikkeploaten.viewmodels.ApiStatus)/view">view</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten$bindStatusForButton(android.view.View, com.hogent.dikkeploaten.viewmodels.ApiStatus)/status">status</span><span class="symbol">:</span>&nbsp;<a href="../com.hogent.dikkeploaten.viewmodels/-api-status/index.html"><span class="identifier">ApiStatus</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="bind-status-for-progress-bar.html">bindStatusForProgressBar</a></h4>
+</td>
+<td>
+<p>This binding adapter returns the <a href="../com.hogent.dikkeploaten.viewmodels/-api-status/index.html">ApiStatus</a> of the network request for the <a href="https://developer.android.com/reference/android/widget/ProgressBar.html">ProgressBar</a>.
+When the request is loading, the <a href="https://developer.android.com/reference/android/widget/ProgressBar.html">ProgressBar</a> is set visible. When the request gets error
+or is finished, the <a href="https://developer.android.com/reference/android/widget/ProgressBar.html">ProgressBar</a> is * set to invisible.</p>
+<code><span class="keyword">fun </span><span class="identifier">bindStatusForProgressBar</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten$bindStatusForProgressBar(android.widget.ProgressBar, com.hogent.dikkeploaten.viewmodels.ApiStatus)/progressBar">progressBar</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/widget/ProgressBar.html"><span class="identifier">ProgressBar</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten$bindStatusForProgressBar(android.widget.ProgressBar, com.hogent.dikkeploaten.viewmodels.ApiStatus)/status">status</span><span class="symbol">:</span>&nbsp;<a href="../com.hogent.dikkeploaten.viewmodels/-api-status/index.html"><span class="identifier">ApiStatus</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

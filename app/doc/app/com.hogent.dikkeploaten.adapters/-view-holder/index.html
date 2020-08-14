@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewHolder - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.hogent.dikkeploaten.adapters</a>&nbsp;/&nbsp;<a href="./index.html">ViewHolder</a><br/>
+<br/>
+<h1>ViewHolder</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ViewHolder</span><span class="symbol">&lt;</span><span class="keyword">in</span>&nbsp;<span class="identifier">T</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ViewHolder</span><span class="symbol">, </span><span class="identifier">LayoutContainer</span></code>
+<p>Base class used in <a href="../-album-view-holder/index.html">AlbumViewHolder</a> and <a href="#">UserAlbumViewHolder</a>, gets extended in all view holders.</p>
+<h3>Parameters</h3>
+<p><a name="T"></a>
+<code>T</code> - the type of the given member</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Base class used in <a href="../-album-view-holder/index.html">AlbumViewHolder</a> and <a href="#">UserAlbumViewHolder</a>, gets extended in all view holders.</p>
+<code><span class="identifier">ViewHolder</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.adapters.ViewHolder$<init>(android.view.View)/itemView">itemView</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="container-view.html">containerView</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">containerView</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="bind-data.html">bindData</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">bindData</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.adapters.ViewHolder$bindData(com.hogent.dikkeploaten.adapters.ViewHolder.T)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">T</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-album-view-holder/index.html">AlbumViewHolder</a></h4>
+</td>
+<td>
+<p>The ViewHolder of <a href="../-album-adapter/index.html">AlbumAdapter</a>, it takes the binding variable from the associated
+GridViewItem, which nicely gives it access to the full <a href="../../com.hogent.dikkeploaten.models/-view-album/index.html">ViewAlbum</a> information.</p>
+<code><span class="keyword">class </span><span class="identifier">AlbumViewHolder</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ViewHolder</span></a><span class="symbol">&lt;</span><a href="../../com.hogent.dikkeploaten.models/-view-album/index.html"><span class="identifier">ViewAlbum</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
