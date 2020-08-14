@@ -50,7 +50,7 @@ apply plugin: 'org.jetbrains.dokka'
 
 dokka {
     outputFormat = 'html' // use 'javadoc' to get standard java docs
-    outputDirectory = "$buildDir/javadoc"
+    outputDirectory = "$buildDir/doc"
 
     configuration {
         includeNonPublic = false

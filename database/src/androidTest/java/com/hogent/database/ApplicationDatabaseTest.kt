@@ -17,10 +17,12 @@
 package com.hogent.database
 
 import androidx.room.Room
+import androidx.test.core.app.ActivityScenario.launch
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.hogent.database.dao.AlbumDao
 import com.hogent.database.models.DatabaseAlbum
+import kotlinx.coroutines.*
 import org.junit.Assert.assertEquals
 import org.junit.After
 import org.junit.Before
@@ -39,6 +41,9 @@ class ApplicationDatabaseTest {
 
     private lateinit var albumDao: AlbumDao
     private lateinit var db: ApplicationDatabase
+
+    private var viewModelJob = Job()
+    private val coScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     @Before
     fun createDb() {
@@ -60,11 +65,15 @@ class ApplicationDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetUser() {
+    fun insertAndGetAlbum() {
         val album = DatabaseAlbum("id", "album title", "", "", "", "", "", "", "")
-        albumDao.insertAlbum(album)
-        val albumToRetrieve = albumDao.getAlbumWithId("id")
-        assertEquals(userEmail?.email, "")
+
+        coScope.launch {
+            albumDao.insertAlbum(album)
+            val albumToRetrieve = albumDao.getAlbumWithId("id")
+            assertEquals(albumToRetrieve?.title, "album title")
+        }
+
     }
 }
 
