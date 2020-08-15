@@ -1,0 +1,6 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+com.hogent.domain.models
+com.hogent.domain.repositories
+com.hogent.domain.sources

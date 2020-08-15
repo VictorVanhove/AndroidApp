@@ -1,1 +1,11 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        jcenter()
+    }
+}
+
+include ':domain'
+include ':network'
+include ':database'
 include ':app'

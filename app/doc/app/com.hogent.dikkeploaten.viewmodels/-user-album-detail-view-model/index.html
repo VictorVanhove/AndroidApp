@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserAlbumDetailViewModel - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.hogent.dikkeploaten.viewmodels</a>&nbsp;/&nbsp;<a href="./index.html">UserAlbumDetailViewModel</a><br/>
+<br/>
+<h1>UserAlbumDetailViewModel</h1>
+<code><span class="keyword">class </span><span class="identifier">UserAlbumDetailViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ViewModel</span></code>
+<p>The <a href="#">ViewModel</a> associated with the <a href="#">UserAlbumDetailFragment</a>, containing information about the selected
+<a href="#">UserAlbum</a>.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>The <a href="#">ViewModel</a> associated with the <a href="#">UserAlbumDetailFragment</a>, containing information about the selected
+<a href="#">UserAlbum</a>.</p>
+<code><span class="identifier">UserAlbumDetailViewModel</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel$<init>(com.hogent.domain.repositories.UserAlbumRepository, com.hogent.domain.models.AlbumAndUserAlbums)/userAlbumRepository">userAlbumRepository</span><span class="symbol">:</span>&nbsp;<span class="identifier">UserAlbumRepository</span><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.viewmodels.UserAlbumDetailViewModel$<init>(com.hogent.domain.repositories.UserAlbumRepository, com.hogent.domain.models.AlbumAndUserAlbums)/userAlbum">userAlbum</span><span class="symbol">:</span>&nbsp;<span class="identifier">AlbumAndUserAlbums</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="selected-user-album.html">selectedUserAlbum</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">selectedUserAlbum</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><span class="identifier">AlbumAndUserAlbums</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="remove-user-album-from-collection.html">removeUserAlbumFromCollection</a></h4>
+</td>
+<td>
+<p>Removes the user album from the user's collection or wantlist.</p>
+<code><span class="keyword">fun </span><span class="identifier">removeUserAlbumFromCollection</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

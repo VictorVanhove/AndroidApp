@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ViewAlbumAndUserAlbums - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.hogent.dikkeploaten.models</a>&nbsp;/&nbsp;<a href="./index.html">ViewAlbumAndUserAlbums</a><br/>
+<br/>
+<h1>ViewAlbumAndUserAlbums</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ViewAlbumAndUserAlbums</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
+<p>This class captures the relationship between an <a href="../-view-album/index.html">ViewAlbum</a> and a user's <a href="../-view-user-album/index.html">ViewUserAlbum</a>,
+which is used by Room to fetch the related entities. It interacts with the view, so parcelable
+is again needed.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>This class captures the relationship between an <a href="../-view-album/index.html">ViewAlbum</a> and a user's <a href="../-view-user-album/index.html">ViewUserAlbum</a>,
+which is used by Room to fetch the related entities. It interacts with the view, so parcelable
+is again needed.</p>
+<code><span class="identifier">ViewAlbumAndUserAlbums</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums$<init>(com.hogent.dikkeploaten.models.ViewAlbum, kotlin.collections.List((com.hogent.dikkeploaten.models.ViewUserAlbum)))/album">album</span><span class="symbol">:</span>&nbsp;<a href="../-view-album/index.html"><span class="identifier">ViewAlbum</span></a><span class="symbol">, </span><span class="identifier" id="com.hogent.dikkeploaten.models.ViewAlbumAndUserAlbums$<init>(com.hogent.dikkeploaten.models.ViewAlbum, kotlin.collections.List((com.hogent.dikkeploaten.models.ViewUserAlbum)))/userAlbums">userAlbums</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-view-user-album/index.html"><span class="identifier">ViewUserAlbum</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;emptyList()<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="album.html">album</a></h4>
+</td>
+<td>
+<p>the related album</p>
+<code><span class="keyword">val </span><span class="identifier">album</span><span class="symbol">: </span><a href="../-view-album/index.html"><span class="identifier">ViewAlbum</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="user-albums.html">userAlbums</a></h4>
+</td>
+<td>
+<p>the related list with their user albums</p>
+<code><span class="keyword">val </span><span class="identifier">userAlbums</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-view-user-album/index.html"><span class="identifier">ViewUserAlbum</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

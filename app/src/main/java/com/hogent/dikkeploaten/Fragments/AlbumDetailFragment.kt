@@ -4,49 +4,192 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.widget.NestedScrollView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.models.Album
-import kotlinx.android.synthetic.main.fragment_album_info.*
-import kotlinx.android.synthetic.main.layout_albumitem.artist_album
-import kotlinx.android.synthetic.main.layout_albumitem.title_album
+import com.hogent.dikkeploaten.databinding.FragmentAlbumInfoBinding
+import com.hogent.dikkeploaten.models.toAlbum
+import com.hogent.dikkeploaten.utilities.InjectorUtils
+import com.hogent.dikkeploaten.viewmodels.AlbumDetailViewModel
+import com.hogent.domain.models.Album
 
 /**
- * Fragment class for information page of each album.
+ * This [Fragment] represents the detail page of a selected [Album].
  */
 class AlbumDetailFragment : Fragment() {
 
-    private lateinit var album: Album
+    private var isFabExpanded = false
+    private val args: AlbumDetailFragmentArgs by navArgs()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_album_info, container, false)
+    private val albumDetailViewModel: AlbumDetailViewModel by viewModels {
+        InjectorUtils.provideAlbumDetailViewModelFactory(
+            requireActivity(),
+            args.selectedAlbum.toAlbum()
+        )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = DataBindingUtil.inflate<FragmentAlbumInfoBinding>(
+            inflater, R.layout.fragment_album_info, container, false
+        ).apply {
+            viewModel = albumDetailViewModel
+            lifecycleOwner = viewLifecycleOwner
+            callback = object : Callback {
+                override fun addToCollection(album: Album?) {
+                    album.let {
+                        hideAppBarFab(fabDialAdd)
+                        albumDetailViewModel.addAlbumToCollection()
+                        Snackbar.make(
+                            root,
+                            "\"${album!!.title}\" is toegevoegd aan je collectie",
+                            Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                    }
+                }
 
-        title_album.text = album.title
-        artist_album.text = album.artist
-        description_album.text = album.description
-        genre_album.text = album.genre
-        release_album.text = album.released_in
-        tracklist_album.text = album.tracklist.replace("\\n", "\n")
-        musicians_album.text = album.musicians.replace("\\n", "\n")
+                override fun addToWantlist(album: Album?) {
+                    album.let {
+                        hideAppBarFab(fabDialAdd)
+                        albumDetailViewModel.addAlbumToWantlist()
+                        Snackbar.make(
+                            root,
+                            "\"${album!!.title}\" is toegevoegd aan je wantlist",
+                            Snackbar.LENGTH_LONG
+                        )
+                            .show()
+                    }
+                }
+            }
 
-        val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-        Glide.with(context!!).load(album.thumb).apply(requestOptions).into(image_album)
+            // Checks if fab is pressed and in which state it is, then load the right animation
+            fabDialAdd.setOnClickListener {
+                if (isFabExpanded) {
+                    fabDialAdd.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.reverse_rotate_button
+                        )
+                    )
+                    fabAddToCollection.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_out
+                        )
+                    )
+                    fabAddToWantList.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_out
+                        )
+                    )
+                    isFabExpanded = false
+                } else {
+                    dialChildFabs.visibility = View.VISIBLE
+                    fabDialAdd.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.rotate_button
+                        )
+                    )
+                    fabAddToCollection.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_in
+                        )
+                    )
+                    fabAddToWantList.startAnimation(
+                        AnimationUtils.loadAnimation(
+                            context,
+                            R.anim.fade_in
+                        )
+                    )
+                    isFabExpanded = true
+                }
+            }
 
+            var isToolbarShown = false
+
+            // scroll change listener begins at Y = 0 when image is fully collapsed
+            albumDetailScrollview.setOnScrollChangeListener(
+                NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
+
+                    // Makes sure that the option fabs (if expanded) are removed as well when view gets scrolled
+                    if (isFabExpanded) {
+                        fabAddToCollection.startAnimation(
+                            AnimationUtils.loadAnimation(
+                                context,
+                                R.anim.fade_out
+                            )
+                        )
+                        fabAddToWantList.startAnimation(
+                            AnimationUtils.loadAnimation(
+                                context,
+                                R.anim.fade_out
+                            )
+                        )
+                        isFabExpanded = false
+                    }
+
+                    // User scrolled past image to height of toolbar and the title text is
+                    // underneath the toolbar, so the toolbar should be shown.
+                    val shouldShowToolbar = scrollY > toolbar.height
+
+                    // The new state of the toolbar differs from the previous state; update
+                    // appbar and toolbar attributes.
+                    if (isToolbarShown != shouldShowToolbar) {
+                        isToolbarShown = shouldShowToolbar
+
+                        // Use shadow animator to add elevation if toolbar is shown
+                        appbar.isActivated = shouldShowToolbar
+
+                        // Show the plant name if toolbar is shown
+                        toolbarLayout.isTitleEnabled = shouldShowToolbar
+                    }
+                }
+            )
+
+            toolbar.setNavigationOnClickListener { view ->
+                view.findNavController().navigateUp()
+            }
+        }
+
+        isInCollection(binding)
+
+        return binding.root
     }
 
-    /**
-     * Initiates the album equal to parameter for AlbumDetailFragment.
-     */
-    fun initiateAlbum(album: Album) {
-        this.album = album
+    // FloatingActionButtons anchored to AppBarLayouts have their visibility controlled by the scroll position.
+    // We want to turn this behavior off to hide the FAB when it is clicked.
+    private fun hideAppBarFab(fab: FloatingActionButton) {
+        val params = fab.layoutParams as CoordinatorLayout.LayoutParams
+        val behavior = params.behavior as FloatingActionButton.Behavior
+        behavior.isAutoHideEnabled = false
+        isFabExpanded = false
+        fab.hide()
     }
 
+    private fun isInCollection(binding: FragmentAlbumInfoBinding) {
+        albumDetailViewModel.inCollection.observe(viewLifecycleOwner) {
+            binding.isInCollection = it
+        }
+    }
+
+    interface Callback {
+        fun addToCollection(album: Album?)
+        fun addToWantlist(album: Album?)
+    }
 }

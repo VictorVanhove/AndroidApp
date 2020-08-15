@@ -1,162 +1,80 @@
 package com.hogent.dikkeploaten.fragments
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.adapters.AlbumAdapter
-import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.services.API
-import kotlinx.android.synthetic.main.fragment_collection.*
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
+import com.hogent.dikkeploaten.adapters.UserAlbumAdapter
+import com.hogent.dikkeploaten.databinding.FragmentCollectionBinding
+import com.hogent.dikkeploaten.models.toAlbumAndUserAlbums
+import com.hogent.dikkeploaten.models.toViewAlbumAndUserAlbums
+import com.hogent.dikkeploaten.utilities.InjectorUtils
+import com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel
 
 /**
- * Fragment class for the 'Collection' tab.
+ * This [Fragment] represents the collection page with their corresponding list of [UserAlbum]s.
  */
 class CollectionFragment : Fragment() {
 
-    private lateinit var adapter: AlbumAdapter
-    private var albums = arrayListOf<Album>()
+    private lateinit var binding: FragmentCollectionBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    /**
+     * Lazily initialize our [UserAlbumListViewModel].
+     */
+    private val viewModel: UserAlbumListViewModel by viewModels {
+        InjectorUtils.provideUserAlbumViewModelFactory(requireContext())
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_collection, container, false)
-    }
+        binding = FragmentCollectionBinding.inflate(inflater, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
 
-        API.shared.getUserCollection { albums ->
-            this.albums = albums
-            fillRecyclerView(this.albums)
-            disableExtraScreens()
-        }
+        // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
+        // tells the viewModel when our property is clicked
+        val adapter = UserAlbumAdapter(
+            UserAlbumAdapter.OnClickListener {
+                viewModel.displayAlbumDetails(it.toAlbumAndUserAlbums())
+            }
+        )
 
-        fillRecyclerView(this.albums)
-        checkCollectionStatus()
-        initSwipe()
-    }
+        binding.albumList.adapter = adapter
 
-    /**
-     * Fills the recyclerView with albums.
-     */
-    private fun fillRecyclerView(albums: ArrayList<Album>) {
-        if (recyclerView != null) {
-            adapter = AlbumAdapter(context!!, albums, false)
-            recyclerView.adapter = adapter
-            recyclerView.setHasFixedSize(true)
-            recyclerView.layoutManager = LinearLayoutManager(context)
-        }
-    }
+        viewModel.loadAlbumsAndUserAlbums()
+        subscribeUi(adapter, binding)
 
-    /**
-     * Initializes swipe functionality to items in list.
-     */
-    private fun initSwipe() {
-        val simpleItemTouchCallback =
-            object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-
-                override fun onMove(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    target: RecyclerView.ViewHolder
-                ): Boolean {
-                    return false
-                }
-
-                // Manages the swipe functionality
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    val position = viewHolder.adapterPosition
-                    val album = albums[position]
-                    albums.removeAt(position)
-
-                    if (direction == ItemTouchHelper.LEFT) {
-                        API.shared.deleteCollectionAlbum(album.id) {
-                            checkCollectionStatus()
-                        }
-                        adapter.notifyDataSetChanged()
-                    }
-
-                    Toast.makeText(context, "Album is verwijderd van je collectie!", Toast.LENGTH_SHORT).show()
-                }
-
-                // Adds the background to the swipe
-                override fun onChildDraw(
-                    c: Canvas,
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    dX: Float,
-                    dY: Float,
-                    actionState: Int,
-                    isCurrentlyActive: Boolean
-                ) {
-                    val deleteIcon = ContextCompat.getDrawable(adapter.context, R.drawable.ic_delete_white_24dp)!!
-                    val deleteIconBackground = ColorDrawable(Color.parseColor("#ff0000"))
-
-                    val itemView = viewHolder.itemView
-                    val iconMarginVertical = (viewHolder.itemView.height - deleteIcon.intrinsicHeight) / 2
-
-                    if (dX < 0) {
-                        deleteIconBackground.setBounds(
-                            itemView.right + dX.toInt(),
-                            itemView.top,
-                            itemView.right,
-                            itemView.bottom
-                        )
-                        deleteIcon.setBounds(
-                            itemView.right - iconMarginVertical - deleteIcon.intrinsicWidth,
-                            itemView.top + iconMarginVertical,
-                            itemView.right - iconMarginVertical,
-                            itemView.bottom - iconMarginVertical
-                        )
-                        deleteIcon.level = 0
-                    }
-
-                    deleteIconBackground.draw(c)
-
-                    c.save()
-
-                    if (dX < 0)
-                        c.clipRect(itemView.right + dX.toInt(), itemView.top, itemView.right, itemView.bottom)
-
-                    deleteIcon.draw(c)
-
-                    c.restore()
-
-                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+        viewModel.navigateToSelectedUserAlbum.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (null != it) {
+                    // Must find the NavController from the Fragment
+                    this.findNavController().navigate(
+                        ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it.toViewAlbumAndUserAlbums())
+                    )
+                    // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
+                    viewModel.displayAlbumDetailsComplete()
                 }
             }
-        val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
-        itemTouchHelper.attachToRecyclerView(recyclerView)
+        )
+
+        return binding.root
     }
 
-    /**
-     * Checks if user's collection is empty.
-     */
-    private fun checkCollectionStatus() {
-        if (API.shared.cache.user.plates.isEmpty()) {
-            progressBar.visibility = View.GONE
-            emptyMessage.visibility = View.VISIBLE
+    private fun subscribeUi(adapter: UserAlbumAdapter, binding: FragmentCollectionBinding) {
+        viewModel.albumAndUserAlbumsCollection.observe(viewLifecycleOwner) { result ->
+            binding.hasAlbums = !result.isNullOrEmpty()
+            adapter.submitList(result.map { it.toViewAlbumAndUserAlbums() })
         }
     }
-
-    /**
-     * Disables progressBar and emptyMessage.
-     */
-    private fun disableExtraScreens() {
-        if (progressBar != null) {
-            progressBar.visibility = View.GONE
-            emptyMessage.visibility = View.GONE
-        }
-    }
-
 }

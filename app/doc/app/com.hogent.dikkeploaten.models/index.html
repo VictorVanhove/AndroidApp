@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.hogent.dikkeploaten.models - app</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">app</a>&nbsp;/&nbsp;<a href="./index.html">com.hogent.dikkeploaten.models</a><br/>
+<br/>
+<h2>Package com.hogent.dikkeploaten.models</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-view-album/index.html">ViewAlbum</a></h4>
+</td>
+<td>
+<p>This class represents a view version of an <a href="#">Album</a>, loaded from the network,
+is made parcelable and thus interacts with the UI and the user.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ViewAlbum</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-view-album-and-user-albums/index.html">ViewAlbumAndUserAlbums</a></h4>
+</td>
+<td>
+<p>This class captures the relationship between an <a href="-view-album/index.html">ViewAlbum</a> and a user's <a href="-view-user-album/index.html">ViewUserAlbum</a>,
+which is used by Room to fetch the related entities. It interacts with the view, so parcelable
+is again needed.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ViewAlbumAndUserAlbums</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-view-user-album/index.html">ViewUserAlbum</a></h4>
+</td>
+<td>
+<p>This class represents the view version of an <a href="#">UserAlbum</a>, used when a user adds an
+<a href="#">Album</a> to their collection or wantlist, with useful metadata.</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">ViewUserAlbum</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

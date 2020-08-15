@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hogent.dikkeploaten.viewmodels.AlbumAndUserAlbumsViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_user_album_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/card_side_margin"
+        android:layout_marginEnd="@dimen/card_side_margin"
+        android:layout_marginBottom="@dimen/card_bottom_margin"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_user_album_thumb"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/user_album_item_height"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/image_user_album_description"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.albumThumb}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/item_user_album_title"
+                style="@style/Widget.DikkePloaten.TextView.AlbumItem.Title.Text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.albumTitle}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_user_album_thumb"
+                tools:text="@string/placeholder_title" />
+
+            <TextView
+                android:id="@+id/item_user_album_artist"
+                style="@style/Widget.DikkePloaten.TextView.AlbumItem.Artist.Text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_extra_small"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.albumArtist}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_user_album_title"
+                tools:text="@string/placeholder_artist" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_user_album_artist">
+
+                <TextView
+                    android:id="@+id/lbl_item_user_album_date_added"
+                    style="@style/Widget.DikkePloaten.TextView.AlbumItem.LblDateAdded.Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="@string/date_album_added" />
+
+                <TextView
+                    android:id="@+id/item_user_album_date_added"
+                    style="@style/Widget.DikkePloaten.TextView.AlbumItem.DateAdded.Text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@{viewModel.albumDateString}"
+                    tools:text="@string/placeholder_date_added" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

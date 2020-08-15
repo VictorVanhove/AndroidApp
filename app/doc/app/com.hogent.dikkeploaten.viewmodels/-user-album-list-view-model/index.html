@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>UserAlbumListViewModel - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">com.hogent.dikkeploaten.viewmodels</a>&nbsp;/&nbsp;<a href="./index.html">UserAlbumListViewModel</a><br/>
+<br/>
+<h1>UserAlbumListViewModel</h1>
+<code><span class="keyword">class </span><span class="identifier">UserAlbumListViewModel</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ViewModel</span></code>
+<p>The ViewModel used in <a href="#">CollectionFragment</a> and <a href="#">WantlistFragment</a>.</p>
+<h3>Parameters</h3>
+<p><a name="userAlbumRepository"></a>
+<code>userAlbumRepository</code> - the repository that will process and import all the user albums</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="album-and-user-albums-collection.html">albumAndUserAlbumsCollection</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">albumAndUserAlbumsCollection</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">AlbumAndUserAlbums</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="album-and-user-albums-wantlist.html">albumAndUserAlbumsWantlist</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">albumAndUserAlbumsWantlist</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">AlbumAndUserAlbums</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="navigate-to-selected-user-album.html">navigateToSelectedUserAlbum</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">navigateToSelectedUserAlbum</span><span class="symbol">: </span><span class="identifier">LiveData</span><span class="symbol">&lt;</span><span class="identifier">AlbumAndUserAlbums</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="user-album-repository.html">userAlbumRepository</a></h4>
+</td>
+<td>
+<p>the repository that will process and import all the user albums</p>
+<code><span class="keyword">val </span><span class="identifier">userAlbumRepository</span><span class="symbol">: </span><span class="identifier">UserAlbumRepository</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="display-album-details.html">displayAlbumDetails</a></h4>
+</td>
+<td>
+<p>When the album is clicked, set the <a href="#">_navigateToSelectedUserAlbum</a></p>
+<code><span class="keyword">fun </span><span class="identifier">displayAlbumDetails</span><span class="symbol">(</span><span class="identifier" id="com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel$displayAlbumDetails(com.hogent.domain.models.AlbumAndUserAlbums)/album">album</span><span class="symbol">:</span>&nbsp;<span class="identifier">AlbumAndUserAlbums</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="display-album-details-complete.html">displayAlbumDetailsComplete</a></h4>
+</td>
+<td>
+<p>After the navigation has taken place, make sure navigateToSelectedAlbum is set to null</p>
+<code><span class="keyword">fun </span><span class="identifier">displayAlbumDetailsComplete</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="load-albums-and-user-albums.html">loadAlbumsAndUserAlbums</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">loadAlbumsAndUserAlbums</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-cleared.html">onCleared</a></h4>
+</td>
+<td>
+<p>When the <a href="#">ViewModel</a> is finished, we cancel our coroutine <a href="#">viewModelJob</a>, which tells the
+Retrofit service to stop.</p>
+<code><span class="keyword">fun </span><span class="identifier">onCleared</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

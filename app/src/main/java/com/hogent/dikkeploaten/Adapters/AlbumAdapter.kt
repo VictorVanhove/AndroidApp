@@ -1,96 +1,61 @@
 package com.hogent.dikkeploaten.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.activities.MainActivity
-import com.hogent.dikkeploaten.models.Album
-import com.hogent.dikkeploaten.services.API
-import kotlinx.android.synthetic.main.layout_albumitem.view.*
+import com.hogent.dikkeploaten.databinding.ListItemAlbumBinding
+import com.hogent.dikkeploaten.models.ViewAlbum
+import com.hogent.domain.models.Album
 
 /**
- * Adapter class for each album in recyclerView.
+ * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present
+ * a [List] [Album], including computing diffs between lists.
+ *
+ * @param onClickListener a lambda that handles the clicked [Album].
  */
-class AlbumAdapter(var context: Context, private var albums: ArrayList<Album>, private var showStatus: Boolean) :
-    RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
+class AlbumAdapter(private val onClickListener: OnClickListener) :
+    ListAdapter<ViewAlbum, AlbumViewHolder>(DiffCallback) {
 
     /**
-     * Inflates the AlbumViewHolder.
+     * Create new [RecyclerView] item views (invoked by the layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.layout_albumitem, parent, false
-        )
-        return AlbumViewHolder(itemView)
+        return AlbumViewHolder(ListItemAlbumBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     /**
-     * Binds each album in the ArrayList to a view.
+     * Replaces the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
-        val album = albums[position]
-        holder.txtTitle.text = album.title
-        holder.txtArtist.text = album.artist
-
-        val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-        Glide.with(context).load(album.thumb).apply(requestOptions).into(holder.imageAlbum)
-
-        //Adds status image if album belongs to collection/wantlist
-        if (showStatus) {
-            when {
-                API.shared.cache.user.plates.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(
-                    R.mipmap.ic_in_collection
-                ).apply(requestOptions).into(holder.imageStatus)
-                API.shared.cache.user.wantList.any { userAlbum -> userAlbum.albumID == album.id } -> Glide.with(context).load(
-                    R.mipmap.ic_in_wantlist
-                ).apply(requestOptions).into(holder.imageStatus)
-                else -> Glide.with(context).load(R.drawable.ic_not_in_collection).apply(requestOptions).into(holder.imageStatus)
-            }
-        }
-
+        val album = getItem(position)
         holder.itemView.setOnClickListener {
-            run {
-                if (context is MainActivity) {
-                    val activity = context as MainActivity
-                    activity.goToAlbumDetail(album)
-                }
-            }
+            onClickListener.onClick(album)
+        }
+        holder.bindData(album)
+    }
+
+    /**
+     * Allows the RecyclerView to determine which items have changed when the [List] of [Album]
+     * has been updated.
+     */
+    companion object DiffCallback : DiffUtil.ItemCallback<ViewAlbum>() {
+        override fun areItemsTheSame(oldItem: ViewAlbum, newItem: ViewAlbum): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: ViewAlbum, newItem: ViewAlbum): Boolean {
+            return oldItem.albumId == newItem.albumId
         }
     }
 
     /**
-     * Gets the number of albums in the list.
+     * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Album]
+     * associated with the current item to the [onClick] function.
+     * @param clickListener lambda that will be called with the current [Album].
      */
-    override fun getItemCount(): Int {
-        return albums.size
+    class OnClickListener(val clickListener: (album: ViewAlbum) -> Unit) {
+        fun onClick(album: ViewAlbum) = clickListener(album)
     }
-
-    /**
-     * Holds the view for the album.
-     */
-    class AlbumViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val txtTitle = itemView.title_album!!
-        val txtArtist = itemView.artist_album!!
-        val imageAlbum = itemView.image_album!!
-        val imageStatus = itemView.image_status!!
-
-    }
-
-    /**
-     * Filters the albums in the recyclerView
-     */
-    fun setFilter(filteredList: ArrayList<Album>) {
-        this.albums = filteredList
-        notifyDataSetChanged()
-    }
-
 }
-
-
