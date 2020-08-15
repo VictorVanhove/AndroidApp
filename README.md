@@ -15,6 +15,8 @@ __This application features:__
 * Animations on widgets and between screens.
 * Different screen layouts for portrait and landscape mode.
 
+Repo of the server backend: https://github.com/VictorVanhove/Dikke-Ploaten-Backend.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -46,6 +48,8 @@ What things you need to install the software:
 ![List of albums](screenshots/phone_album_list.png "A list of albums")
 ![Album details](screenshots/phone_album_detail.png "Details for a specific album")
 ![My Collection](screenshots/phone_user_album_list.png "Albums that have been added to your collection")
+
+There is also a screencast available at: https://www.youtube.com/watch?v=hMTHtXmAMYM&t=14s.
 
 ## Libraries Used
 
