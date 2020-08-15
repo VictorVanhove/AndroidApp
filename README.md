@@ -69,10 +69,11 @@ What things you need to install the software:
   * [Fragment][34] - A basic unit of composable UI.
   * [Layout][35] - Lay out widgets using different algorithms.
 * Third party
-  * [Glide][90] for image loading.
+  * [Glide][90] for image loading
   * [MockK][4] - Open Source mocking library for Kotlin for unit and runtime UI tests.
-  * [Moshi][92] - makes it easy to parse JSON into Java objects.
+  * [Moshi][92] makes it easy to parse JSON into Java objects
   * [Kotlin Coroutines][91] for managing background threads with simplified code and reducing needs for callbacks.
+  * [Ktlint][93] for improving code quality and clean code
 
 [0]: https://developer.android.com/jetpack/components
 [1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
@@ -93,6 +94,7 @@ What things you need to install the software:
 [90]: https://bumptech.github.io/glide/
 [91]: https://kotlinlang.org/docs/reference/coroutines-overview.html
 [92]: https://github.com/square/moshi
+[93]: https://github.com/pinterest/ktlint
 
 ## Documentation
 
