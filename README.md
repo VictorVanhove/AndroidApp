@@ -1,22 +1,19 @@
 # Dikke Ploaten - Android Application
 
-Welcome to the Android version of the 'Dikke Ploaten'-app. This application is specially made for the diehard music fans who want to keep track of their music collection. You simply sign up to our community and start organizing your vinyls or cd's! As a member, you'll be able to swipe albums to your collection or wantlist. It is also possible to discover new albums you've never heard of. For this, we implemented a information screen of each album. You can setup your profile page and adjust the app to your needs. 
+Welcome to the Android version of the 'Dikke Ploaten'-app. This application is specially made for the diehard music fans who want to keep track of their music collection. You simply install the app and start organizing your vinyls or cd's! You'll be able to add albums to your collection or wantlist. It is also possible to discover new albums you've never heard of. For this, we implemented an information screen of each album. 
 
 Have a look and become a new member of the 'Dikke Ploaten'-community!
 
 __This application features:__
 * An interface fully in Dutch.
-* Login page to get access to the app.
-* Sign up to register you as 'Dikke Ploaten'-user.
-* Bottom Navigation Menu for a better user experience.
+* View Pager with tabs for a better user experience.
 * Collection tab to manage your collected albums.
 * A Wantlist to keep track of the albums you desire.
-* Discover page with a whole list of albums.
-* Possibility to search for a certain album.
-* Swipe functionality to add or remove an album to/from your collection, wantlist.
-* A fully detailed info page of each album.
-* Profile tab with profile picture/cover and other user information.
-* Settings menu to change your preferences with possibility to sign out.
+* Search page with a whole list of albums.
+* A Detail page of each album.
+* Buttons to add or remove an album to/from your collection, wantlist.
+* Animations on widgets and between screens.
+* Different screen layouts for portrait and landscape mode.
 
 ## Getting Started
 
@@ -38,43 +35,70 @@ What things you need to install the software:
 4. Run the app. Click `Run > Run 'app'`. After the project builds you'll be
    prompted to build or launch an emulator.
    
-## Running the instrumented tests
+#### Running the unit tests
 
 1. Go to Android Studio.
 2. Go to a specific test class.
 3. Run the test by clicking on the green arrow, your test will run automatically.
 
-## Built With
+## Screenshots
 
-* [Android Studio](https://developer.android.com/studio) - IDE for Android Development
-* [Gradle](https://gradle.org/) - Build Management
-* [Firebase](https://firebase.google.com) - Development software for Authentication and Storage
+![List of albums](screenshots/phone_album_list.png "A list of albums")
+![Album details](screenshots/phone_album_detail.png "Details for a specific album")
+![My Collection](screenshots/phone_user_album_list.png "Albums that have been added to your collection")
 
-## Contributing
+## Libraries Used
 
-The best way to submit feedback and report bugs is to open a Github issue.
-Please be sure to include your device, version number, and
-steps to reproduce reported bugs. 
+* [Foundation][0] - Components for core system capabilities, Kotlin extensions and support for
+  multidex and automated testing.
+  * [AppCompat][1] - Degrade gracefully on older versions of Android.
+  * [Android KTX][2] - Write more concise, idiomatic Kotlin code.
+* [Architecture][10] - A collection of libraries that help you design robust, testable, and
+  maintainable apps. Start with classes for managing your UI component lifecycle and handling data
+  persistence.
+  * [Data Binding][11] - Declaratively bind observable data to UI elements.
+  * [Lifecycles][12] - Create a UI that automatically responds to lifecycle events.
+  * [LiveData][13] - Build data objects that notify views when the underlying database changes.
+  * [Navigation][14] - Handle everything needed for in-app navigation.
+  * [Room][16] - Access your app's SQLite database with in-app objects and compile-time checks.
+  * [Retrofit][18] - For fetching data of the Internet using HTTP request calls.
+  * [ViewModel][17] - Store UI-related data that isn't destroyed on app rotations. Easily schedule
+     asynchronous tasks for optimal execution.
+* [UI][30] - Details on why and how to use UI Components in your apps - together or separate
+  * [Animations & Transitions][31] - Move widgets and transition between screens.
+  * [Fragment][34] - A basic unit of composable UI.
+  * [Layout][35] - Lay out widgets using different algorithms.
+* Third party
+  * [Glide][90] for image loading.
+  * [MockK][4] - Open Source mocking library for Kotlin for unit and runtime UI tests.
+  * [Moshi][92] - makes it easy to parse JSON into Java objects.
+  * [Kotlin Coroutines][91] for managing background threads with simplified code and reducing needs for callbacks.
+
+[0]: https://developer.android.com/jetpack/components
+[1]: https://developer.android.com/topic/libraries/support-library/packages#v7-appcompat
+[2]: https://developer.android.com/kotlin/ktx
+[4]: https://mockk.io/
+[10]: https://developer.android.com/jetpack/arch/
+[11]: https://developer.android.com/topic/libraries/data-binding/
+[12]: https://developer.android.com/topic/libraries/architecture/lifecycle
+[13]: https://developer.android.com/topic/libraries/architecture/livedata
+[14]: https://developer.android.com/topic/libraries/architecture/navigation/
+[16]: https://developer.android.com/topic/libraries/architecture/room
+[17]: https://developer.android.com/topic/libraries/architecture/viewmodel
+[18]: https://square.github.io/retrofit/
+[30]: https://developer.android.com/guide/topics/ui
+[31]: https://developer.android.com/training/animation/
+[34]: https://developer.android.com/guide/components/fragments
+[35]: https://developer.android.com/guide/topics/ui/declaring-layout
+[90]: https://bumptech.github.io/glide/
+[91]: https://kotlinlang.org/docs/reference/coroutines-overview.html
+[92]: https://github.com/square/moshi
 
 ## Documentation
 
 We used [dokka](https://github.com/Kotlin/dokka) for documentation of the project.
-The docs are available under the folder ['doc'](https://github.com/VictorVanhove/Dikke-Ploaten-Android/tree/master/doc/app).
+The docs are available under the folder ['doc'](https://github.com/VictorVanhove/Dikke-Ploaten-Android/tree/master/app/doc/app) inside each module.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning.
-
-## Authors
+## Contributors
 
 This app is brought to you by **Victor Vanhove**.
-
-## License
-
-This project is licensed under the [MIT](https://opensource.org/licenses/MIT) License.
-
-## Acknowledgements
-
-- @PurpleBooth for their [readme](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) template
-- @Jens Buysse for providing a [course](https://github.com/HoGentTIN/software-development-in-Android) on software development in Android
-
