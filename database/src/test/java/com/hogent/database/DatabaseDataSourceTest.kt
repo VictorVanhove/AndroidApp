@@ -4,7 +4,6 @@ import com.hogent.database.dao.AlbumDao
 import com.hogent.database.dao.UserAlbumDao
 import com.hogent.database.models.*
 import com.hogent.domain.models.Album
-import com.hogent.domain.models.UserAlbum
 import com.hogent.domain.sources.DatabaseSource
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -101,7 +100,8 @@ class DatabaseDataSourceTest {
                 "1965",
                 "tracks",
                 "Lennon, Starr"
-            ), listOf(
+            ),
+            listOf(
                 DatabaseUserAlbum(
                     "123",
                     "collection",
@@ -265,8 +265,9 @@ class DatabaseDataSourceTest {
         }
 
         coVerify(exactly = 1) {
-            userAlbumDao.getAlbumsUser("collection") }
+            userAlbumDao.getAlbumsUser("collection")
         }
+    }
 
     @Test
     fun getWantlistUserDaoCallTest() {
@@ -279,6 +280,7 @@ class DatabaseDataSourceTest {
         }
 
         coVerify(exactly = 1) {
-            userAlbumDao.getAlbumsUser("wantlist") }
+            userAlbumDao.getAlbumsUser("wantlist")
+        }
     }
 }

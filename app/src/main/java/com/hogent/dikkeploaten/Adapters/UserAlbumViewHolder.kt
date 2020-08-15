@@ -19,5 +19,4 @@ internal class UserAlbumViewHolder(private var binding: ListItemUserAlbumBinding
             executePendingBindings()
         }
     }
-
 }

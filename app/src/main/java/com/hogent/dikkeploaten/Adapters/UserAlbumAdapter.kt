@@ -63,5 +63,4 @@ internal class UserAlbumAdapter(private val onClickListener: OnClickListener) :
     class OnClickListener(val clickListener: (album: ViewAlbumAndUserAlbums) -> Unit) {
         fun onClick(album: ViewAlbumAndUserAlbums) = clickListener(album)
     }
-
 }

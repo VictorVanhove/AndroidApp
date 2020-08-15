@@ -4,7 +4,6 @@ import androidx.room.*
 import com.hogent.domain.models.UserAlbum
 import java.util.*
 
-
 /**
  * This class represents the persistent version of an [UserAlbum], used when a user adds a
  * [Album] to their collection or wantlist, with useful metadata.

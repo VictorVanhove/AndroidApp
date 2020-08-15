@@ -16,5 +16,4 @@ class AlbumViewHolder(private var binding: ListItemAlbumBinding) :
         // which allows the RecyclerView to make the correct view size measurements
         binding.executePendingBindings()
     }
-
 }

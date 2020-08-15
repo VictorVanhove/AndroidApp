@@ -9,8 +9,7 @@ import com.hogent.domain.repositories.UserAlbumRepository
  * Factory for creating a [UserAlbumDetailViewModel] with a constructor that takes a [UserAlbumRepository]
  * and the current userAlbum in [AlbumAndUserAlbums].
  */
-class UserAlbumDetailViewModelFactory
-    (
+class UserAlbumDetailViewModelFactory(
     private val userAlbumRepository: UserAlbumRepository,
     private val userAlbum: AlbumAndUserAlbums
 ) : ViewModelProvider.Factory {

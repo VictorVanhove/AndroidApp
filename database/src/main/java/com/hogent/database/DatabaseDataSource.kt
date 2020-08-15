@@ -21,7 +21,7 @@ private const val WANTLIST_TYPE = "wantlist"
 class DatabaseDataSource internal constructor(
     private val albumDao: AlbumDao,
     private val userAlbumDao: UserAlbumDao
-): DatabaseSource {
+) : DatabaseSource {
 
     //region Albums
 

@@ -44,5 +44,4 @@ class AlbumRepository internal constructor(
                         .also { instance = it }
             }
     }
-
 }

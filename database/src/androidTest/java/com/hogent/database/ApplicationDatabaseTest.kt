@@ -23,8 +23,8 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.hogent.database.dao.AlbumDao
 import com.hogent.database.models.DatabaseAlbum
 import kotlinx.coroutines.*
-import org.junit.Assert.assertEquals
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -51,9 +51,9 @@ class ApplicationDatabaseTest {
         // Using an in-memory database because the information stored here disappears when the
         // process is killed.
         db = Room.inMemoryDatabaseBuilder(context, com.hogent.database.ApplicationDatabase::class.java)
-                // Allowing main thread queries, just for testing.
-                .allowMainThreadQueries()
-                .build()
+            // Allowing main thread queries, just for testing.
+            .allowMainThreadQueries()
+            .build()
         albumDao = db.albumDao()
     }
 
@@ -73,7 +73,5 @@ class ApplicationDatabaseTest {
             val albumToRetrieve = albumDao.getAlbumWithId("id")
             assertEquals(albumToRetrieve?.title, "album title")
         }
-
     }
 }
-

@@ -38,7 +38,8 @@ class AlbumDetailFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<FragmentAlbumInfoBinding>(
@@ -164,7 +165,6 @@ class AlbumDetailFragment : Fragment() {
             toolbar.setNavigationOnClickListener { view ->
                 view.findNavController().navigateUp()
             }
-
         }
 
         isInCollection(binding)

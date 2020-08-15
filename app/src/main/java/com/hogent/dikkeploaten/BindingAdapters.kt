@@ -73,5 +73,3 @@ fun bindStatusForButton(view: View, status: ApiStatus?) {
         View.GONE
     }
 }
-
-

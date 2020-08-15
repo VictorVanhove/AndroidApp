@@ -43,9 +43,11 @@ class SearchFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
-        val adapter = AlbumAdapter(AlbumAdapter.OnClickListener {
-            viewModel.displayAlbumDetails(it.toAlbum())
-        })
+        val adapter = AlbumAdapter(
+            AlbumAdapter.OnClickListener {
+                viewModel.displayAlbumDetails(it.toAlbum())
+            }
+        )
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
@@ -53,16 +55,19 @@ class SearchFragment : Fragment() {
 
         subscribeUi(adapter)
 
-        viewModel.navigateToSelectedAlbum.observe(viewLifecycleOwner, Observer {
-            if (null != it) {
-                // Must find the NavController from the Fragment
-                this.findNavController().navigate(
-                    ViewPagerFragmentDirections.actionViewPagerFragmentToAlbumDetailFragment(it.toViewAlbum())
-                )
-                // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-                viewModel.displayAlbumDetailsComplete()
+        viewModel.navigateToSelectedAlbum.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (null != it) {
+                    // Must find the NavController from the Fragment
+                    this.findNavController().navigate(
+                        ViewPagerFragmentDirections.actionViewPagerFragmentToAlbumDetailFragment(it.toViewAlbum())
+                    )
+                    // Tell the ViewModel we've made the navigate call to prevent multiple navigation
+                    viewModel.displayAlbumDetailsComplete()
+                }
             }
-        })
+        )
 
         binding.buttonReload.setOnClickListener {
             viewModel.loadAlbumsFromNetwork()
@@ -76,5 +81,4 @@ class SearchFragment : Fragment() {
             adapter.submitList(result.map { it.toViewAlbum() })
         }
     }
-
 }

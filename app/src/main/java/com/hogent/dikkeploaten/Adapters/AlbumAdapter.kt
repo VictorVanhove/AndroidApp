@@ -50,7 +50,6 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
         }
     }
 
-
     /**
      * Custom listener that handles clicks on [RecyclerView] items.  Passes the [Album]
      * associated with the current item to the [onClick] function.
@@ -59,7 +58,4 @@ class AlbumAdapter(private val onClickListener: OnClickListener) :
     class OnClickListener(val clickListener: (album: ViewAlbum) -> Unit) {
         fun onClick(album: ViewAlbum) = clickListener(album)
     }
-
 }
-
-

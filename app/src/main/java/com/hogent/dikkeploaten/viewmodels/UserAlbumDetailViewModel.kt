@@ -41,5 +41,4 @@ class UserAlbumDetailViewModel(
             userAlbumRepository.removeUserAlbum(userAlbum)
         }
     }
-
 }

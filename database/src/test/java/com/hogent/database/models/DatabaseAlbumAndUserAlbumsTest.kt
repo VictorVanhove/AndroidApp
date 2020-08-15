@@ -19,7 +19,8 @@ class DatabaseAlbumAndUserAlbumsTest {
                 "1965",
                 "tracks",
                 "Lennon, Starr"
-            ), listOf(
+            ),
+            listOf(
                 DatabaseUserAlbum(
                     "123",
                     "collection",

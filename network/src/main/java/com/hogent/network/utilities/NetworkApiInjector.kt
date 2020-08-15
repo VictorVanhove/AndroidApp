@@ -1,4 +1,4 @@
-package com.hogent.network.utilities;
+package com.hogent.network.utilities
 
 import com.hogent.network.ApiService
 import com.hogent.network.NetworkDataSource
@@ -31,8 +31,11 @@ object NetworkApiInjector {
         .baseUrl(BASE_URL)
         .build()
 
-    private val retrofitService: ApiService by lazy { retrofit.create(
-        ApiService::class.java) }
+    private val retrofitService: ApiService by lazy {
+        retrofit.create(
+            ApiService::class.java
+        )
+    }
 
     fun provideNetworkDataSource() =
         NetworkDataSource(retrofitService)

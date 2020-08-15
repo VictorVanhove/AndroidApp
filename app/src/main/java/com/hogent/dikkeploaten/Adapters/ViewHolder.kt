@@ -10,7 +10,8 @@ import kotlinx.android.extensions.LayoutContainer
  * @param T the type of the given member
  * @property itemView the [View] of the given item
  */
-abstract class ViewHolder<in T>(itemView: View) : RecyclerView.ViewHolder(itemView),
+abstract class ViewHolder<in T>(itemView: View) :
+    RecyclerView.ViewHolder(itemView),
     LayoutContainer {
 
     override val containerView: View

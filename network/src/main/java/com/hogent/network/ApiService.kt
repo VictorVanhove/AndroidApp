@@ -13,5 +13,4 @@ internal interface ApiService {
      */
     @GET("albums")
     suspend fun getAlbumList(): List<NetworkAlbum>
-
 }

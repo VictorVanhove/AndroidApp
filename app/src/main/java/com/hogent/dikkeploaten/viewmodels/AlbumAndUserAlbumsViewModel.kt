@@ -23,5 +23,4 @@ internal class AlbumAndUserAlbumsViewModel(albums: ViewAlbumAndUserAlbums) {
     companion object {
         private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.US)
     }
-
 }

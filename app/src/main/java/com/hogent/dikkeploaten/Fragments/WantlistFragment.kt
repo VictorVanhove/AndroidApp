@@ -15,7 +15,6 @@ import com.hogent.dikkeploaten.models.toAlbumAndUserAlbums
 import com.hogent.dikkeploaten.models.toViewAlbumAndUserAlbums
 import com.hogent.dikkeploaten.utilities.InjectorUtils
 import com.hogent.dikkeploaten.viewmodels.UserAlbumListViewModel
-import com.hogent.domain.models.Album
 
 /**
  * This [Fragment] represents the wantlist page with their corresponding list of [UserAlbum]s.
@@ -44,25 +43,30 @@ class WantlistFragment : Fragment() {
 
         // Sets the adapter of the photosGrid RecyclerView with clickHandler lambda that
         // tells the viewModel when our property is clicked
-        val adapter = UserAlbumAdapter(UserAlbumAdapter.OnClickListener {
-            viewModel.displayAlbumDetails(it.toAlbumAndUserAlbums())
-        })
+        val adapter = UserAlbumAdapter(
+            UserAlbumAdapter.OnClickListener {
+                viewModel.displayAlbumDetails(it.toAlbumAndUserAlbums())
+            }
+        )
 
         binding.albumList.adapter = adapter
 
         viewModel.loadAlbumsAndUserAlbums()
         subscribeUi(adapter, binding)
 
-        viewModel.navigateToSelectedUserAlbum.observe(viewLifecycleOwner, Observer {
-            if (null != it) {
-                // Must find the NavController from the Fragment
-                this.findNavController().navigate(
-                    ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it.toViewAlbumAndUserAlbums())
-                )
-                // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
-                viewModel.displayAlbumDetailsComplete()
+        viewModel.navigateToSelectedUserAlbum.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (null != it) {
+                    // Must find the NavController from the Fragment
+                    this.findNavController().navigate(
+                        ViewPagerFragmentDirections.actionViewPagerFragmentToUserAlbumDetailFragment(it.toViewAlbumAndUserAlbums())
+                    )
+                    // Tell the ViewModel we've made the navigate call to prevent multiple navigation /
+                    viewModel.displayAlbumDetailsComplete()
+                }
             }
-        })
+        )
 
         return binding.root
     }
@@ -73,5 +77,4 @@ class WantlistFragment : Fragment() {
             adapter.submitList(result.map { it.toViewAlbumAndUserAlbums() })
         }
     }
-
 }

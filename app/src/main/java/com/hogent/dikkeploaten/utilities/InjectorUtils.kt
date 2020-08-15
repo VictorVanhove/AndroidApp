@@ -3,10 +3,10 @@ package com.hogent.dikkeploaten.utilities
 import android.content.Context
 import androidx.fragment.app.Fragment
 import com.hogent.database.utilities.DatabaseInjector
-import com.hogent.domain.models.Album
-import com.hogent.domain.repositories.AlbumRepository
 import com.hogent.dikkeploaten.viewmodels.*
+import com.hogent.domain.models.Album
 import com.hogent.domain.models.AlbumAndUserAlbums
+import com.hogent.domain.repositories.AlbumRepository
 import com.hogent.domain.repositories.UserAlbumRepository
 import com.hogent.network.utilities.NetworkApiInjector
 

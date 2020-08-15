@@ -69,5 +69,4 @@ class AlbumDetailViewModel(
             userAlbumRepository.createUserAlbum(album.albumId, "wantlist")
         }
     }
-
 }

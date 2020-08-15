@@ -24,5 +24,4 @@ class SearchViewModelFactory(
     ): T {
         return SearchViewModel(albumRepository) as T
     }
-
 }

@@ -6,14 +6,11 @@ import com.hogent.network.models.NetworkAlbum
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.every
 import io.mockk.impl.annotations.RelaxedMockK
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class NetworkDataSourceTest {
 
@@ -98,7 +95,7 @@ class NetworkDataSourceTest {
 
         runBlocking {
 
-            val result =  source.getAlbumList()
+            val result = source.getAlbumList()
 
             // Check correct conversion (lists are the variables pictured above)
             assertEquals(listOfAlbums.size, result.size)

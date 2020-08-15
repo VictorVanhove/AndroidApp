@@ -1,9 +1,8 @@
 package com.hogent.database.utilities
 
 import org.junit.Assert
-import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.Test
 import java.util.*
 
 class ConvertersTest {

@@ -43,7 +43,6 @@ class UserAlbumListViewModel internal constructor(
     // Init the coroutine with job and run it on a background thread (IO) dispatcher to reduce work on the main UI
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
-
     fun loadAlbumsAndUserAlbums() {
         viewModelScope.launch {
             try {

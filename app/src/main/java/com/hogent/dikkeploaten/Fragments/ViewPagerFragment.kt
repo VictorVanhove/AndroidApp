@@ -8,12 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hogent.dikkeploaten.R
-import com.hogent.dikkeploaten.adapters.ViewPagerAdapter
 import com.hogent.dikkeploaten.adapters.COLLECTION_PAGE_INDEX
 import com.hogent.dikkeploaten.adapters.SEARCH_PAGE_INDEX
+import com.hogent.dikkeploaten.adapters.ViewPagerAdapter
 import com.hogent.dikkeploaten.adapters.WANTLIST_PAGE_INDEX
 import com.hogent.dikkeploaten.databinding.FragmentViewPagerBinding
-import com.hogent.domain.models.Album
 
 /**
  * This [Fragment] represents the view pager page in which the [Fragment]s getting loaded.
